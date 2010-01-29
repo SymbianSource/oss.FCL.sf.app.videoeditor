@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE cshcust SYSTEM "/cshlpcmp/dtd/CSHcust.dtd">
+<?xml:stylesheet href="/cshlpcmp/xsl/cshcust.xsl" title="CS-Help customization" type="text/xsl"?>
+<cshcust>
+<parastyle name="body" font="sansserif" size="10"/>
+
+<body style="body"/>
+
+</cshcust>
+
+
+

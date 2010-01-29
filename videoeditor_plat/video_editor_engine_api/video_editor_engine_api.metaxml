@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<api id="d72893ab8a6a13277e62bf59d73e826e" dataversion="2.0">
+  <name>Video Editor Engine API</name>
+  <description>API for video editing, transcoding, thumbnail generation</description>
+  <type>c++</type>
+  <collection>videoeditorengine</collection>
+  <libs>
+    <lib name="vedengine.lib" />
+  </libs>
+  <release category="platform"/>
+  <attributes>
+     <!-- This indicates wether the api provedes separate html documentation -->
+     <!-- or is the additional documentation generated from headers. -->
+     <!-- If you are unsuere then the value is "no" -->
+     <htmldocprovided>no</htmldocprovided>
+     <adaptation>no</adaptation>
+  </attributes>
+</api>

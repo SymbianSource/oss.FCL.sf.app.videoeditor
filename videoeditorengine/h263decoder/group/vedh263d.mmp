@@ -1,0 +1,83 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description:  
+*
+*/
+
+
+// To get the MW_LAYER_SYSTEMINCLUDE-definition
+#include <platform_paths.hrh>
+
+
+NOEXPORTLIBRARY
+
+TARGET          vedh263d.dll
+TARGETTYPE      dll
+UID             0x1000008d 0x10204bf5
+
+VENDORID        VID_DEFAULT
+CAPABILITY      CAP_GENERAL_DLL
+
+// Default system include paths for middleware layer modules.
+MW_LAYER_SYSTEMINCLUDE
+
+USERINCLUDE     ../inc
+USERINCLUDE     ../../../videoeditor_plat/video_editor_engine_api/inc
+
+LIBRARY         euser.lib
+
+SOURCEPATH      ../src
+
+SOURCE	        vedh263dimp.cpp
+SOURCE          VedVolReader.cpp
+SOURCE          MPEG4Transcoder.cpp
+SOURCE          h263dntc.cpp
+SOURCE          vdefrt.cpp
+SOURCE          vdeimb.cpp
+SOURCE          vdeims.cpp
+SOURCE          vdemain.cpp
+SOURCE          vdeti.cpp
+SOURCE          vdeti_mpeg.cpp
+SOURCE          block.cpp
+SOURCE          core.cpp
+SOURCE          decblock.cpp
+SOURCE          decgob.cpp
+SOURCE          decmb.cpp
+SOURCE          decmbdct.cpp
+SOURCE          decmbs.cpp
+SOURCE          decpich.cpp
+SOURCE          idctiforepoc.cpp
+SOURCE          sync.cpp
+SOURCE          vdcmvc.cpp
+SOURCE          viddemux.cpp
+SOURCE          biblin.cpp
+SOURCE          dlist.cpp
+SOURCE          list.cpp
+SOURCE          rendri.cpp
+SOURCE          epoclib.cpp
+SOURCE          decmbdct_mpeg.cpp
+SOURCE          decmbs_dp_mpeg.cpp
+SOURCE          core_mpeg.cpp
+SOURCE          sync_mpeg.cpp
+SOURCE          vdcaic.cpp
+SOURCE          decpich_mpeg.cpp
+SOURCE          decvp_mpeg.cpp
+SOURCE          viddemux_mpeg.cpp
+SOURCE          vlb.cpp
+SOURCE          bma.cpp
+
+// End of File
+
+

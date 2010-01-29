@@ -1,0 +1,108 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description:  
+*
+*/
+
+
+// To get the MW_LAYER_SYSTEMINCLUDE-definition
+#include <platform_paths.hrh>
+
+
+NOEXPORTLIBRARY
+
+TARGET          VedEngine.dll
+TARGETTYPE      dll
+UID             0x1000008d 0x10204bf4
+
+VENDORID        VID_DEFAULT
+CAPABILITY      CAP_GENERAL_DLL
+
+MACRO VIDEOEDITORENGINE_AVC_EDITING
+#define VIDEOEDITORENGINE_AVC_EDITING
+
+MACRO     __VIDEOEDIT__ 
+#define 	__VIDEOEDIT__
+
+SOURCEPATH      ../src
+SOURCE          VedVideoClipInfoImp.cpp
+SOURCE          VedAudioClipInfoImp.cpp
+SOURCE          VedMovieImp.cpp
+SOURCE          VedVideoClip.cpp
+SOURCE          VedVideoClipGenerator.cpp
+SOURCE          VedVideoClipInfoGeneratedImp.cpp
+SOURCE          vedcodecchecker.cpp
+SOURCE          vedqualitysettingsapi.cpp
+
+SOURCEPATH      ../VideoProcessor/Src
+SOURCE          movieprocessor.cpp
+SOURCE          movieprocessorimpl.cpp
+SOURCE          audioprocessor.cpp
+SOURCE          videoprocessor.cpp
+SOURCE          activequeue.cpp
+SOURCE          statusmonitor.cpp
+SOURCE          mp4demux.cpp
+SOURCE          mp4parser.cpp
+SOURCE          mp4composer.cpp 
+SOURCE          yuv2rgb12.cpp
+SOURCE          yuv2rgb16.cpp
+SOURCE          yuv2rgb24.cpp
+SOURCE          dataprocessor.cpp
+SOURCE          VedRgb2YuvConverter.cpp
+SOURCE          mpeg4timer.cpp
+SOURCE          VideoEncoderMDF.cpp
+SOURCE          SizeEstimate.cpp
+
+SOURCEPATH      ../GenManip/src
+SOURCE          DCColorManagement.cpp
+SOURCE          DCDigitalZoom.cpp
+SOURCE          DCDithering.cpp
+SOURCE          DCIetd.cpp
+SOURCE          DCSharpening.cpp
+SOURCE          DisplayChain.cpp
+
+// Default system include paths for middleware layer modules.
+MW_LAYER_SYSTEMINCLUDE
+
+SYSTEMINCLUDE   /epoc32/include/libc 
+
+USERINCLUDE     ../../../videoeditor_plat/video_editor_engine_api/inc
+
+USERINCLUDE     ../inc
+USERINCLUDE     ../VideoProcessor/inc
+USERINCLUDE     ../GenManip/inc
+
+USERINCLUDE     ../../H263Decoder/inc
+USERINCLUDE     ../../vedtranscoder/inc
+USERINCLUDE     ../../AudioEditorEngine/inc
+USERINCLUDE     ../../avcedit/inc
+
+LIBRARY         euser.lib efsrv.lib
+LIBRARY         fbscli.lib
+LIBRARY		      gdi.lib
+
+LIBRARY         3GPMP4Lib.lib
+LIBRARY         ImagingConfigManager.lib
+LIBRARY         ecom.lib
+
+LIBRARY         vedh263d.lib
+LIBRARY         vedtranscoder.lib
+LIBRARY         aedengine.lib
+
+LIBRARY         vedavcedit.lib
+
+// End of File
+
+

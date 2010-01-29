@@ -1,0 +1,22 @@
+EXPORTS
+	??0CVedVideoClipGenerator@@IAE@XZ @ 1 NONAME ; CVedVideoClipGenerator::CVedVideoClipGenerator(void)
+	??1CVedVideoClipGenerator@@UAE@XZ @ 2 NONAME ; CVedVideoClipGenerator::~CVedVideoClipGenerator(void)
+	?CalculateFrameComplexityFactor@CVedVideoClipGenerator@@IBEHPAVCFbsBitmap@@@Z @ 3 NONAME ; int CVedVideoClipGenerator::CalculateFrameComplexityFactor(class CFbsBitmap *) const
+	?IsInserted@CVedVideoClipGenerator@@QBEHXZ @ 4 NONAME ; int CVedVideoClipGenerator::IsInserted(void) const
+	?IsOwnedByVideoClip@CVedVideoClipGenerator@@QBEHXZ @ 5 NONAME ; int CVedVideoClipGenerator::IsOwnedByVideoClip(void) const
+	?Movie@CVedVideoClipGenerator@@QBEPAVCVedMovie@@XZ @ 6 NONAME ; class CVedMovie * CVedVideoClipGenerator::Movie(void) const
+	?NewL@CVedAudioClipInfo@@SAPAV1@ABVTDesC16@@AAVMVedAudioClipInfoObserver@@@Z @ 7 NONAME ; class CVedAudioClipInfo * CVedAudioClipInfo::NewL(class TDesC16 const &, class MVedAudioClipInfoObserver &)
+	?NewL@CVedMovie@@SAPAV1@PAVRFs@@@Z @ 8 NONAME ; class CVedMovie * CVedMovie::NewL(class RFs *)
+	?NewL@CVedVideoClipInfo@@SAPAV1@ABVTDesC16@@AAVMVedVideoClipInfoObserver@@@Z @ 9 NONAME ; class CVedVideoClipInfo * CVedVideoClipInfo::NewL(class TDesC16 const &, class MVedVideoClipInfoObserver &)
+	?NewLC@CVedAudioClipInfo@@SAPAV1@ABVTDesC16@@AAVMVedAudioClipInfoObserver@@@Z @ 10 NONAME ; class CVedAudioClipInfo * CVedAudioClipInfo::NewLC(class TDesC16 const &, class MVedAudioClipInfoObserver &)
+	?NewLC@CVedMovie@@SAPAV1@PAVRFs@@@Z @ 11 NONAME ; class CVedMovie * CVedMovie::NewLC(class RFs *)
+	?NewLC@CVedVideoClipInfo@@SAPAV1@ABVTDesC16@@AAVMVedVideoClipInfoObserver@@@Z @ 12 NONAME ; class CVedVideoClipInfo * CVedVideoClipInfo::NewLC(class TDesC16 const &, class MVedVideoClipInfoObserver &)
+	?ReportDescriptiveNameChanged@CVedVideoClipGenerator@@IBEXXZ @ 13 NONAME ; void CVedVideoClipGenerator::ReportDescriptiveNameChanged(void) const
+	?ReportDurationChanged@CVedVideoClipGenerator@@IBEXXZ @ 14 NONAME ; void CVedVideoClipGenerator::ReportDurationChanged(void) const
+	?ReportSettingsChanged@CVedVideoClipGenerator@@IBEXXZ @ 15 NONAME ; void CVedVideoClipGenerator::ReportSettingsChanged(void) const
+	?VideoClipIndex@CVedVideoClipGenerator@@QBEHXZ @ 16 NONAME ; int CVedVideoClipGenerator::VideoClipIndex(void) const
+	?NewL@CVedAudioClipInfo@@SAPAV1@PAVRFile@@AAVMVedAudioClipInfoObserver@@@Z @ 17 NONAME ; class CVedAudioClipInfo * CVedAudioClipInfo::NewL(class RFile *, class MVedAudioClipInfoObserver &)
+	?NewL@CVedVideoClipInfo@@SAPAV1@PAVRFile@@AAVMVedVideoClipInfoObserver@@@Z @ 18 NONAME ; class CVedVideoClipInfo * CVedVideoClipInfo::NewL(class RFile *, class MVedVideoClipInfoObserver &)
+	?NewLC@CVedAudioClipInfo@@SAPAV1@PAVRFile@@AAVMVedAudioClipInfoObserver@@@Z @ 19 NONAME ; class CVedAudioClipInfo * CVedAudioClipInfo::NewLC(class RFile *, class MVedAudioClipInfoObserver &)
+	?NewLC@CVedVideoClipInfo@@SAPAV1@PAVRFile@@AAVMVedVideoClipInfoObserver@@@Z @ 20 NONAME ; class CVedVideoClipInfo * CVedVideoClipInfo::NewLC(class RFile *, class MVedVideoClipInfoObserver &)
+

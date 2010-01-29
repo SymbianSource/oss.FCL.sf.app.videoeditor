@@ -1,0 +1,46 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description:  
+* Build information file for Simple Cut Video.
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+#include "buildconfig.hrh"
+
+#include "../VideoEditorCommon/Group/bld.inf"
+#include "../VideoEditorUiComponents/Group/bld.inf"
+#include "../SimpleVideoEditor/group/bld.inf"
+#include "../SimpleCutVideo/group/bld.inf"
+#include "../VideoProvider/group/bld.inf"
+#if defined (__INCLUDE_MANUAL_VIDEO_EDITOR__)
+#include "../ManualVideoEditor/group/bld.inf"
+#endif
+
+PRJ_EXPORTS
+// ROM description files
+//../internal/tsrc/rom/VideoEditor.iby  LANGUAGE_APP_LAYER_IBY_EXPORT_PATH(VideoEditor.iby)
+//../internal/tsrc/rom/VideoEditorResource.iby  LANGUAGE_APP_LAYER_IBY_EXPORT_PATH(VideoEditorResource.iby)
+
+// export localised loc file
+../loc/SimpleVideoEditor.loc			APP_LAYER_LOC_EXPORT_PATH(SimpleVideoEditor.loc)
+
+// sis stub
+../data/VideoEditorStub.sis   /epoc32/data/z/system/install/VideoEditorStub.sis
+
+
+// End of File

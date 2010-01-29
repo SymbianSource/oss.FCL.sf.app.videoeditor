@@ -1,0 +1,512 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description:  
+* This is a localisation file for Simple Video Editor.
+*
+*/
+#include <avkon.loc>
+
+
+//=============================================================================
+// ERROR NOTES
+//=============================================================================
+
+// d: Error note when inserting audio failed
+// d: audio format is not supported
+// l: popup_note_window
+// r:5.0
+//
+#define qtn_vie_note_err_audio_format "Audio format not supported. Unable to insert."
+
+// d: Error note when there are problems with the video conversion
+// l: popup_note_window
+// r:5.0
+//
+#define qtn_vie_note_unable_convert "Unable to convert the file. The file insertion canceled."
+
+// d: Error note when inserting video failed
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_note_err_unable_to_insert_video							"Unable to insert video."
+
+// d: Error note when editing video is not possible
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_note_err_edit						"Unable to edit. Video clip corrupted or format not supported."
+ 
+// d:Error note when inserting image failed.
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_note_err_unable_to_insert_image						"Unable to insert image."
+
+// d:Error note shown when merging two videos fails 
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_note_err_unable_to_merge_video_video 						"Unable to merge two video clips together."
+
+// d:Error note shown when merging video and image fails
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_note_err_unable_to_merge_video_image 					"Unable to merge video clip and image."
+
+// d:Error note shown Merge if the user selects an image
+// d:image that is in unsupported format
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_note_err_image_format_not_supported 					"Image format not supported. Unable to insert."
+
+// d:Error note shown when processing video and text together fails
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_note_err_unable_to_add_text 						"Unable to add text." 
+
+// d:Error note shown in Change sound
+// d:when processing video and audio together fails
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_note_err_unable_to_change_sound 					"Unable to change sound."
+
+// d:Error note shown if mmc is not accessible and
+// d:the phone contains a mass storage
+// d:Drive letter will be displayed in %U
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_note_mmc_not_accessible_mass_storage						"Memory card not accessible. %U Mass storage will be used instead."
+
+// d:Error note shown if mmc is not accessible and
+// d:the phone doesn't contain a mass storage
+// d:Drive letter will be displayed in %U
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_note_mmc_not_accessible_device								"Memory card not accessible. %U Device memory will be used instead."
+
+// d:Error note shown if processing video or audio fails
+// d: because of low RAM
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_sie_error_not_enough_memory		qtn_memlo_ram_out_of_mem
+
+//=============================================================================
+// PROGRESS NOTES
+//=============================================================================
+
+// d:Text in progress note 
+// d:Shown when user has selected "Changing video sound", 
+// d:"Adding text to video" or "Merge with video or image"
+// l:popup_note_wait_window
+// r:5.0
+//
+#define qtn_vie_note_processing "Processing video"
+
+// d:Text in progress note 
+// d:Shown when user has selected cutting function
+// l:popup_note_wait_window
+// r:5.0
+//
+#define qtn_vie_note_cutting "Saving video clip"
+
+// d:Text in progress note 
+// d:Shown when user has selected Snapshot function
+// l:popup_note_wait_window
+// r:5.0
+//
+#define	qtn_vie_note_saving_snapshot	"Saving snapshot to Gallery."
+
+//=============================================================================
+// OPTIONS MENU ITEMS
+//=============================================================================
+
+// d:Command in options menu
+// d:Saves the edited image
+// d:Re-used ImageEditor string.
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_options_save "Save"
+
+// d:Command in options menu
+// d:Takes a picture from the video clip (current frame) 
+// d:and saves it in to the memory
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_options_snapshot "Take snapshot"
+
+// d:Command in the Cut Video view options menu
+// d:Opens the Remove submenu.
+// l:list_single_pane_t1_cp2/opt3
+// r:5.0
+//
+#define qtn_vie_options_remove_mark "Reset mark"
+
+// d:Command in options menu
+// d:Removes both start and end marks from cutting timeline, view
+// d:returns to initial state. Only available, if both marks have been set.
+// l:list_single_popup_submenu_pane_t1
+// r:5.0
+//
+#define qtn_vie_options_remove_mark_both "Both marks"
+
+// d:Command in the Remove submenu
+// d:Removes the Out mark
+// l:list_single_popup_submenu_pane_t1
+// r:5.0
+//
+#define qtn_vie_options_remove_mark_end "End mark"
+
+// d:Command in the Remove submenu
+// d:Removes the In mark 
+// l:list_single_popup_submenu_pane_t1
+// r:5.0
+//
+#define qtn_vie_options_remove_mark_start "Start mark"
+
+// d:Command in options menu
+// d:Inserts end mark into the current position.
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_options_end_mark "Set end mark"
+
+// d:Command in options menu
+// d:Inserts start mark into the current position.
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_options_start_mark "Set start mark"
+
+// d:Command in options menu
+// d:Stops the playback and moves playhead position to the beginning.
+// d:Re-used Media Player string
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_options_stop "Stop"
+
+// d:Command in options menu
+// d:Plays the marked section (between start and end marks).
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_options_play_marked "Play marked"
+
+// d:Command in options menu
+// d:Resumes playback.
+// d:Re-used Media Player string
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_options_resume "Resume"
+
+// d:Command in options menu
+// d:Starts playback.
+// d:Re-used Media Player string
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_options_play "Play"
+
+
+//=============================================================================
+// SIMPLE VIDEO EDITOR AIW COMMANDS
+//=============================================================================
+
+// d:Command in the AIW provider's menu
+// d:Launches Video editor's "Video sound change" functionality
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_options_change_sound "Change sound"
+
+// d:Command in the AIW provider's menu
+// d:Launches Video editor's "Add text" functionality
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_options_add_text "Add text"
+
+// d:Command in the AIW provider's menu
+// d:Launches Video editor's "Merge" functionality
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_options_merge "Merge"
+
+// d:Command in the AIW provider's menu
+// d:Launches Video editor's "Cut" functionality
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_options_cut "Cut"
+
+// d:Submenu title in the AIW provider's menu
+// d:Opens a submenu
+// l:list_single_pane_t1_cp2/opt3
+// r:5.0
+//
+#define qtn_vie_options_edit "Edit"
+
+// d:Command in the AIW provider's Edit submenu
+// d:Launches Video editor's "Video sound change" functionality
+// l:list_single_popup_submenu_pane_t1
+// r:5.0
+//
+#define qtn_vie_options_sub_change_sound "Change sound"
+
+// d:Command in the AIW provider's Edit submenu
+// d:Launches Video editor's "Add text" functionality
+// l:list_single_popup_submenu_pane_t1
+// r:5.0
+//
+#define qtn_vie_options_sub_add_text "Add text"
+
+// d:Command in the AIW provider's Edit submenu
+// d:Launches Video editor's "Merge" functionality
+// l:list_single_popup_submenu_pane_t1
+// r:5.0
+//
+#define qtn_vie_options_sub_merge "Merge"
+
+// d:Command in the AIW provider's Edit submenu
+// d:Launches Video editor's "Cut" functionality
+// l:list_single_popup_submenu_pane_t1
+// r:5.0
+//
+#define qtn_vie_options_sub_cut "Cut"
+
+
+//=============================================================================
+// SIMPLE VIDEO EDITOR SPECIFIC SOFTKEYS
+//=============================================================================
+
+// d:Softkey command
+// d:Softkey text if in playing state or if
+// d:user has moved the playhead with scroll left/right.
+// l:control_pane_t1/opt7
+// r:5.0
+//
+#define qtn_vie_softkey_start_mark "Start mark"
+
+// d:Softkey command
+// d:Softkey text if in playing state or if
+// d:user has moved the playhead with scroll left/right.
+// l:control_pane_t1/opt7
+// r:5.0
+//
+#define qtn_vie_softkey_end_mark "End mark"
+
+// d:Softkey command
+// d:Right softkey text if in cutting view 
+// d:Applies video cutting
+// l:control_pane_t1/opt7
+// r:5.0
+//
+#define qtn_vie_softkey_cut_done "Done"
+
+
+//=============================================================================
+// SAVING QUERY
+//=============================================================================
+
+// d:List query heading text.
+// d:This list query is used when option "Save" has been selected.
+// l:heading_pane_t1
+// r:5.0
+//
+#define qtn_vie_query_heading_save "Save video:"
+
+// d:List query item in saving query.
+// d:Overwrites existing file.
+// d:Re-used Image Editor string.
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_query_save_replace "Replace original"
+
+// d:List query item in saving query.
+// d:Creates a new file.
+// d:Re-used Image Editor string.
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_query_save_new "Save with a new name"
+
+
+//=============================================================================
+// CUTTING QUERY
+//=============================================================================
+
+// d:List query heading text.
+// d:This list query is used when "Cut" has been selected from options menu
+// l:heading_pane_t1
+// r:5.0
+//
+#define qtn_vie_query_heading_length "Cutting length:"
+
+// d:List query item in cutting query.
+// d:User can define him/herself cutting start and end marks
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_query_length_manual "User defined"
+
+// d:List query item in cutting query.
+// d:MMS properties define cutting length
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_query_length_mms "Multimedia message"
+
+
+//=============================================================================
+// MERGING LIST QUERY
+//=============================================================================
+
+// d:List query heading text.
+// d:This list query is used to select one video/image file
+// d:from the list of videos/images. 
+// l:heading_pane_t1
+// r:5.0
+//
+#define qtn_vie_query_heading_merge_with "Merge with:"
+
+// d:Select to list the image files from the Media gallery.
+// d:(list query item)
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_query_merge_with_image "Image"
+
+// d:Select to list the video files from the Media gallery.
+// d:(list query item)
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_query_merge_with_video "Video"
+
+// d:List query heading text.
+// d:This list query is used to select where to insert selected image
+// l:heading_pane_t1
+// r:5.0
+//
+#define qtn_vie_query_heading_add_image_to "Add image:"
+
+// d:List query heading text.
+// d:This list query is used to select where to insert selected video
+// l:heading_pane_t1
+// r:5.0
+//
+#define qtn_vie_query_heading_add_video_to "Add video:"
+
+// d:Select if want to insert selected image/video to the beginning.
+// d:(list query item)
+// d:Used also when adding text to video
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_query_add_text_to_beginning "To the beginning"
+
+// d:Select if want to insert selected image/video to the end.
+// d:(list query item)
+// d:Used also when adding text to video
+// l:list_single_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_query_add_text_to_end "To the end"
+
+
+//=============================================================================
+// OTHER QUERY TEXTS
+//=============================================================================
+
+// d:Confirmation query text
+// d:Query is shown when user decides to send a video via MMS and the selected 
+// d:video exceeds the MMS size limitation
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_query_cut "Video too large to be sent via MMS. Cut video?" 
+
+// d:Query heading text
+// d:For the location to insert text in a video (beginning/end?)
+// l:heading_pane_t1
+// r:5.0
+//
+#define qtn_vie_query_heading_add_text_to "Add text:"
+
+// d:Query heading text
+// d:Shown in the data query for adding text
+// l:popup_query_data_window
+// r:5.0
+//
+#define qtn_vie_query_heading_enter_text "Enter text:"
+
+// d:Confirmation query text
+// d:Shown when user decides to send a video via MMS and the selected video
+// d:format is not supported by MMS,
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_query_convert "Format not supported by MMS. Conversion to supported format may affect video quality. Convert and continue sending?" 
+
+// d:Confirmation query text
+// d:Shown when user tries to change video sound and selects a sound file, 
+// d:which is shorter than the selected video clip
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_query_insert_short_audio "Sound clip shorter than the video clip. Remaining part of the video will have the original audio. Change sound anyway?"
+
+// d:Confirmation query text
+// d:Shown when user tries to change video sound and selects a sound file, 
+// d:which is longer than the selected video clip 
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_query_insert_long_audio "Sound clip longer than the video clip. Remaining part of the sound will be cut. Change sound anyway?"
+
+// d:Confirmation query
+// d:When user selects "Exit", and video is modified 
+// d:user is prompted about saving the changes.
+// d:Re-used Image Editor string.
+// l:popup_note_window
+// r:5.0
+//
+#define qtn_vie_query_conf_save_changes "Save changes?"
+
+
+//=============================================================================
+// MISCANCELLOUS
+//=============================================================================
+
+// d:Default name for the snapshot file
+// l:list_double_large_graphic_pane_t1_cp2
+// r:5.0
+//
+#define qtn_vie_default_name_snapshot "Snapshot"	
+
+// End of file
+

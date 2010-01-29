@@ -1,0 +1,158 @@
+EXPORTS
+	_ZN12CVeiAddQueue12InsertMediaLERK7TDesC16 @ 1 NONAME
+	_ZN12CVeiAddQueue16StartProcessingLEv @ 2 NONAME
+	_ZN12CVeiAddQueue20ShowAudioClipDialogLEv @ 3 NONAME
+	_ZN12CVeiAddQueue20ShowVideoClipDialogLEN11VideoEditor15TCursorLocationEi @ 4 NONAME
+	_ZN12CVeiAddQueue4NewLER25MVedAudioClipInfoObserverR9CVedMovieR17MVeiQueueObserver @ 5 NONAME
+	_ZN12CVeiAddQueue5NewLCER25MVedAudioClipInfoObserverR9CVedMovieR17MVeiQueueObserver @ 6 NONAME
+	_ZN12CVeiAddQueue7GetNextEv @ 7 NONAME
+	_ZN12CVeiAddQueueD0Ev @ 8 NONAME
+	_ZN12CVeiAddQueueD1Ev @ 9 NONAME
+	_ZN12CVeiAddQueueD2Ev @ 10 NONAME
+	_ZN12TVeiSettings11MemoryInUseEv @ 11 NONAME
+	_ZN12TVeiSettings11SaveQualityEv @ 12 NONAME
+	_ZN12TVeiSettings12InternalizeLER11RReadStream @ 13 NONAME
+	_ZN12TVeiSettings16DefaultVideoNameEv @ 14 NONAME
+	_ZN12TVeiSettings19DefaultSnapshotNameEv @ 15 NONAME
+	_ZN13CVeiTempMaker4NewLEv @ 16 NONAME
+	_ZN13CVeiTempMaker5NewLCEv @ 17 NONAME
+	_ZN13CVeiTempMakerD0Ev @ 18 NONAME
+	_ZN13CVeiTempMakerD1Ev @ 19 NONAME
+	_ZN13CVeiTempMakerD2Ev @ 20 NONAME
+	_ZN14CVeiFrameTaker10GetFramesLER17CVedVideoClipInfoiP5TSizeiS3_iS3_i @ 21 NONAME
+	_ZN14CVeiFrameTaker4NewLER22MVeiFrameTakerObserver @ 22 NONAME
+	_ZN16CVeiRemConTarget4NewLER20MVeiMediakeyObserver @ 23 NONAME
+	_ZN16VideoEditorUtils15IsDrmProtectedLERK7TDesC16 @ 24 NONAME
+	_ZN16VideoEditorUtils17GenerateFileNameLER3RFsRK7TDesC16R6TDes1615TVedVideoFormati4TBufILi256EE @ 25 NONAME
+	_ZN16VideoEditorUtils18LaunchQueryDialogLERK7TDesC16 @ 26 NONAME
+	_ZN16VideoEditorUtils19IconFileNameAndPathEi @ 27 NONAME
+	_ZN16VideoEditorUtils21LaunchSaveVideoQueryLEv @ 28 NONAME
+	_ZN16VideoEditorUtils22AddMediaFileToMGAlbumLERK7TDesC16i @ 29 NONAME
+	_ZN16VideoEditorUtils22LaunchListQueryDialogLEP12MDesC16ArrayRK7TDesC16 @ 30 NONAME
+	_ZN16VideoEditorUtils23LaunchSaveChangesQueryLEv @ 31 NONAME
+	_ZN16VideoEditorUtils23NotifyNewMediaDocumentLER3RFsRK7TDesC16 @ 32 NONAME
+	_ZN16VideoEditorUtils24GenerateNewDocumentNameLER3RFsRK7TDesC16R6TDes1615TVedVideoFormatiN11VideoEditor7TMemoryE @ 33 NONAME
+	_ZN16VideoEditorUtils24IsEnoughFreeSpaceToSaveLER3RFsRK7TDesC16i @ 34 NONAME
+	_ZN16VideoEditorUtils28GetMGAlbumsListForMediaFileLER6RArrayIiERK7TDesC16 @ 35 NONAME
+	_ZN16VideoEditorUtils28IsLandscapeScreenOrientationEv @ 36 NONAME
+	_ZN18CVeiDisplayLighter4NewLEv @ 37 NONAME
+	_ZN18CVeiDisplayLighter4StopEv @ 38 NONAME
+	_ZN18CVeiDisplayLighter5ResetEv @ 39 NONAME
+	_ZN18CVeiDisplayLighter5StartEv @ 40 NONAME
+	_ZN18CVeiImageConverter14CancelEncodingEv @ 41 NONAME
+	_ZN18CVeiImageConverter14StartToEncodeLERK7TDesC16RK4TUidS5_ @ 42 NONAME
+	_ZN18CVeiImageConverter21GetEncoderImageTypesLER13RPointerArrayI21CImageTypeDescriptionE @ 43 NONAME
+	_ZN18CVeiImageConverter4NewLEP20MConverterController @ 44 NONAME
+	_ZN18CVeiImageConverter6ScaleLEP10CFbsBitmapS1_RK5TSize @ 45 NONAME
+	_ZN18CVeiImageConverter9GetBitmapEv @ 46 NONAME
+	_ZN18CVeiImageConverter9SetBitmapEP10CFbsBitmap @ 47 NONAME
+	_ZN18CVeiImageConverterD0Ev @ 48 NONAME
+	_ZN18CVeiImageConverterD1Ev @ 49 NONAME
+	_ZN18CVeiImageConverterD2Ev @ 50 NONAME
+	_ZN19CVeiMGFetchVerifier16VerifySelectionLEPK12MDesC16Array @ 51 NONAME
+	_ZN19CVeiMGFetchVerifier5NewLCEv @ 52 NONAME
+	_ZN19CVeiMGFetchVerifierD0Ev @ 53 NONAME
+	_ZN19CVeiMGFetchVerifierD1Ev @ 54 NONAME
+	_ZN19CVeiMGFetchVerifierD2Ev @ 55 NONAME
+	_ZN22CVeiImageClipGenerator11CancelFrameEv @ 56 NONAME
+	_ZN22CVeiImageClipGenerator11SetDurationERK25TTimeIntervalMicroSeconds @ 57 NONAME
+	_ZN22CVeiImageClipGenerator18SetBackgroundColorERK4TRgb @ 58 NONAME
+	_ZN22CVeiImageClipGenerator4NewLERK7TDesC16RK5TSizeRK25TTimeIntervalMicroSecondsRK4TRgb12TDisplayModeR3RFsR30MVeiImageClipGeneratorObserver @ 59 NONAME
+	_ZN22CVeiImageClipGenerator5NewLCERK7TDesC16RK5TSizeRK25TTimeIntervalMicroSecondsRK4TRgb12TDisplayModeR3RFsR30MVeiImageClipGeneratorObserver @ 60 NONAME
+	_ZN22CVeiImageClipGenerator9GetFrameLER35MVedVideoClipGeneratorFrameObserveriP5TSize12TDisplayModeii @ 61 NONAME
+	_ZN22CVeiImageClipGeneratorD0Ev @ 62 NONAME
+	_ZN22CVeiImageClipGeneratorD1Ev @ 63 NONAME
+	_ZN22CVeiImageClipGeneratorD2Ev @ 64 NONAME
+	_ZN22CVeiTitleClipGenerator11CancelFrameEv @ 65 NONAME
+	_ZN22CVeiTitleClipGenerator11SetDurationERK25TTimeIntervalMicroSeconds @ 66 NONAME
+	_ZN22CVeiTitleClipGenerator13SetTextColorLERK4TRgb @ 67 NONAME
+	_ZN22CVeiTitleClipGenerator14GetFirstFrameLEv @ 68 NONAME
+	_ZN22CVeiTitleClipGenerator15FinishGetFrameLEi @ 69 NONAME
+	_ZN22CVeiTitleClipGenerator19SetBackgroundColorLERK4TRgb @ 70 NONAME
+	_ZN22CVeiTitleClipGenerator19SetBackgroundImageLEPK10CFbsBitmap @ 71 NONAME
+	_ZN22CVeiTitleClipGenerator19SetBackgroundImageLERK7TDesC16R30MVeiTitleClipGeneratorObserver @ 72 NONAME
+	_ZN22CVeiTitleClipGenerator19SetDescriptiveNameLERK7TDesC16 @ 73 NONAME
+	_ZN22CVeiTitleClipGenerator27SetTransitionAndAlignmentsLE23TVeiTitleClipTransition32TVeiTitleClipHorizontalAlignment30TVeiTitleClipVerticalAlignment @ 74 NONAME
+	_ZN22CVeiTitleClipGenerator4NewLERK5TSize23TVeiTitleClipTransition32TVeiTitleClipHorizontalAlignment30TVeiTitleClipVerticalAlignment @ 75 NONAME
+	_ZN22CVeiTitleClipGenerator5NewLCERK5TSize23TVeiTitleClipTransition32TVeiTitleClipHorizontalAlignment30TVeiTitleClipVerticalAlignment @ 76 NONAME
+	_ZN22CVeiTitleClipGenerator8SetTextLERK7TDesC16 @ 77 NONAME
+	_ZN22CVeiTitleClipGenerator9GetFrameLER35MVedVideoClipGeneratorFrameObserveriP5TSize12TDisplayModeii @ 78 NONAME
+	_ZN22CVeiTitleClipGeneratorD0Ev @ 79 NONAME
+	_ZN22CVeiTitleClipGeneratorD1Ev @ 80 NONAME
+	_ZN22CVeiTitleClipGeneratorD2Ev @ 81 NONAME
+	_ZN23CVeiVideoEditorSettings14GetMaxMmsSizeLERi @ 82 NONAME
+	_ZN23CVeiVideoEditorSettings26GetMediaPlayerVolumeLevelLERi @ 83 NONAME
+	_ZN23CVeiVideoEditorSettings26SetMediaPlayerVolumeLevelLEi @ 84 NONAME
+	_ZN8CLogFile10LogNewlineEv @ 85 NONAME
+	_ZN8CLogFile10StaticLogLERK7TDesC16RK6TDesC8 @ 86 NONAME
+	_ZN8CLogFile10StaticLogLERK7TDesC16S2_ @ 87 NONAME
+	_ZN8CLogFile12SetAutoFlushEi @ 88 NONAME
+	_ZN8CLogFile14SetAutoNewlineEi @ 89 NONAME
+	_ZN8CLogFile16SetAutoTimeStampEi @ 90 NONAME
+	_ZN8CLogFile3LogERK6TDesC8 @ 91 NONAME
+	_ZN8CLogFile3LogERK7TDesC16 @ 92 NONAME
+	_ZN8CLogFile3LogEh @ 93 NONAME
+	_ZN8CLogFile3LogEj @ 94 NONAME
+	_ZN8CLogFile4NewLERK7TDesC16i @ 95 NONAME
+	_ZN8CLogFile5NewLCERK7TDesC16i @ 96 NONAME
+	_ZN8CLogFile7LogTimeEv @ 97 NONAME
+	_ZN8CLogFile8LogBytesERK6TDesC8 @ 98 NONAME
+	_ZN8CLogFile9StaticLogERK7TDesC16RK6TDesC8 @ 99 NONAME
+	_ZN8CLogFile9StaticLogERK7TDesC16S2_ @ 100 NONAME
+	_ZN8CLogFileD0Ev @ 101 NONAME
+	_ZN8CLogFileD1Ev @ 102 NONAME
+	_ZN8CLogFileD2Ev @ 103 NONAME
+	_ZNK12CVeiAddQueue5CountEv @ 104 NONAME
+	_ZNK12TVeiSettings11MemoryInUseEv @ 105 NONAME
+	_ZNK12TVeiSettings11SaveQualityEv @ 106 NONAME
+	_ZNK12TVeiSettings12ExternalizeLER12RWriteStream @ 107 NONAME
+	_ZNK12TVeiSettings16DefaultVideoNameEv @ 108 NONAME
+	_ZNK12TVeiSettings19DefaultSnapshotNameEv @ 109 NONAME
+	_ZNK13CVeiTempMaker15EmptyTempFolderEv @ 110 NONAME
+	_ZNK13CVeiTempMaker20GenerateTempFileNameER7HBufC16N25CAknMemorySelectionDialog7TMemoryE15TVedVideoFormati @ 111 NONAME
+	_ZNK22CVeiImageClipGenerator13ImageFilenameEv @ 112 NONAME
+	_ZNK22CVeiImageClipGenerator15BackgroundColorEv @ 113 NONAME
+	_ZNK22CVeiImageClipGenerator15DescriptiveNameEv @ 114 NONAME
+	_ZNK22CVeiImageClipGenerator15VideoFrameCountEv @ 115 NONAME
+	_ZNK22CVeiImageClipGenerator17VideoFrameEndTimeEi @ 116 NONAME
+	_ZNK22CVeiImageClipGenerator17VideoFrameIsIntraEi @ 117 NONAME
+	_ZNK22CVeiImageClipGenerator18GetVideoFrameIndexE25TTimeIntervalMicroSeconds @ 118 NONAME
+	_ZNK22CVeiImageClipGenerator18VideoFrameDurationEi @ 119 NONAME
+	_ZNK22CVeiImageClipGenerator19VideoFrameStartTimeEi @ 120 NONAME
+	_ZNK22CVeiImageClipGenerator26VideoFrameDifferenceFactorEi @ 121 NONAME
+	_ZNK22CVeiImageClipGenerator31VideoFirstFrameComplexityFactorEv @ 122 NONAME
+	_ZNK22CVeiImageClipGenerator3UidEv @ 123 NONAME
+	_ZNK22CVeiImageClipGenerator8DurationEv @ 124 NONAME
+	_ZNK22CVeiTitleClipGenerator10TransitionEv @ 125 NONAME
+	_ZNK22CVeiTitleClipGenerator15BackgroundColorEv @ 126 NONAME
+	_ZNK22CVeiTitleClipGenerator15BackgroundImageEv @ 127 NONAME
+	_ZNK22CVeiTitleClipGenerator15DescriptiveNameEv @ 128 NONAME
+	_ZNK22CVeiTitleClipGenerator15VideoFrameCountEv @ 129 NONAME
+	_ZNK22CVeiTitleClipGenerator17VerticalAlignmentEv @ 130 NONAME
+	_ZNK22CVeiTitleClipGenerator17VideoFrameEndTimeEi @ 131 NONAME
+	_ZNK22CVeiTitleClipGenerator18GetVideoFrameIndexE25TTimeIntervalMicroSeconds @ 132 NONAME
+	_ZNK22CVeiTitleClipGenerator18VideoFrameDurationEi @ 133 NONAME
+	_ZNK22CVeiTitleClipGenerator19HorizontalAlignmentEv @ 134 NONAME
+	_ZNK22CVeiTitleClipGenerator19VideoFrameStartTimeEi @ 135 NONAME
+	_ZNK22CVeiTitleClipGenerator26VideoFrameDifferenceFactorEi @ 136 NONAME
+	_ZNK22CVeiTitleClipGenerator31VideoFirstFrameComplexityFactorEv @ 137 NONAME
+	_ZNK22CVeiTitleClipGenerator3UidEv @ 138 NONAME
+	_ZNK22CVeiTitleClipGenerator4TextEv @ 139 NONAME
+	_ZNK22CVeiTitleClipGenerator8DurationEv @ 140 NONAME
+	_ZNK22CVeiTitleClipGenerator9TextColorEv @ 141 NONAME
+	_ZTI12CVeiAddQueue @ 142 NONAME ; #<TI>#
+	_ZTI22CVeiImageClipGenerator @ 143 NONAME ; #<TI>#
+	_ZTI22CVeiTitleClipGenerator @ 144 NONAME ; #<TI>#
+	_ZTI27CVeiImageClipFrameOperation @ 145 NONAME ; #<TI>#
+	_ZTI28CVeiImageClipDecodeOperation @ 146 NONAME ; #<TI>#
+	_ZTI33CVeiTitleClipImageDecodeOperation @ 147 NONAME ; #<TI>#
+	_ZTV12CVeiAddQueue @ 148 NONAME ; #<VT>#
+	_ZTV22CVeiImageClipGenerator @ 149 NONAME ; #<VT>#
+	_ZTV22CVeiTitleClipGenerator @ 150 NONAME ; #<VT>#
+	_ZTV27CVeiImageClipFrameOperation @ 151 NONAME ; #<VT>#
+	_ZTV28CVeiImageClipDecodeOperation @ 152 NONAME ; #<VT>#
+	_ZTV33CVeiTitleClipImageDecodeOperation @ 153 NONAME ; #<VT>#
+	_ZThn4_N19CVeiMGFetchVerifier16VerifySelectionLEPK12MDesC16Array @ 154 NONAME ; #<thunk>#
+	_ZThn4_N19CVeiMGFetchVerifierD0Ev @ 155 NONAME ; #<thunk>#
+	_ZThn4_N19CVeiMGFetchVerifierD1Ev @ 156 NONAME ; #<thunk>#
+

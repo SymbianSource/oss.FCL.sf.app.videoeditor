@@ -1,0 +1,2744 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description:  
+*
+*/
+
+
+
+//  RESOURCE IDENTIFIER
+NAME    MVED // 4 letter ID
+
+//  INCLUDES
+
+#include <eikon.rh>
+#include "manualvideoeditor.hrh"
+#include "manualvideoeditor.loc"
+#include <manualvideoeditor.mbg>
+#include <videoeditoruicomponents.mbg>
+
+#include <avkon.rsg>
+#include <avkon.rh>
+#include <avkon.mbg>
+#include <e32keys.h>			// Key codes
+#include <CommonDialogs.rh>		// avkon.loc is NOT included in this file if
+#include <avkon.loc>			
+#include <CommonDialogs.hrh>
+#include <appinfo.rh>
+#include <data_caging_paths_strings.hrh>
+#include <AvkonIcons.hrh>
+#if defined(__WINS__)
+#define vei_bitmap_file "\\epoc32\\release\\"$(PLATFORM)"\\"$(CFG)"\\Z\\"APP_BITMAP_DIR"\\manualvideoeditor.mif"
+#define vei_uic_bitmap_file "\\epoc32\\release\\"$(PLATFORM)"\\"$(CFG)"\\Z\\"APP_BITMAP_DIR"\\videoeditoruicomponents.mif"
+#else
+#define vei_bitmap_file ""APP_BITMAP_DIR"\\manualvideoeditor.mif"
+#define vei_uic_bitmap_file ""APP_BITMAP_DIR"\\videoeditoruicomponents.mif"
+#endif
+
+
+//  RESOURCE DEFINITIONS 
+
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF { buf="mveditor"; }
+
+RESOURCE EIK_APP_INFO
+    {
+	cba=R_AVKON_SOFTKEYS_OPTIONS_EXIT;	   
+    }
+
+RESOURCE LOCALISABLE_APP_INFO r_vei_localisable_app_info
+	{
+	short_caption=qtn_app_short_caption_string;
+	caption_and_icon =
+	CAPTION_AND_ICON_INFO
+		{
+		caption=qtn_app_caption_string;
+		number_of_icons=1;
+		icon_file=APP_BITMAP_DIR"\\ManualVideoEditor_aif.mif";
+		};
+	}
+//----------------------------------------------------
+//   
+//    r_vei_editvideo_titlescreen_text_query
+//    data query for the title screen text
+//
+//----------------------------------------------------
+//
+RESOURCE DIALOG r_vei_editvideo_titlescreen_text_query
+	{
+	flags=EGeneralQueryFlags; 
+	buttons = R_AVKON_SOFTKEYS_OK_CANCEL;
+	items =
+		{
+		DLG_LINE
+			{
+			type = EAknCtQuery;
+			id = EVeiTitleScreenTextQuery;
+			control = AVKON_DATA_QUERY
+				{
+				layout = EDataLayout;
+				label = qtn_vei_textinserting_for_title_screen;
+
+				control = 
+					EDWIN
+						{
+						width = 50;
+						lines = 5;
+						maxlength = 50;
+						};
+				};
+			}
+		};
+	}
+
+
+//----------------------------------------------------
+//   
+//    r_vei_hotkeys
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE HOTKEYS r_vei_hotkeys
+    {
+    control=
+        {
+        HOTKEY { command=EAknCmdExit; key='e'; }
+        };
+    }
+
+//=====================================================
+//
+//		*****		AVKON VIEWS		*****
+//
+//
+//=====================================================
+
+//----------------------------------------------------
+//   
+//    r_vei_settings_view
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_vei_settings_view
+    {
+    hotkeys=r_vei_hotkeys;
+    menubar=r_vei_menubar_settings_view;  
+    cba=R_AVKON_SOFTKEYS_SELECTION_LIST;    
+    }
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_vei_edit_video_view
+    {
+    hotkeys=r_vei_hotkeys;
+    menubar=r_vei_menubar_edit_video_view;  
+    cba=R_AVKON_SOFTKEYS_SELECTION_LIST;    
+    }
+
+//----------------------------------------------------
+//   
+//    r_vei_cut_video
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_vei_cut_video_view
+    {
+    hotkeys=r_vei_hotkeys;
+    menubar=r_vei_menubar_cut_video_view;  
+    cba=R_AVKON_SOFTKEYS_SELECTION_LIST;    
+    }
+
+//----------------------------------------------------
+//   
+//    r_vei_cut_audio
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_vei_cut_audio_view
+    {
+    hotkeys=r_vei_hotkeys;
+    menubar=r_vei_menubar_cut_video_view;  
+    cba=R_AVKON_SOFTKEYS_SELECTION_LIST;    
+    }
+
+//----------------------------------------------------
+//   
+//    r_vei_trim_for_mms_view
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_vei_trim_for_mms_view
+    {
+    hotkeys=r_vei_hotkeys;
+    menubar=r_vei_menubar_trim_for_mms_view;  
+    cba=R_AVKON_SOFTKEYS_OPTIONS_BACK;    
+    }
+
+//=====================================================
+//
+//		*****		MENU BARS		*****
+//
+//
+//=====================================================
+
+
+//----------------------------------------------------
+//   
+//    r_vei_menubar_trim_for_mms_view
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_BAR r_vei_menubar_trim_for_mms_view
+	{
+    titles=
+        {
+        MENU_TITLE 
+			{ 
+			menu_pane=r_vei_menu_pane_trim_for_mms_view; 
+			txt=""; 
+			}
+        };
+	}
+
+//-----------------------------------------------------
+//				
+//    r_vei_menubar_settings_view
+//    ?description
+//
+//----------------------------------------------------
+//
+
+RESOURCE MENU_BAR r_vei_menubar_settings_view
+    {
+    titles=
+        {
+        MENU_TITLE { menu_pane=r_vei_settings_view_menu; }
+        };
+    }
+
+
+//-----------------------------------------------------
+//				
+//    r_vei_menubar_edit_video_view
+//    ?description
+//
+//----------------------------------------------------
+//
+
+RESOURCE MENU_BAR r_vei_menubar_edit_video_view
+    {
+    titles=
+        {
+        MENU_TITLE { menu_pane=r_vei_edit_video_view_menu; }
+        };
+    }
+
+//-----------------------------------------------------
+//				
+//    r_vei_menubar_cut_video_view
+//    ?description
+//
+//----------------------------------------------------
+//
+
+RESOURCE MENU_BAR r_vei_menubar_cut_video_view
+    {
+    titles=
+        {
+        MENU_TITLE { menu_pane=r_vei_cut_video_view_menu; }
+        };
+    }
+
+//-----------------------------------------------------
+//				
+//    r_vei_preview						
+//    ?description
+//
+//----------------------------------------------------
+//
+
+RESOURCE MENU_BAR r_vei_preview_bar  
+    {
+    titles=
+        {
+		MENU_TITLE { menu_pane=r_vei_preview_menu; }
+        };
+    }
+
+
+//=====================================================
+//
+//		*****		MENU PANES		*****
+//
+//
+//=====================================================
+
+//----------------------------------------------------
+//   
+//    r_vei_menu_pane_trim_for_mms_view
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_menu_pane_trim_for_mms_view
+    {
+    items=
+        {
+		MENU_ITEM { command=EVeiCmdSendViaMms;			txt=qtn_vei_menu_send_via_mms; },
+		MENU_ITEM { command=EVeiCmdPreview;				txt=qtn_vei_menu_preview; },
+//		MENU_ITEM { command=EVeiCmdVideoLength;			txt=qtn_vei_menu_video_length; },
+		MENU_ITEM { command=EVeiCmdTrimForMmsViewHelp;	txt=qtn_clipb_litxt_help; }
+        };
+    }
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video_view_edit_video_menu
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_edit_video_view_edit_video_menu
+    {
+    items=
+        {
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoCutting;	 txt=qtn_vei_edit_video_cmd_edit_video_cutting; },	
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoMove;	     txt=qtn_vei_list_query_select_video_move; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoColorEffect;txt=qtn_vei_list_query_select_video_color_effect; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoSlowMotion; txt=qtn_vei_list_query_select_video_slow_motion; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoMute;       txt=qtn_vei_list_query_select_video_mute; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoUnmute;     txt=qtn_vei_list_query_select_video_unmute; },
+		MENU_ITEM { command=EVeiCmdEditVideoAdjustVolume;            txt = qtn_vei_edit_video_cmd_edit_adj_vol; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoRemove;     txt=qtn_vei_list_query_select_video_remove; },
+		MENU_ITEM { command=EVeiCmdEditVideoDuplicate;				 txt=qtn_vei_list_query_select_video_duplicate; }
+		};
+	}
+
+//----------------------------------------------------
+//   
+//    r_vei_settings_view_menu
+//    ?description
+//
+//----------------------------------------------------
+//
+
+RESOURCE MENU_PANE r_vei_settings_view_menu
+    {
+    items=
+        {
+        MENU_ITEM { command=EVeiCmdSettingsViewChange;	txt=qtn_options_change; },
+        MENU_ITEM { command=EVeiCmdSettingsViewHelp;		txt=qtn_options_help; }
+        };
+    }
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video_menu
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_edit_video_view_menu
+    {
+    items=
+        {
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideo;				txt = qtn_vei_edit_video_cmd_edit_video; cascade=r_vei_edit_video_view_edit_video_submenu; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditAudio;				txt = qtn_vei_edit_video_cmd_edit_audio; cascade=r_vei_edit_video_view_edit_audio_submenu; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditStartTransition;	txt = qtn_vei_edit_video_cmd_edit_tran; cascade=r_vei_edit_video_view_edit_start_transition_submenu; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditText;				txt = qtn_ved_menu_editt; cascade = r_vei_edit_video_view_edit_text_submenu; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditImage;				txt = qtn_ved_menu_editi; cascade = r_vei_edit_video_view_edit_image_submenu; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditMiddleTransition;	txt = qtn_vei_edit_video_cmd_edit_tran; cascade=r_vei_edit_video_view_edit_middle_transition_submenu; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditEndTransition;		txt = qtn_vei_edit_video_cmd_edit_tran; cascade=r_vei_edit_video_view_edit_end_transition_submenu; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewInsert;					txt = qtn_vei_edit_video_cmd_insert; cascade=r_vei_edit_video_view_insert; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewMovie;					txt = qtn_ved_menu_movie; cascade = r_vei_edit_video_view_movie_submenu; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewSettings;				txt = qtn_options_settings; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewHelp;					txt = qtn_options_help; },
+		MENU_ITEM { command=EEikCmdExit;								txt = qtn_options_exit; }
+        };
+    }
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video_view_audio_mixing_menu
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_edit_video_view_audio_mixing_menu
+    {
+    items=
+        {
+ 		MENU_ITEM { command=EVeiCmdEditVideoViewPreview;		txt = qtn_vei_edit_video_cmd_preview; cascade=r_vei_edit_video_view_movie_preview;},
+ 		MENU_ITEM { command=EVeiCmdEditVideoMixAudioCancel;		txt = text_softkey_cancel; }
+	    };
+    }
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video_view_movie_submenu
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_edit_video_view_movie_submenu
+    {
+    items=
+        {
+ 		MENU_ITEM { command=EVeiCmdEditVideoViewPreview;		txt = qtn_vei_edit_video_cmd_preview; cascade=r_vei_edit_video_view_movie_preview;},
+		MENU_ITEM { command=EVeiCmdEditVideoViewTrimForMms;		txt = qtn_ved_smenu_movie_mms; },
+ 		MENU_ITEM { command=EVeiCmdEditVideoViewSaveTo;			txt = qtn_vei_edit_video_cmd_save_to; },
+ 		MENU_ITEM { command=EVeiCmdEditVideoMixAudio;			txt = qtn_vei_edit_video_cmd_audio_mix; }
+	    };
+    }
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video_view_movie_preview
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_edit_video_view_movie_preview
+	{
+    items=
+        {
+		MENU_ITEM { command=EVeiCmdEditVideoViewPreviewLarge;	txt = qtn_ved_smenu_movie_lpreview; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewPreviewSmall;	txt = qtn_ved_smenu_movie_spreview; }
+		};
+	}
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video_view_insert
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_edit_video_view_insert
+    {
+    items=
+        {
+        MENU_ITEM { command=EVeiCmdEditVideoViewInsertVideo;		txt = qtn_vei_edit_video_cmd_insert_video; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewInsertImage;		txt = qtn_ved_smenu_insert_image;},
+		MENU_ITEM { command=EVeiCmdEditVideoViewInsertText;			txt = qtn_ved_smenu_insert_text;},    
+        MENU_ITEM { command=EVeiCmdEditVideoViewInsertAudio;		txt = qtn_vei_edit_video_cmd_insert_audio; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewInsertNewAudio;		txt = qtn_vei_edit_video_cmd_insert_new_audio; }
+        };
+    }
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video_view_edit_text_submenu
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_edit_video_view_edit_text_submenu
+{
+	items=
+		{
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditTextMove;				txt = qtn_ved_smenu_editt_move; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditTextRemove;				txt = qtn_ved_smenu_editt_remove; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditTextChangeDuration;		txt = qtn_ved_smenu_editt_dur; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditTextChangeText;			txt = qtn_ved_smenu_editt_text; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditTextSetTextColor;		txt = qtn_ved_smenu_editt_color; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditTextSetBackGround;		txt = qtn_ved_smenu_editt_bg; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditTextStyle;				txt = qtn_ved_smenu_editt_style; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditTextAddColorEffect;		txt = qtn_ved_smenu_editt_color_effect; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditTextDuplicate;			txt = qtn_ved_smenu_editt_duplicate; }
+		};
+}
+
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video_view_edit_image_submenu
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_edit_video_view_edit_image_submenu
+{
+	items=
+		{
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditImageMove;				txt = qtn_ved_smenu_editi_move; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditImageRemove;			txt = qtn_ved_smenu_editi_remove; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditImageChangeDuration;	txt = qtn_ved_smenu_editt_dur; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditImageBackGround;		txt = qtn_ved_smenu_editi_bg; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditImageAddColorEffect;	txt = qtn_ved_smenu_editi_color_effect; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditImageDuplicate;			txt = qtn_ved_smenu_editi_duplicate; }	
+		};
+}
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video_view_edit_video_submenu
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_edit_video_view_edit_video_submenu
+    {
+    items=
+        {
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoCutting;	 txt=qtn_vei_edit_video_cmd_edit_video_cutting; },	
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoMove;	     txt=qtn_vei_edit_video_cmd_edit_video_move; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoColorEffect;txt=qtn_vei_edit_video_cmd_edit_video_color_effect; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoSlowMotion; txt=qtn_vei_edit_video_cmd_edit_video_slow_motion; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoMute;       txt=qtn_vei_edit_video_cmd_edit_video_mute; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoUnmute;     txt=qtn_vei_edit_video_cmd_edit_video_unmute; },
+		MENU_ITEM { command=EVeiCmdEditVideoAdjustVolume;            txt=qtn_vei_edit_video_cmd_edit_adj_vol; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoRemove;     txt=qtn_vei_edit_video_cmd_edit_video_remove; },
+		MENU_ITEM { command=EVeiCmdEditVideoDuplicate;				 txt=qtn_vei_edit_video_cmd_edit_duplicate; }
+		};
+	}
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video_view_edit_audio_submenu		//Options
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_edit_video_view_edit_audio_submenu
+    {
+    items=
+        {
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditVideoCutting;	txt = qtn_vei_edit_video_cmd_edit_video_cutting; },	
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditAudioMove;		txt = qtn_vei_edit_video_cmd_edit_audio_move; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditAudioSetDuration;	txt = qtn_ved_smenu_editt_dur; },
+		MENU_ITEM { command=EVeiCmdEditVideoAdjustVolume;			txt = qtn_vei_edit_video_cmd_edit_adj_vol; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewEditAudioRemove;	txt = qtn_vei_edit_video_cmd_edit_audio_remove; },
+		MENU_ITEM { command=EVeiCmdEditVideoDuplicate;				txt = qtn_vei_edit_video_cmd_edit_duplicate; }
+        };
+    }
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video_view_edit_start_transition_submenu		
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_edit_video_view_edit_start_transition_submenu
+    {
+    items=
+        {
+        MENU_ITEM { command=EVeiCmdEditVideoViewTransitionFadeFromBlack; txt=qtn_vei_edit_video_cmd_edit_tran_fade_from_black; },
+        MENU_ITEM { command=EVeiCmdEditVideoViewTransitionFadeFromWhite; txt=qtn_vei_edit_video_cmd_edit_tran_fade_from_white; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewTransitionNone;			 txt=qtn_vei_edit_video_cmd_edit_tran_no_tran; }
+		};
+	}
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video_view_edit_middle_transition_submenu		
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_edit_video_view_edit_middle_transition_submenu
+    {
+    items=
+        {
+        MENU_ITEM { command=EVeiCmdEditVideoViewTransitionCrossfade;		txt=qtn_ved_smenu_editt_cf; },
+        MENU_ITEM { command=EVeiCmdEditVideoViewTransitionWipeFromTop;		txt=qtn_ved_smenu_editt_wipet; },
+        MENU_ITEM { command=EVeiCmdEditVideoViewTransitionWipeFromBottom;	txt=qtn_ved_smenu_editt_wipeb; },
+        MENU_ITEM { command=EVeiCmdEditVideoViewTransitionWipeFromLeft;		txt=qtn_ved_smenu_editt_wipel; },
+        MENU_ITEM { command=EVeiCmdEditVideoViewTransitionWipeFromRight;	txt=qtn_ved_smenu_editt_wiper; },
+        MENU_ITEM { command=EVeiCmdEditVideoViewTransitionDipToBlack;		txt=qtn_vei_edit_video_cmd_edit_tran_dip_to_black; },
+        MENU_ITEM { command=EVeiCmdEditVideoViewTransitionDipToWhite;		txt=qtn_vei_edit_video_cmd_edit_tran_dip_to_white; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewTransitionNone;				txt=qtn_vei_edit_video_cmd_edit_tran_no_tran; }
+		};
+	}
+
+//----------------------------------------------------
+//   
+//    r_vei_edit_video_view_edit_end_transition_submenu		
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_edit_video_view_edit_end_transition_submenu
+    {
+    items=
+        {
+        MENU_ITEM { command=EVeiCmdEditVideoViewTransitionFadeToBlack;	txt=qtn_vei_edit_video_cmd_edit_tran_fade_to_black; },
+        MENU_ITEM { command=EVeiCmdEditVideoViewTransitionFadeToWhite;	txt=qtn_vei_edit_video_cmd_edit_tran_fade_to_white; },
+		MENU_ITEM { command=EVeiCmdEditVideoViewTransitionNone;			txt=qtn_vei_edit_video_cmd_edit_tran_no_tran; }
+		};
+	}
+
+//----------------------------------------------------
+//   
+//    r_vei_preview_menu
+//    ?description
+//
+//----------------------------------------------------
+//		 
+RESOURCE MENU_PANE r_vei_preview_menu
+    {
+    items=
+        {
+	  MENU_ITEM { command=EVeiCmdCutVideoViewPlay; txt=qtn_vei_cmd_play; },
+	  MENU_ITEM { command=EVeiCmdPlayViewStop; txt=text_softkey_stop; },
+	  MENU_ITEM { command=EVeiCmdCutVideoTakeSnapshot; txt = qtn_vei_cmd_take_snapshot; }
+		};
+     }
+
+//----------------------------------------------------
+//   
+//    r_vei_cut_video_menu
+//    ?description
+//
+//----------------------------------------------------
+//
+
+RESOURCE MENU_PANE r_vei_cut_video_view_menu
+    {
+    items=
+        {
+		MENU_ITEM { command=EVeiCmdCutVideoViewPlay;		txt=qtn_vei_cut_video_cmd_play; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewContinue;	txt=qtn_vei_cut_video_cmd_continue; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewPlayMarked;	txt=qtn_vei_cut_video_cmd_play_marked; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewMarkIn;		txt=qtn_vei_cut_video_cmd_mark_in; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewMarkOut;		txt=qtn_vei_cut_video_cmd_mark_out; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewClearMarks;	txt=qtn_vei_cut_video_cmd_clear_marks; cascade = r_vei_cut_video_view_menu_clear_marks; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewStop;		txt=text_softkey_stop; },
+		MENU_ITEM { command=EVeiCmdCutVideoTakeSnapshot;	txt = qtn_vei_cmd_take_snapshot; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewHelp;		txt=qtn_options_help; }
+        };
+    }
+//----------------------------------------------------
+//   
+//    r_vei_videos_view_menu_mark
+//    Videos view mark submenu.
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_cut_video_view_menu_clear_marks
+    {
+    items=
+        {
+        MENU_ITEM { command=EVeiCmdCutVideoViewClearMarksIn;	txt=qtn_vei_cut_video_cmd_clear_marks_in; },
+        MENU_ITEM { command=EVeiCmdCutVideoViewClearMarksOut;	txt=qtn_vei_cut_video_cmd_clear_marks_out; },
+        MENU_ITEM { command=EVeiCmdCutVideoViewClearMarksInOut; txt=qtn_vei_cut_video_cmd_clear_marks_in_out; }
+		};
+	}
+
+
+//=====================================================
+//
+//		*****		POPUPS		*****
+//
+//
+//=====================================================
+
+//
+// Start transtion
+//
+RESOURCE ARRAY r_vei_start_transition_list_box_array
+	{
+	items =
+		{
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_tran_fade_from_black;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_tran_fade_from_white;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_tran_no_tran;
+			}
+		};
+	}
+
+//
+// Middle transtion
+//
+RESOURCE ARRAY r_vei_middle_transition_list_box_array
+	{
+	items =
+		{
+		LBUF
+			{
+
+			txt = qtn_vei_list_query_select_tran_wipe_top;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_tran_wipe_bottom;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_tran_wipe_left;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_tran_wipe_right;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_tran_crossfade;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_tran_dip_to_black;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_tran_dip_to_white;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_tran_no_tran;
+			}
+		};
+	}
+
+//
+// End transtion
+//
+RESOURCE ARRAY r_vei_end_transition_list_box_array
+	{
+	items =
+		{
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_tran_fade_to_black;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_tran_fade_to_white;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_tran_no_tran;
+			}
+		};
+	}
+
+
+//
+// Insert audio
+//
+RESOURCE ARRAY r_vei_insert_audio_list_box_array
+	{
+	items =
+		{
+		LBUF
+			{
+			txt = qtn_vei_list_query_insert_sound_type_sound;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_insert_sound_type_new_audio;
+					
+			}
+		};
+	}
+
+//
+// Insert stuff to video track
+//  
+RESOURCE ARRAY r_vei_insert_stuff_list_box_array
+	{
+	items =
+		{
+		LBUF
+			{
+			txt = qtn_ved_menu_insert_video;
+			},
+		LBUF
+			{
+			txt = qtn_ved_menu_insert_image;
+			},
+		LBUF
+			{
+			txt = qtn_ved_menu_insert_text;
+			}
+		};
+	}
+
+//
+// Edit video
+//
+
+RESOURCE ARRAY r_vei_edit_video_list_box_array
+	{
+	items =
+		{
+		LBUF
+			{
+			txt = qtn_vei_edit_video_cmd_edit_video_cutting;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_video_move;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_video_color_effect;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_video_slow_motion;
+			},
+		LBUF
+			{ 
+			txt = qtn_vei_list_query_select_video_mute; 
+			},		
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_video_unmute;
+			},
+		LBUF
+			{
+			txt = qtn_vei_edit_video_cmd_edit_adj_vol;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_video_remove;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_video_duplicate;
+			}
+		};
+	}
+
+//
+// Edit text style
+//
+
+RESOURCE ARRAY r_vei_insert_text_list_box_array
+	{
+	items =
+		{
+		LBUF
+			{
+			txt = qtn_ved_menu_insert_text_t;
+			},
+		LBUF
+			{
+			txt = qtn_ved_menu_insert_text_tf;
+			},
+		LBUF
+			{
+			txt = qtn_ved_menu_insert_text_subt;
+			},
+		LBUF
+			{
+			txt = qtn_ved_menu_insert_text_subtf;
+			},
+		LBUF
+			{
+			txt = qtn_ved_menu_insert_text_credit;
+			}
+		};
+	}
+
+//
+//	EDIT TEXT - Selectionkey menu, PopUpList  
+//
+
+RESOURCE ARRAY r_vei_edit_text_list_box_array
+	{
+	items =
+		{
+		LBUF
+			{
+			txt = qtn_ved_smenu_editt_move;
+			},
+		LBUF
+			{
+			txt = qtn_ved_smenu_editt_remove;
+			},
+		LBUF
+			{
+			txt = qtn_ved_smenu_editt_dur;
+			},
+		LBUF
+			{
+			txt = qtn_ved_smenu_editt_text;
+			},
+		LBUF
+			{
+			txt = qtn_ved_smenu_editt_color;
+			},
+		LBUF
+			{
+			txt = qtn_ved_smenu_editt_bg;
+			},
+		LBUF
+			{
+			txt = qtn_ved_smenu_editt_color_effect;
+			},
+		LBUF
+			{
+			txt = qtn_ved_smenu_editt_style;
+			},
+		LBUF
+			{
+			txt = qtn_ved_smenu_editt_duplicate;
+			}
+		};
+	}
+
+//
+//	EDIT IMAGE - Selectionkey menu, PopUpList  
+//
+
+RESOURCE ARRAY r_vei_edit_image_list_box_array
+	{
+	items =
+		{
+		LBUF
+			{
+			txt = qtn_ved_smenu_editi_move;
+			},
+		LBUF
+			{
+			txt = qtn_ved_smenu_editi_remove;
+			},
+		LBUF
+			{
+			txt = qtn_ved_menu_editt_dur;
+			},
+		LBUF
+			{
+			txt = qtn_ved_smenu_editi_bg;
+			},
+		LBUF
+			{
+			txt = qtn_ved_smenu_editi_color_effect;
+			},
+		LBUF
+			{
+			txt = qtn_ved_smenu_editi_duplicate;
+			}
+		};
+	}
+
+//
+//	EDIT AUDIO - Selectionkey menu, PopUpList 
+//
+
+RESOURCE ARRAY r_vei_edit_audio_list_box_array
+	{
+	items =
+		{
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_video_cut;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_video_move;
+			},
+		LBUF
+			{
+			txt = qtn_ved_menu_editt_dur;
+			},
+		LBUF
+			{
+			txt = qtn_vei_edit_video_cmd_edit_adj_vol;
+			},
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_video_remove;
+			},		
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_video_duplicate;
+			}
+		};
+	}
+
+//----------------------------------------------------
+//   
+//    r_vei_titlescreen_background_listbox_array
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE ARRAY r_vei_titlescreen_background_listbox_array
+	{
+	items = 
+		{
+		LBUF
+			{
+			txt = qtn_ved_menu_editt_select_bg_image;
+			},
+		LBUF
+			{
+			txt = qtn_ved_menu_editt_select_bg_color;
+			}
+		};
+	}
+
+//----------------------------------------------------
+//   
+//    r_vei_effect_list_box_array
+//    ?description
+//
+//----------------------------------------------------
+//
+RESOURCE ARRAY r_vei_effect_list_box_array
+	{
+	items = 
+		{
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_effect_black_white;
+			},
+		LBUF
+			{
+			txt = qtn_ved_menu_editt_select_bg_color;
+			},	
+		LBUF
+			{
+			txt = qtn_vei_list_query_select_effect_no_effect;
+			}
+		};
+	}
+
+//----------------------------------------------------
+//   
+//		*****		VIEW TITLES		******
+//			
+//
+//----------------------------------------------------
+//
+RESOURCE TITLE_PANE r_vei_edit_video_view_title_name
+    {
+    txt = qtn_vei_edit_video_title_edit_video;
+    }
+
+RESOURCE TITLE_PANE r_vei_preview_view_title_name
+    {
+    txt = qtn_vei_edit_preview_title_preview;
+    }
+
+RESOURCE TITLE_PANE r_vei_cutvideo_view_title_name
+    {
+    txt = qtn_vei_cut_video_title_cut_video;
+    }
+
+RESOURCE TITLE_PANE r_vei_settings_view_title_name
+    {
+    txt = qtn_vei_settings_title_settings;
+    }
+
+RESOURCE TITLE_PANE r_vei_trim_for_mms_view_title_name
+    {
+    txt = qtn_vei_trim_mms_title;
+    }
+
+RESOURCE TITLE_PANE r_vei_cutaudio_view_title_name
+    {
+		txt = qtn_vei_cut_audio_title;
+    }
+RESOURCE TITLE_PANE r_vei_adjust_volume_view_title_name
+    {
+    txt = qtn_vei_edit_video_cmd_edit_adj_vol;
+    }    
+RESOURCE TITLE_PANE r_vei_audio_mix_view_title_name
+    {
+    txt = qtn_vei_edit_video_cmd_audio_mix;
+    }    
+
+    
+
+//=====================================================
+//
+//		*****		RESOURCE DIALOGS		*****
+//
+//
+//=====================================================
+
+//----------------------------------------------------
+//
+//    r_vei_wait_dialog
+//    
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vei_wait_dialog
+    {
+    flags = EAknWaitNoteFlags;
+    buttons = R_AVKON_SOFTKEYS_EMPTY;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtNote;
+            id = EGeneralNote;
+            control= AVKON_NOTE 
+                { 
+                layout = EWaitLayout;
+                singular_label = qtn_gen_note_inserting;
+                imagefile = AVKON_ICON_FILE;
+                imageid = EMbmAvkonQgn_note_progress;
+                imagemask = EMbmAvkonQgn_note_progress_mask;
+                animation = R_QGN_GRAF_WAIT_BAR_ANIM;
+                };
+            }
+        };
+    }
+
+//----------------------------------------------------
+//
+//    r_vei_wait_dialog_processing
+//    
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vei_wait_dialog_processing
+    {
+    flags = EAknWaitNoteFlags;
+    buttons = R_AVKON_SOFTKEYS_EMPTY;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtNote;
+            id = EGeneralNote;
+            control= AVKON_NOTE 
+                { 
+                layout = EWaitLayout;
+                singular_label = qtn_ved_processing_for_mms;
+                imagefile = AVKON_ICON_FILE;
+                imageid = EMbmAvkonQgn_note_progress;
+                imagemask = EMbmAvkonQgn_note_progress_mask;
+                animation = R_QGN_GRAF_WAIT_BAR_ANIM;
+                };
+            }
+        };
+    }
+
+//----------------------------------------------------
+//
+//    r_vei_wait_dialog_inserting_video
+//    
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vei_wait_dialog_inserting_video
+    {
+    flags = EAknWaitNoteFlags;
+    buttons = R_AVKON_SOFTKEYS_EMPTY;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtNote;
+            id = EGeneralNote;
+            control= AVKON_NOTE 
+                { 
+                layout = EWaitLayout;
+                singular_label = qtn_ved_inserting_video;
+                imagefile = AVKON_ICON_FILE;
+                imageid = EMbmAvkonQgn_note_progress;
+                imagemask = EMbmAvkonQgn_note_progress_mask;
+                animation = R_QGN_GRAF_WAIT_BAR_ANIM;
+                };
+            }
+        };
+    }
+//----------------------------------------------------
+//
+//    r_vei_wait_dialog_inserting_image
+//    
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vei_wait_dialog_inserting_image
+    {
+    flags = EAknWaitNoteFlags;
+    buttons = R_AVKON_SOFTKEYS_EMPTY;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtNote;
+            id = EGeneralNote;
+            control= AVKON_NOTE 
+                { 
+                layout = EWaitLayout;
+                singular_label = qtn_ved_inserting_image;
+                imagefile = AVKON_ICON_FILE;
+                imageid = EMbmAvkonQgn_note_progress;
+                imagemask = EMbmAvkonQgn_note_progress_mask;
+                animation = R_QGN_GRAF_WAIT_BAR_ANIM;
+                };
+            }
+        };
+    }
+
+//----------------------------------------------------
+//
+//    r_videoeditor_confirmation_query
+//    Confirmation query
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vei_confirmation_query
+	{
+	flags=EGeneralQueryFlags;
+	buttons=R_AVKON_SOFTKEYS_YES_NO;
+   	 items=
+		{
+		DLG_LINE
+			{
+			type=EAknCtQuery;
+			id=EGeneralQuery;
+			control= AVKON_CONFIRMATION_QUERY 
+				{ 
+					layout = EConfirmationLayout;
+				};
+			}
+		};
+	}
+
+//----------------------------------------------------
+//
+//    r_vei_confirmation_query_cancel_textinsert
+//    Confirmation query
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vei_confirmation_query_cancel_textinsert
+	{
+	flags=EGeneralQueryFlags;
+	buttons=R_AVKON_SOFTKEYS_OK_EMPTY;
+   	 items=
+		{
+		DLG_LINE
+			{
+			type=EAknCtQuery;
+			id=EGeneralQuery;
+			control= AVKON_CONFIRMATION_QUERY 
+				{ 
+					layout = EConfirmationLayout;
+				};
+			}
+		};
+	}
+
+//----------------------------------------------------
+//
+//    r_videoeditor_progress_note
+//    Progress note
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vei_progress_note_with_cancel
+	{
+	flags = EAknProgressNoteFlags;
+	buttons = R_AVKON_SOFTKEYS_CANCEL;
+	items =
+		{
+		DLG_LINE
+			{
+			type = EAknCtNote;
+			id = EGeneralNote;
+			control = AVKON_NOTE
+				{
+				layout = EProgressLayout;
+//				singular_label = qtn_vei_progress_note_processing;
+				imagefile = AVKON_ICON_FILE;
+				imageid = EMbmAvkonQgn_note_progress;
+				imagemask = EMbmAvkonQgn_note_progress_mask;
+				};
+			}
+		};
+	}	
+//----------------------------------------------------
+//
+//    r_videoeditor_progress_note
+//    Progress note
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vei_progress_note
+	{
+	flags = EAknProgressNoteFlags;
+	buttons = R_AVKON_SOFTKEYS_EMPTY;
+	items =
+		{
+		DLG_LINE
+			{
+			type = EAknCtNote;
+			id = EGeneralNote;
+			control = AVKON_NOTE
+				{
+				layout = EProgressLayout;
+				singular_label = qtn_vei_progress_note_processing;
+				imagefile = AVKON_ICON_FILE;
+				imageid = EMbmAvkonQgn_note_progress;
+				imagemask = EMbmAvkonQgn_note_progress_mask;
+				};
+			}
+		};
+	}	
+
+/** P L A Y V I E W */
+
+//----------------------------------------------------
+//   
+//    r_vei_softkeys_pause_stop
+//    CBA for pause and back softkeys
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_preview_pause_back
+    {
+    buttons =
+		{
+		CBA_BUTTON 
+				{
+				id = EVeiCmdPlayViewPause; 
+				txt = text_softkey_pause;
+				},
+		CBA_BUTTON 
+				{
+				id = EAknSoftkeyBack;	
+				txt = text_softkey_back;
+				}
+		};
+    }
+
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_play_stop
+//    CBA for play and stop softkeys
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_continue_stop //7
+    {
+    buttons =
+		{
+		CBA_BUTTON 
+				{
+				id = EVeiCmdCutVideoViewContinue; 
+				txt = qtn_vei_record;
+				},
+		CBA_BUTTON 
+				{
+				id=EVeiCmdCutVideoViewStop;
+				txt = text_softkey_stop;
+				}
+		};
+    }
+
+RESOURCE VOLUME r_vei_volume_control
+	{
+	flags = ENaviPaneVolumeControl;
+	value = 5;
+	}
+
+//----------------------------------------------------
+//   
+//    r_vei_softkeys_pause_stop
+//    CBA for pause and stop softkeys
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_pause_stop
+    {
+    buttons =
+		{
+		CBA_BUTTON 
+				{
+				id = EVeiCmdPlayViewPause; 
+				txt = text_softkey_pause;
+				},
+		CBA_BUTTON 
+				{
+				id=EVeiCmdPlayViewStop;
+				txt = text_softkey_stop;
+				}
+		};
+    }
+
+RESOURCE CBA r_vei_softkeys_record_cancel
+    {
+    buttons =
+		{
+		CBA_BUTTON 
+				{
+				id = EVeiCmdEditVideoViewRecord; 
+				txt = qtn_vei_record;
+				},
+		CBA_BUTTON 
+				{
+				id=EVeiCmdEditVideoViewRecordCancel;
+				txt = text_softkey_cancel;
+				}
+		};
+    }
+
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_options_done
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_options_done  //3
+    {
+    buttons =
+		{
+		CBA_BUTTON
+				{
+				id = EAknSoftkeyOptions;
+				txt = text_softkey_option;
+				},
+		CBA_BUTTON 
+				{
+				id = EVeiCmdCutVideoViewDone;
+				txt = text_softkey_done;
+				}
+		};
+    }
+
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_empty_out
+//    CBA for options/out softkeys
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_empty_out  //6
+    {
+    buttons =
+		{
+		CBA_BUTTON
+				{
+				id=EVeiCmdCutVideoViewStop; 
+				txt = text_softkey_stop;
+				},
+		CBA_BUTTON 
+				{
+				id = EVeiCmdCutVideoViewMarkOut;
+				//txt = qtn_vei_cut_video_cmd_mark_out; 
+				txt = qtn_vei_mark_out;
+				}
+		};
+    }
+
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_in_out
+//    CBA for in out softkeys
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_in_out //5
+    {
+    buttons =
+		{
+		CBA_BUTTON 
+				{
+				id = EVeiCmdCutVideoViewMarkIn; 
+				//txt = qtn_vei_cut_video_cmd_mark_in;
+				txt = qtn_vei_mark_in;
+				},
+		CBA_BUTTON 
+				{
+				id = EVeiCmdCutVideoViewMarkOut;
+				//txt = qtn_vei_cut_video_cmd_mark_out; 
+				txt = qtn_vei_mark_out;
+				}
+		};
+    }
+
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_in_empty
+//    CBA for options/out softkeys
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_in_empty  //4
+    {
+    buttons =
+		{
+		CBA_BUTTON 
+				{
+				id = EVeiCmdCutVideoViewMarkIn;
+				//txt = qtn_vei_cut_video_cmd_mark_in; 
+				txt = qtn_vei_mark_in;
+				},
+		CBA_BUTTON
+				{
+				id=EVeiCmdCutVideoViewStop; 
+				txt = text_softkey_stop;
+				}
+		};
+    }
+//----------------------------------------------------
+//   
+//    r_vei_softkeys_preview_play_back
+//    CBA for play/back softkeys
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_preview_play_back
+    {
+    buttons =
+		{
+		CBA_BUTTON 
+				{
+				id = EVeiCmdCutVideoViewPlay;
+				txt = qtn_vei_cmd_play; 
+				},
+		CBA_BUTTON
+				{
+				id = EAknSoftkeyBack;
+				txt = text_softkey_back;
+				}
+		};
+    }
+
+
+
+//----------------------------------------------------------------------------
+//
+//    r_vei_setting_item_list
+//    Settings item list for application settings.
+//
+//----------------------------------------------------------------------------
+//
+RESOURCE AVKON_SETTING_ITEM_LIST r_vei_setting_item_list
+    {
+    flags = EAknSettingPageNoOrdinalDisplayed;	// Numbers not shown on left.
+    title = qtn_vei_settings_title_settings;
+    items =     
+        {
+        AVKON_SETTING_ITEM
+            {
+            identifier = EVeiVideoNameSettingItem;
+            name = qtn_vei_settings_label1_default_movie_name;
+            setting_page_resource = r_vei_settings_view_video_page;
+            },
+		AVKON_SETTING_ITEM
+			{
+			identifier = EVeiSnapshotNameSettingItem;
+			setting_page_resource = r_vei_settings_view_snapshot_page;	
+			name = qtn_vei_settings_label2_default_snapshot_name;
+			},
+		AVKON_SETTING_ITEM
+			{
+			identifier = EVeiSaveQualitySettingItem;
+			name = qtn_vei_setting_item_save_quality;
+			setting_page_resource = r_vei_setting_page_save_quality;
+			associated_resource = r_vei_save_quality_popup_setting_texts;
+			},
+		AVKON_SETTING_ITEM
+			{
+			identifier = EVeiMemoryInUseSettingItem;
+			name = qtn_vei_settings_label3_memory_in_use;
+			}
+        };
+    }
+
+//-----------------------------------------------------------------------------
+//
+//    r_vei_settings_view_video_page
+//    Page for setting the default video name.
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE AVKON_SETTING_PAGE r_vei_settings_view_video_page
+    {
+    label = qtn_vei_settings_label1_default_movie_name;
+    type = EEikCtEdwin;
+    editor_resource_id = r_vei_text_editor;
+    }
+
+//-----------------------------------------------------------------------------
+//
+//    r_vei_settings_view_snapshot_page
+//    Page for setting the default snapshot name.
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE AVKON_SETTING_PAGE r_vei_settings_view_snapshot_page
+	{
+	label = qtn_vei_settings_label2_default_snapshot_name;
+	type = EEikCtEdwin;
+	editor_resource_id = r_vei_text_editor;
+	}
+
+//-----------------------------------------------------------------------------
+//
+//    r_vei_text_editor
+//    General text editor for setting pages.
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE EDWIN r_vei_text_editor
+    {
+    maxlength = 126;
+    }
+
+//----------------------------------------------------
+//	 
+//	  r_vei_setting_page_save_quality
+//	  
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_SETTING_PAGE r_vei_setting_page_save_quality
+	{ 
+	label= qtn_vei_setting_item_save_quality;
+	type = EAknCtPopupSettingList;
+	editor_resource_id = r_vei_editor_save_quality;
+	}
+
+//----------------------------------------------------
+//	 
+//	  r_settingslist_hints_popup_setting_list
+//	  popup setting list for the hint item of the
+//	  setting list
+//
+//----------------------------------------------------
+//
+RESOURCE POPUP_SETTING_LIST r_vei_editor_save_quality
+	{
+	}
+
+//----------------------------------------------------
+//	 
+//	  r_settingslist_hints_popup_setting_texts
+//	  popped up and non-popped up texts for the hint 
+//	  item of the setting list
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_POPUP_SETTING_TEXTS r_vei_save_quality_popup_setting_texts
+	{
+	setting_texts_resource = r_vei_save_quality_texts;
+	popped_up_texts_resource = r_vei_save_quality_popup_texts;
+	}
+
+//----------------------------------------------------
+//	 
+//	  r_vei_save_quality_texts
+//	  non-popped up texts for the hint 
+//	  item of the setting list
+//
+//----------------------------------------------------
+//
+RESOURCE ARRAY r_vei_save_quality_texts
+	{
+	items =
+		{
+		AVKON_ENUMERATED_TEXT 
+			{ 
+			value = 0; 
+			text = qtn_vei_save_quality_auto; 
+			},
+		AVKON_ENUMERATED_TEXT 
+			{ 
+			value = 1; 
+			text = qtn_vei_save_quality_mms; 
+			},
+		AVKON_ENUMERATED_TEXT 
+			{ 
+			value = 2; 
+			text = qtn_vei_save_quality_medium; 
+			},
+		AVKON_ENUMERATED_TEXT 
+			{ 
+			value = 3; 
+			text = qtn_vei_save_quality_best; 
+			}
+			
+		};
+	}
+
+//----------------------------------------------------
+//	 
+//	  r_vei_save_quality_popup_texts
+//	  popped up texts for the hint 
+//	  item of the setting list
+//
+//----------------------------------------------------
+//
+RESOURCE ARRAY r_vei_save_quality_popup_texts
+	{
+	items =
+		{
+		LBUF 
+			{ 
+			txt = qtn_vei_save_quality_auto; 
+			},
+		LBUF 
+			{ 
+			txt = qtn_vei_save_quality_mms; 
+			},
+		LBUF 
+			{ 
+			txt = qtn_vei_save_quality_medium; 
+			},
+		LBUF 
+			{ 
+			txt = qtn_vei_save_quality_best; 
+			}
+		};
+	}
+
+
+
+//-----------------------------------------------------------------------------
+//
+//    r_ved_left_right_silent_skey_list
+//    Key sound definition, disables the long and repeat key press sounds for
+//    the left and righ navi-keys.
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE AVKON_SKEY_LIST r_ved_left_right_silent_skey_list
+	{
+	list =
+		{
+		AVKON_SKEY_INFO 
+			{ 
+			key = EStdKeyRightArrow; 
+			sid = EAvkonSIDNoSound; 
+			type = ESKeyTypeLong;
+			},	
+		AVKON_SKEY_INFO 
+			{ 
+			key = EStdKeyRightArrow;
+			sid = EAvkonSIDNoSound;
+			type = ESKeyTypeRepeat; 
+			},
+		AVKON_SKEY_INFO 
+			{ 
+			key = EStdKeyLeftArrow;
+			sid = EAvkonSIDNoSound;
+			type =ESKeyTypeLong;
+			},
+		AVKON_SKEY_INFO 
+			{ 
+			key = EStdKeyLeftArrow;
+			sid = EAvkonSIDNoSound;
+			type =ESKeyTypeRepeat;
+			}
+		};
+	}
+
+
+
+
+RESOURCE AVKON_LIST_QUERY r_vei_titlescreen_background_list_query
+	{
+	items = 
+		{
+		AVKON_LIST_QUERY_DLG_LINE
+			{
+			control = AVKON_LIST_QUERY_CONTROL
+				{
+				listtype = EAknCtSinglePopupMenuListBox;
+				heading = qtn_ved_smenu_editt_select_heading_background;
+				listbox = AVKON_LIST_QUERY_LIST
+					{
+					array_id = r_vei_titlescreen_background_listbox_array;
+					};
+				};
+			}
+		};
+	}
+
+// ============================== ANIMATION ===================================
+RESOURCE BMPANIM_DATA r_vei_crossfade_animation
+	{
+	frameinterval = 50;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_vei_crossfade_animation_array;
+	}
+
+RESOURCE ARRAY r_vei_crossfade_animation_array
+	{	
+	items =
+		{
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade01;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade01_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 100;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade02;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade02_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 100;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade03;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade03_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 100;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade04;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade04_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 100;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade05;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade05_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 100;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade06;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade06_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 100;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade07;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade07_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade08;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_crossfade08_mask;
+			}
+		};
+	}
+
+RESOURCE BMPANIM_DATA r_vei_fade_to_black_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_vei_fade_to_black_animation_array;
+	}
+
+RESOURCE ARRAY r_vei_fade_to_black_animation_array
+	{	
+	items =
+		{
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack1;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack1_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack2;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack2_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack3;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack3_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack4;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack4_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack5;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack5_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack6;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack6_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack7;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack7_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack8;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetoblack8_mask;
+			}
+		};
+	}
+
+RESOURCE BMPANIM_DATA r_vei_fade_from_black_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_vei_fade_from_black_animation_array;
+	}
+
+RESOURCE ARRAY r_vei_fade_from_black_animation_array
+	{	
+	items =
+		{
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack1;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack1_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack2;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack2_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack3;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack3_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack4;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack4_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack5;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack5_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack6;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack6_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack7;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack7_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack8;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromblack8_mask;
+			}
+		};
+	}
+
+RESOURCE BMPANIM_DATA r_vei_fade_from_white_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_vei_fade_from_white_animation_array;
+	}
+
+RESOURCE ARRAY r_vei_fade_from_white_animation_array
+	{	
+	items =
+		{
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite1;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite1_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite2;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite2_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite3;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite3_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite4;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite4_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite5;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite5_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite6;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite6_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite7;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite7_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite8;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadefromwhite8_mask;
+			}
+		};
+	}
+
+
+RESOURCE BMPANIM_DATA r_vei_fade_to_white_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_vei_fade_to_white_animation_array;
+	}
+
+RESOURCE ARRAY r_vei_fade_to_white_animation_array
+	{	
+	items =
+		{
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite1;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite1_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite2;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite2_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite3;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite3_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite4;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite4_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite5;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite5_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite6;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite6_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite7;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite7_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite8;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_fadetowhite8_mask;
+			}
+		};
+	}
+
+RESOURCE BMPANIM_DATA r_vei_wipe_left_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_vei_wipe_left_animation_array;
+	}
+
+RESOURCE ARRAY r_vei_wipe_left_animation_array
+	{	
+	items =
+		{
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft1;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft1_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft2;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft2_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft3;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft3_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft4;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft4_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft5;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft5_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft6;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft6_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft7;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipeleft7_mask;
+			}
+		};
+	}
+
+
+RESOURCE BMPANIM_DATA r_vei_wipe_right_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_vei_wipe_right_animation_array;
+	}
+
+RESOURCE ARRAY r_vei_wipe_right_animation_array
+	{	
+	items =
+		{
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight1;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight1_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight2;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight2_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight3;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight3_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight4;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight4_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight5;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight5_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight6;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight6_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight7;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wiperight7_mask;
+			}
+		};
+	}
+
+RESOURCE BMPANIM_DATA r_vei_wipe_bottom_to_top_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_vei_wipe_bottom_to_top_animation_array;
+	}
+
+RESOURCE ARRAY r_vei_wipe_bottom_to_top_animation_array
+	{	
+	items =
+		{
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop1;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop1_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop2;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop2_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop3;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop3_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop4;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop4_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop5;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop5_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop6;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop6_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop7;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop7_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop8;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop8_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop9;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipebototop9_mask;
+			}
+		};
+	}
+
+
+RESOURCE BMPANIM_DATA r_vei_wipe_top_to_bottom_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_vei_wipe_top_to_bottom_animation_array;
+	}
+
+RESOURCE ARRAY r_vei_wipe_top_to_bottom_animation_array
+	{	
+	items =
+		{
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo1;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo1_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo2;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo2_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo3;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo3_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo4;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo4_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo5;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo5_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo6;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo6_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo7;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo7_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo8;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo8_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo9;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_wipetoptobo9_mask;
+			}
+		};
+	}
+
+RESOURCE BMPANIM_DATA r_vei_dip_to_black_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_vei_dip_to_black_animation_array;
+	}
+
+RESOURCE ARRAY r_vei_dip_to_black_animation_array
+	{	
+	items =
+		{
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack01;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack01_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack02;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack02_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack03;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack03_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack04;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack04_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack05;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack05_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack06;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack06_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack07;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack07_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack08;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack08_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack09;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack09_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack10;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack10_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack11;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack11_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack12;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack12_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack13;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptoblack13_mask;
+			}
+		};
+	}
+
+RESOURCE BMPANIM_DATA r_vei_dip_to_white_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_vei_dip_to_white_animation_array;
+	}
+
+RESOURCE ARRAY r_vei_dip_to_white_animation_array
+	{	
+	items =
+		{
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite01;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite01_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite02;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite02_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite03;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite03_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite04;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite04_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite05;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite05_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite06;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite06_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite07;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite07_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite08;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite08_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite09;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite09_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite10;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite10_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite11;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite11_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite12;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite12_mask;
+			},
+		BMPANIM_FRAME
+			{
+			time = 500;
+			bmpid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite13;
+			maskid = EMbmManualvideoeditorQgn_graf_ve_trans_diptowhite13_mask;
+			}
+		};
+	}
+// ============================== NOTE STRINGS ================================
+
+//-----------------------------------------------------------------------------
+//   
+//    r_ved_mmc_not_inserted
+//    Information note text, shown when memory card is not accessible.
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_ved_mmc_not_inserted
+    {
+    buf = qtn_ved_mmc_not_inserted;
+    }
+
+
+//-----------------------------------------------------------------------------
+//   
+//    r_vei_illegal_filename
+//    Warning note text, used when user has entered illegal file name, for
+//    example in Settings view.
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_vei_illegal_filename
+    {
+    buf = qtn_fldr_illegal_characters;
+    }
+
+
+//-----------------------------------------------------------------------------
+//   
+//    r_vei_unsuitable_filename
+//    Warning note text, used when user has entered illegal file name, for
+//    example in Settings view.
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_vei_unsuitable_filename
+    {
+    buf = qtn_fldr_bad_file_name;
+    }
+
+
+//-----------------------------------------------------------------------------
+//   
+//    r_ved_mmc_not_inserted
+//    Progress note text, used when the movie is processed for MMS composer.
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_ved_processing_for_mms
+    {
+    buf = qtn_ved_processing_for_mms;
+    }
+
+
+// ============================ MAIN PANE STRINGS =============================
+
+//-----------------------------------------------------------------------------
+//   
+//    r_ved_thumbnail_start_text
+//    Main pane text above the thumbnail which shows the starting point for MMS 
+//    trimming. Used in 'Trim for MMS' view.
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_ved_thumbnail_start_text
+    {
+    buf = qtn_ved_trim_start;
+    }
+
+
+//-----------------------------------------------------------------------------
+//   
+//    r_ved_thumbnail_end_text
+//    Main pane text above the thumbnail which shows the ending point for MMS 
+//    trimming. Used in 'Trim for MMS' view.
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_ved_thumbnail_end_text
+    {
+    buf = qtn_ved_trim_end;
+    }
+
+
+// Time navi pane string (formats the shown time)
+RESOURCE TBUF64  r_vei_navi_time									{ buf = qtn_time_prog_total_min_sec; }
+RESOURCE TBUF256 r_vei_error_note									{ buf= qtn_err_eikon_general; }
+
+RESOURCE TBUF256 r_vei_move_video_navilabel							{ buf = qtn_vei_navilabel_move_video; }
+RESOURCE TBUF64  r_vei_move_audio_navilabel							{ buf = qtn_vei_navilabel_move_audio; }
+RESOURCE TBUF256 r_vei_confirm_exit_save							{ buf = qtn_vei_confirmation_note_quit_save; }
+RESOURCE TBUF256 r_vei_confirm_overwrite							{ buf = qtn_fldr_overwrite_query; }
+
+//
+// TRANSITION
+//
+RESOURCE TBUF64 r_vei_start_transition_effect_name_none				{ buf = qtn_vei_edit_video_main_tran_no; }
+RESOURCE TBUF64 r_vei_start_transition_effect_name_fade_from_black	{ buf = qtn_vei_edit_video_main_tran_fade_from_black; }
+RESOURCE TBUF64 r_vei_start_transition_effect_name_fade_from_white	{ buf = qtn_vei_edit_video_main_tran_fade_from_white; }
+RESOURCE TBUF64 r_vei_middle_transition_effect_name_none			{ buf = qtn_vei_edit_video_main_tran_no; }
+RESOURCE TBUF64 r_vei_middle_transition_effect_name_dip_to_black	{ buf = qtn_vei_edit_video_main_tran_dip_to_black; }
+RESOURCE TBUF64 r_vei_middle_transition_effect_name_dip_to_white	{ buf = qtn_vei_edit_video_main_tran_dip_to_white; }
+RESOURCE TBUF64 r_vei_middle_transition_effect_name_crossfade		{ buf = qtn_vei_edit_video_main_tran_crossfade; }
+RESOURCE TBUF128 r_vei_middle_transition_effect_name_wipe_left		{ buf = qtn_vei_edit_video_main_tran_wipe_left; }
+RESOURCE TBUF128 r_vei_middle_transition_effect_name_wipe_right		{ buf = qtn_vei_edit_video_main_tran_wipe_right; }
+RESOURCE TBUF64 r_vei_middle_transition_effect_name_wipe_top		{ buf = qtn_vei_edit_video_main_tran_wipe_top; }
+RESOURCE TBUF64 r_vei_middle_transition_effect_name_wipe_bottom		{ buf = qtn_vei_edit_video_main_tran_wipe_bottom; }
+RESOURCE TBUF64 r_vei_end_transition_effect_name_none				{ buf = qtn_vei_edit_video_main_tran_no; }
+RESOURCE TBUF64 r_vei_end_transition_effect_name_fade_to_black		{ buf = qtn_vei_edit_video_main_tran_fade_to_black; }
+RESOURCE TBUF64 r_vei_end_transition_effect_name_fade_to_white		{ buf = qtn_vei_edit_video_main_tran_fade_to_white; }
+
+//
+// NOTE
+//
+RESOURCE TBUF128 r_vei_note_video_saved								{ buf = qtn_vei_edit_video_note_saved; }
+RESOURCE TBUF128 r_vei_note_snapshot_saved							{ buf = qtn_vei_note_snapshot_saved; }
+RESOURCE TBUF128 r_vei_note_snapshot_taken_to_images					{ buf = qtn_vei_note_snapshot_taken_to_images; }
+RESOURCE TBUF	r_vei_note_confirmation_query_cancel_textinsert			{ buf = qtn_vei_confirm_note_cancel_textinsert; }
+
+// 
+// PROGRESS NOTE
+//
+RESOURCE TBUF64 r_vei_progress_note_saving							{ buf = qtn_gen_note_saving; }
+RESOURCE TBUF64 r_vei_progress_note_cut								{ buf = qtn_vei_progress_note_preparing_to_cut; }
+RESOURCE TBUF128 r_vei_progress_note_color_effect					{ buf = qtn_vei_progress_note_applying_color_effect; }
+RESOURCE TBUF64 r_vei_progress_note_cutting_video					{ buf = qtn_vei_progress_note_cutting_video; }
+RESOURCE TBUF128 r_vei_progress_note_saving_image					{ buf = qtn_ved_saving_snapshot; }      
+RESOURCE TBUF128 r_vei_progress_note_inserting_audio					{ buf = qtn_ved_inserting_audio; } 
+RESOURCE TBUF	r_vei_progress_note_inserting_media					{ buf = qtn_ved_inserting_mult_media; }
+
+RESOURCE TBUF128 r_vei_video_failed									{ buf = qtn_vei_video_failed; }
+RESOURCE TBUF64 r_vei_progress_note_send							{ buf = qtn_vei_progress_note_preparing_to_send; }
+RESOURCE TBUF64 r_vei_remove_clip_query								{ buf = qtn_query_common_conf_remove; }
+
+RESOURCE TBUF r_vei_popup_select_effect_title						{ buf = qtn_vei_list_query_select_effect; }
+
+RESOURCE TBUF128 r_vei_navi_pane_duration							{ buf = qtn_vei_navi_change_audio_duration; }
+RESOURCE TBUF256 r_vei_recording_failed								{ buf = qtn_vei_recording_failed; }
+
+RESOURCE TBUF128 r_vei_not_enough_space								{ buf = qtn_memlo_not_enough_memory; }
+RESOURCE TBUF128 r_vei_memory_running_out							{ buf = qtn_memlo_memory_running_out; } 
+RESOURCE TBUF128 r_vei_progress_note_processing						{ buf = qtn_ved_processing_movie; }
+
+
+//
+//	Main pane - Text descriptive name
+//
+RESOURCE TBUF256 r_vei_edit_view_title_name				{ buf = qtn_vei_edit_video_main_text_t; }
+RESOURCE TBUF256 r_vei_edit_view_title_fading_name		{ buf = qtn_vei_edit_video_main_text_tf; }
+RESOURCE TBUF256 r_vei_edit_view_subtitle_name			{ buf = qtn_vei_edit_video_main_text_subt; }
+RESOURCE TBUF256 r_vei_edit_view_subtitle_fading_name	{ buf = qtn_vei_edit_video_main_text_subtf; }
+RESOURCE TBUF256 r_vei_edit_view_credits_name			{ buf = qtn_vei_edit_video_main_text_credit; }
+
+RESOURCE TBUF128 r_vei_edit_view_no_video				{ buf = qtn_ved_edit_video_no_video; }
+RESOURCE TBUF128 r_vei_edit_view_no_audio				{ buf = qtn_ved_edit_video_no_audio; }
+RESOURCE TBUF64  r_vei_query_file_name					{ buf = qtn_vei_data_query_set_file_name; }
+
+//
+// POPUP Titles
+//
+RESOURCE TBUF	r_vei_popup_edit_image_title			{ buf = qtn_ved_menu_title_edit_image; }
+RESOURCE TBUF	r_vei_popup_edit_text_title				{ buf = qtn_ved_menu_title_edit_text; }
+RESOURCE TBUF	r_vei_popup_edit_video_title			{ buf = qtn_ved_menu_title_edit_video; }
+RESOURCE TBUF	r_vei_popup_edit_audio_title			{ buf = qtn_ved_menu_title_edit_audio; }
+RESOURCE TBUF	r_vei_popup_insert_audio_title			{ buf = qtn_vei_list_query_insert_sound_type; }
+RESOURCE TBUF	r_vei_popup_insert_stuff_title			{ buf = qtn_ved_menu_title_insert_video; }
+RESOURCE TBUF	r_vei_popup_select_text_style_title		{ buf = qtn_ved_smenu_heading_editt; }
+RESOURCE TBUF64 r_vei_transtion_popup_title				{ buf = qtn_vei_list_query_select_tran_title; }
+
+// 
+//	ERRORNOTES
+// 
+RESOURCE TBUF	r_vei_errornote_audio_inserting_failed	{ buf = qtn_ved_audio_insert_failed; }
+RESOURCE TBUF	r_vei_errornote_image_inserting_failed	{ buf = qtn_ved_image_insert_failed; }
+RESOURCE TBUF	r_vei_edit_view_new_audio				{ buf = qtn_vei_edit_video_main_new_audio; }
+
+RESOURCE TBUF	r_vei_warning_note_inserting_failed		{ buf = qtn_ved_inserting_failed_continue; }
+
+// SETTINGS
+RESOURCE TBUF128 r_vei_settings_view_settings_item_value			{ buf = qtn_vei_settings_value1_movie; }
+RESOURCE TBUF128 r_vei_settings_view_settings_item2_value			{ buf = qtn_vei_settings_value2_snapshot; }
+
+
+// Layouts
+/*
+//-----------------------------------------------------------------------------
+//   
+//    r_ved_start_text_pane_portrait
+//    Layout for 'Start:' text.
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE AVKON_LAYOUT_TEXT r_ved_start_text_pane_portrait
+    {
+	font = EAknLogicalFontPrimaryFont;
+	C = 215;
+	l = 4;
+	r = 178;
+	B = 21;
+	W = 170;
+	J = ELayoutAlignLeft;    
+    }
+
+//-----------------------------------------------------------------------------
+//   
+//    r_ved_end_text_pane_portrait
+//    Layout for 'End:' text.
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE AVKON_LAYOUT_TEXT r_ved_end_text_pane_portrait
+    {
+	font = EAknLogicalFontPrimaryFont;
+	C = 215;
+	l = 178;
+	r = 4;
+	B = 21;
+	W = 170;
+	J = ELayoutAlignLeft;    
+    }
+
+
+RESOURCE AVKON_LAYOUT_RECT r_ved_clip_thumbnail_start_pane_portrait
+	{
+	C = ELayoutEmpty;
+	l = 4;
+	t = 31;
+	r = ELayoutEmpty;
+	b = ELayoutEmpty;
+	W = 170;
+	H = 139;
+	}
+
+RESOURCE AVKON_LAYOUT_RECT r_ved_clip_thumbnail_end_pane_portrait
+    {
+    C = ELayoutEmpty;
+    l = 178;
+    t = 31;
+    r = 4;
+    b = 115;
+    W = 170;
+    H = 139;
+    }
+
+RESOURCE AVKON_LAYOUT_RECT r_ved_trim_timeline_pane_g1_portrait
+    {
+    C = 215;
+    l = 4;
+    t = 220;
+    r = ELayoutEmpty;
+    b = ELayoutEmpty;
+    W = 24;
+    H = 24;
+    }
+
+RESOURCE AVKON_LAYOUT_RECT r_ved_trim_timeline_pane_portrait
+    {
+    C = ELayoutEmpty;
+    l = 38;
+    t = 215;
+    r = ELayoutEmpty;
+    b = ELayoutEmpty;
+    W = 306;
+    H = 34;
+    }
+*/
+// End of File
+

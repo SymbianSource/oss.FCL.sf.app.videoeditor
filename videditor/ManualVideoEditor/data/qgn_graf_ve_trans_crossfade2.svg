@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Tiny//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd">
+<svg baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="108" height="89" viewBox="0 0 108 89">
+<switch>
+<foreignObject requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/" x="0" y="0" width="1" height="1" content="structured text"/>
+<g>
+<g>
+<rect fill="#FFFFFF" width="108" height="89"/>
+<linearGradient id="XMLID_3_" gradientUnits="userSpaceOnUse" x1="36.873" y1="35.5396" x2="71.4854" y2="70.1519">
+<stop offset="0" style="stop-color:#CAE7EA"/>
+<stop offset="0.0549" style="stop-color:#C5E5EB"/>
+<stop offset="0.1203" style="stop-color:#B7E0EC"/>
+<stop offset="0.1909" style="stop-color:#9FD6EF"/>
+<stop offset="0.2653" style="stop-color:#7DC9F3"/>
+<stop offset="0.3426" style="stop-color:#52B9F8"/>
+<stop offset="0.4213" style="stop-color:#1EA5FE"/>
+<stop offset="0.4326" style="stop-color:#16A2FF"/>
+<stop offset="0.6124" style="stop-color:#0099FF"/>
+<stop offset="1" style="stop-color:#0099FF"/>
+</linearGradient>
+<path fill-opacity="0.9" stroke-opacity="0.9" fill="url(#XMLID_3_)" d="M57.554,67.762v-2.664l5.318-1.334l-2.506-9.104H45.583       l-2.564,9.104l5.43,1.334v2.664H34.125v-2.664l3.89-1.334l13.157-42.524h6.37l12.425,42.524l3.907,1.334v2.664H57.554z        M59.219,50.662l-6.162-22.116l-6.271,22.116H59.219z"/>
+<linearGradient id="XMLID_4_" gradientUnits="userSpaceOnUse" x1="32.4365" y1="26.6641" x2="68.3222" y2="62.5497">
+<stop offset="0" style="stop-color:#CAE7EA"/>
+<stop offset="0.0549" style="stop-color:#C5E5EB"/>
+<stop offset="0.1203" style="stop-color:#B7E0EC"/>
+<stop offset="0.1909" style="stop-color:#9FD6EF"/>
+<stop offset="0.2653" style="stop-color:#7DC9F3"/>
+<stop offset="0.3426" style="stop-color:#52B9F8"/>
+<stop offset="0.4213" style="stop-color:#1EA5FE"/>
+<stop offset="0.4326" style="stop-color:#16A2FF"/>
+<stop offset="0.6124" style="stop-color:#0099FF"/>
+<stop offset="1" style="stop-color:#0099FF"/>
+</linearGradient>
+<path fill-opacity="0.15" stroke-opacity="0.15" fill="url(#XMLID_4_)" d="M54.949,67.72h-17.13v-2.659l4.987-1.332V25.271l-4.987-1.331       v-2.66h18.069c4.284,0,7.497,0.942,9.639,2.826c2.143,1.885,3.215,4.701,3.215,8.448c0,5.33-2.378,8.909-7.133,10.741       c5.717,1.307,8.572,5.098,8.572,11.373c0,4.351-1.27,7.613-3.809,9.787C63.835,66.632,60.027,67.72,54.949,67.72z        M49.345,41.674h4.703c2.717,0,4.756-0.719,6.115-2.157c1.357-1.439,2.039-3.597,2.039-6.476c0-2.591-0.613-4.532-1.836-5.827       s-3.057-1.942-5.503-1.942h-5.519V41.674z M49.345,63.729h5.467c3.059,0,5.295-0.717,6.709-2.157       c1.413-1.438,2.122-3.75,2.122-6.936c0-2.979-0.749-5.221-2.249-6.721c-1.498-1.5-3.732-2.251-6.705-2.251h-5.344V63.729z"/>
+</g>
+</g>
+</switch>
+</svg>

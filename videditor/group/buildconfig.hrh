@@ -1,0 +1,93 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description: 
+*
+*/
+
+
+//
+// Compile-time variation for Video Editor project.
+//
+// After modifying this file, reallyclean and build the whole project!
+//
+
+#ifndef BUILDCONFIG_HRH
+#define BUILDCONFIG_HRH
+
+// Enable logging facility in all modules. 
+// Enabling logs will do the both of the following:
+//
+// 1) Write the the logging information to RDebug::Print()
+//    (in UDEB builds only)
+// 2) Write the log to file using RFileLogger (both in UDEB and UREL)
+//    or using internal logfile implementation (selected in VideoEditorDebugUtils.h)
+//
+//    Create the folder C:/Logs/VideoEditor to enable the file logging.
+//
+// - enable logs in UDEB builds:
+#define __DEBUG_ON__
+// - enable logs in all builds (not to be used in released code):
+//#define __DEBUG_ON_ALWAYS__
+
+
+// Export the ROM description (.iby) files
+// Not needed if we are not creating rom image.
+// Do not export if __DSW_EXPORTS defined
+//
+//#ifndef __DSW_EXPORTS
+//#define __EXPORT_ROM_DESCRIPTION_FILES__
+//#endif
+
+
+// Include the "full" video editor application into the build.
+//
+// NOTE: If this flag is defined, include the following 
+// IBY files in VideoEditor.iby:
+//
+// #include <ManualVideoEditor.iby>
+// #include <VideoEditorCommon.iby>
+// #include <VideoEditorUiComponents.iby>
+// #include <VideoProvider.iby>
+//
+//#define __INCLUDE_MANUAL_VIDEO_EDITOR__
+
+
+// Include the "simple" video editor components into the build.
+//
+// NOTE: If this flag is defined, include the following 
+// IBY files in VideoEditor.iby:
+//
+// #include <SimpleVideoEditor.iby>
+// #include <SimpleCutVideo.iby>
+// #include <VideoEditorCommon.iby>
+// #include <VideoEditorUiComponents.iby>
+// #include <VideoProvider.iby>
+//
+#define __INCLUDE_SIMPLE_VIDEO_EDITOR__
+
+
+// Change file time stamp to [original + 2 seconds]
+// before adding new video to gallery
+//
+#define __FILE_TIME_STAMP_UPDATE__
+
+// Force the application to draw video frame in playback's pause state
+// Depends on the device if this has to be defined
+//#define __GET_PAUSE_THUMBNAIL__
+
+#endif // BUILDCONFIG_HRH
+
+// End of File
+

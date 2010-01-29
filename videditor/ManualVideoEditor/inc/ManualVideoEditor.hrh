@@ -1,0 +1,169 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description:  
+*
+*/
+
+
+#ifndef MANUALVIDEOEDITOR_HRH
+#define MANUALVIDEOEDITOR_HRH
+
+enum TVeijoCommandIds
+    {
+    EVeiCmdHelp = 1,
+/* Cut video */
+    EVeiCmdCutVideoViewPlay,
+    EVeiCmdCutVideoViewPlayMarked,
+    EVeiCmdCutVideoViewClearMarks,
+    EVeiCmdCutVideoViewClearMarksIn,
+    EVeiCmdCutVideoViewClearMarksOut,
+    EVeiCmdCutVideoViewClearMarksInOut,
+    EVeiCmdCutVideoViewHelp,
+    EVeiCmdCutVideoViewBack,
+    EVeiCmdCutVideoViewDone, // 10
+    EVeiCmdCutVideoViewMarkIn,
+    EVeiCmdCutVideoViewMarkOut,
+    EVeiCmdCutVideoViewContinue,
+    EVeiCmdCutVideoViewStop,
+    EVeiCmdCutVideoVolumeDown,
+    EVeiCmdCutVideoVolumeUp,
+    EVeiCmdCutVideoTakeSnapshot,
+    EVeiCmdPlayPreview,
+    EVeiCmdSettingsViewBack,
+    EVeiCmdPlayViewPause, // 20
+    EVeiCmdPlayViewStop,
+    EVeiCmdEditVideoViewPreview,
+    EVeiCmdEditVideoViewTrimForMms,
+    EVeiCmdEditVideoViewPreviewLarge,
+    EVeiCmdEditVideoViewPreviewSmall,
+    EVeiCmdEditVideoViewMovie,
+    EVeiCmdEditVideoViewInsert,
+    EVeiCmdEditVideoViewSettings,
+    EVeiCmdEditVideoViewInsertVideo,
+    EVeiCmdEditVideoViewInsertAudio, // 30
+    EVeiCmdEditVideoViewInsertImage,
+    EVeiCmdEditVideoViewInsertText,	
+/* Insert Title*/
+    EVeiCmdEditVideoViewInsertTextTitle,
+    EVeiCmdEditVideoViewInsertTextTitleFading,
+    EVeiCmdEditVideoViewInsertTextSubTitle,
+    EVeiCmdEditVideoViewInsertTextSubTitleFading,
+    EVeiCmdEditVideoViewInsertTextCredits,
+    EVeiCmdEditVideoViewInsertTitleScreen,	
+/* Edit Text */
+    EVeiCmdEditVideoViewEditText,
+    EVeiCmdEditVideoViewEditTextMove, // 40
+    EVeiCmdEditVideoViewEditTextRemove,
+    EVeiCmdEditVideoViewEditTextChangeDuration,
+    EVeiCmdEditVideoViewEditTextChangeText,
+    EVeiCmdEditVideoViewEditTextSetTextColor,
+    EVeiCmdEditVideoViewEditTextSetBackGround,
+    EVeiCmdEditVideoViewEditTextStyle,
+    EVeiCmdEditVideoViewEditTextAddColorEffect,
+    EVeiCmdEditVideoViewEditTextDuplicate,
+    EVeiCmdEditVideoViewEditTextStyleTitle,
+    EVeiCmdEditVideoViewEditTextStyleTitleFading, // 50
+    EVeiCmdEditVideoViewEditTextStyleSubTitle,
+    EVeiCmdEditVideoViewEditTextStyleSubTitleFading,
+    EVeiCmdEditVideoViewEditTextStyleCredit,
+/* Edit Image*/
+    EVeiCmdEditVideoViewEditImage,
+    EVeiCmdEditVideoViewEditImageMove,
+    EVeiCmdEditVideoViewEditImageRemove,
+    EVeiCmdEditVideoViewEditImageChangeDuration,
+    EVeiCmdEditVideoViewEditImageBackGround,
+    EVeiCmdEditVideoViewEditImageAddColorEffect,	
+    EVeiCmdEditVideoViewEditImageDuplicate,	// 60	
+    EVeiTitleScreenTextQuery,
+    EVeiCmdEditVideoViewInsertNewAudio,
+    EVeiCmdEditVideoViewRecord,
+    EVeiCmdEditVideoViewRecordCancel,
+    EVeiCmdEditVideoViewRecordStop,
+    EVeiCmdEditVideoViewRecordPause,
+    EVeiCmdEditVideoViewContinue,
+/* Edit Video */
+    EVeiCmdEditVideoViewEditVideo,
+    EVeiCmdEditVideoViewEditVideoMove,
+    EVeiCmdEditVideoViewEditVideoCutting, // 70
+    EVeiCmdEditVideoViewEditVideoColorEffect,
+    EVeiCmdEditVideoViewEditVideoSlowMotion,
+    EVeiCmdEditVideoViewEditVideoMute,
+    EVeiCmdEditVideoViewEditVideoUnmute,
+    EVeiCmdEditVideoViewEditVideoRemove,
+    EVeiCmdAddVideoClipMem,
+    EVeiCmdSendMovie,
+    EVeiCmdEditVideoDuplicate,
+/* Edit Audio */
+    EVeiCmdEditVideoViewEditAudio,
+    EVeiCmdEditVideoViewEditAudioMove, // 80
+    EVeiCmdEditVideoViewEditAudioDuration,
+    EVeiCmdEditVideoViewEditAudioRemove,
+    EVeiCmdEditVideoViewEditAudioSetDuration,
+/* Transition */
+    EVeiCmdEditVideoViewEditStartTransition,
+    EVeiCmdEditVideoViewEditMiddleTransition,
+    EVeiCmdEditVideoViewEditEndTransition,
+    EVeiCmdEditVideoViewTransitionNone,
+    EVeiCmdEditVideoViewTransitionFadeFromBlack,
+    EVeiCmdEditVideoViewTransitionFadeFromWhite,
+    EVeiCmdEditVideoViewTransitionDipToBlack, // 90
+    EVeiCmdEditVideoViewTransitionDipToWhite,
+    EVeiCmdEditVideoViewTransitionFadeToBlack,
+    EVeiCmdEditVideoViewTransitionFadeToWhite,
+    EVeiCmdEditVideoViewTransitionWipeFromLeft,
+    EVeiCmdEditVideoViewTransitionWipeFromRight,
+    EVeiCmdEditVideoViewTransitionWipeFromTop,
+    EVeiCmdEditVideoViewTransitionWipeFromBottom,
+    EVeiCmdEditVideoViewTransitionCrossfade,
+    EVeiCmdEditVideoViewTransitionKeyUp,
+    EVeiCmdEditVideoViewTransitionKeyDown, // 100
+    EVeiCmdEditVideoViewSaveTo,
+    EVeiCmdEditVideoMixAudio,
+    EVeiCmdEditVideoMixAudioCancel,
+    EVeiCmdEditVideoAdjustVolume,
+    EVeiCmdEditVideoViewHelp,
+    EVeiCmdEditVideoViewSend,
+    EVeiCmdEditVideoViewContainerShowMenu,
+    EVeiCmdCutAudioViewHelp,
+/* Settings View */
+    EVeiCmdSettingsViewChange,
+    EVeiCmdSettingsViewHelp, // 110
+/* Trim for MMS view */
+    EVeiCmdSendViaMms,
+    EVeiCmdPreview,
+    EVeiCmdTrimForMmsViewHelp
+    };
+
+
+ // Video Editor view IDs.
+enum TVeiViewIds
+    {
+    EVeiCutVideoView,
+    EVeiEditVideoView,
+    EVeiSettingsView,
+    EVeiTrimForMmsView,
+    EVeiCutAudioView
+    };
+ 
+ // Setting items
+ enum TVeiSettingItems
+    {
+    EVeiVideoNameSettingItem,
+    EVeiSnapshotNameSettingItem,
+    EVeiMemoryInUseSettingItem,
+    EVeiSaveQualitySettingItem
+    };
+
+#endif      

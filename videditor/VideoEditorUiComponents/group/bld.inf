@@ -1,0 +1,47 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description: 
+*
+*/
+
+
+#include <platform_paths.hrh>
+#include <data_caging_paths.hrh>
+
+#include "../../Group/buildconfig.hrh"
+
+PRJ_PLATFORMS
+DEFAULT
+
+PRJ_EXPORTS
+../rom/VideoEditorUiComponents.iby  CORE_APP_LAYER_IBY_EXPORT_PATH(VideoEditorUiComponents.iby)
+../rom/VideoEditorUiComponents_resource.iby  LANGUAGE_APP_LAYER_IBY_EXPORT_PATH(VideoEditorUiComponents_resource.iby)
+
+
+PRJ_EXTENSIONS
+START EXTENSION s60/mifconv
+OPTION TARGETFILE VideoEditorUiComponents.mif
+OPTION HEADERFILE VideoEditorUiComponents.mbg
+OPTION SOURCEFILE iconlist.txt
+END
+
+
+PRJ_MMPFILES
+../Group/VideoEditorUiComponents.mmp
+
+PRJ_TESTMMPFILES
+//../tsrc/ProgNote/group/ProgNote.mmp
+
+// End of File

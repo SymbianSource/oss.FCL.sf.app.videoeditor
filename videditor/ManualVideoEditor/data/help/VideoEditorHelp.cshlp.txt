@@ -1,0 +1,41 @@
+
+/*
+* ============================================================================
+*  Name        : VideoEditorHelp.cshlp.txt
+*  Part of     : Video Editor / ?Module_name
+*  Description : ?Description
+*  Version     : %version: 2 % << Don't touch! Updated by Synergy at check-out.
+*
+*  Copyright © 2007 Nokia.  All rights reserved.
+*  This material, including documentation and any related computer
+*  programs, is protected by copyright controlled by Nokia.  All
+*  rights are reserved.  Copying, including reproducing, storing,
+*  adapting or translating, any or all of this material requires the
+*  prior written consent of Nokia.  This material also contains
+*  confidential information which may not be disclosed to others
+*  without the prior written consent of Nokia.
+* ============================================================================
+* Template version: 4.1
+*/
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml:stylesheet href="/epoc32/tools/cshlpcmp/xsl/CSHproj.xsl" title="CS-Help project" type="text/xsl"?>
+<!DOCTYPE cshproj SYSTEM "/epoc32/tools/cshlpcmp/dtd/cshproj.dtd">
+
+<cshproj>
+  <helpfileUID>0x101FFA9C</helpfileUID>
+  <directories>
+    <input></input>
+    <output></output>
+    <graphics></graphics>
+    <working></working>
+  </directories>
+  <files>
+    <source>
+      <file>VideoEditorHelp.rtf</file>
+    </source>
+    <destination>VideoEditorHelp.hlp</destination>
+	<customization>custom.xml</customization>
+  </files>
+</cshproj>
+

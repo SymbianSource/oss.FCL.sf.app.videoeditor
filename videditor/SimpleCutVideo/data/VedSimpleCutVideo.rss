@@ -1,0 +1,694 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description:  
+*
+*/
+
+
+
+//  RESOURCE IDENTIFIER
+NAME    VSCV // 4 letter ID
+
+//  INCLUDES
+
+#include <eikon.rh>
+#include "VedSimpleCutVideo.hrh"
+
+#include <SimpleVideoEditor.loc>
+#include <avkon.rsg>
+#include <avkon.rh>
+#include <avkon.mbg>
+#include <e32keys.h>			// Key codes
+#include <CommonDialogs.rh>		// avkon.loc is NOT included in this file if
+#include <avkon.loc>			
+#include <CommonDialogs.hrh>
+#include <appinfo.rh>
+#include <data_caging_paths_strings.hrh>
+#include <AvkonIcons.hrh>
+
+
+//  RESOURCE DEFINITIONS 
+
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF { buf="svcut"; }
+
+RESOURCE EIK_APP_INFO
+    {
+	cba=R_AVKON_SOFTKEYS_OPTIONS_EXIT;	   
+    }
+
+RESOURCE LOCALISABLE_APP_INFO r_vsc_localisable_app_info
+	{
+	short_caption=" ";
+	caption_and_icon =
+	CAPTION_AND_ICON_INFO
+		{
+		caption=" ";
+		};
+	}
+//----------------------------------------------------
+//   
+//    r_vei_hotkeys
+//
+//----------------------------------------------------
+//
+RESOURCE HOTKEYS r_vei_hotkeys
+    {
+    control=
+        {
+        HOTKEY { command=EVeiCmdCutVideoViewExit; key='e'; } 
+        };
+    }
+
+//=====================================================
+//
+//		*****		AVKON VIEWS		*****
+//
+//
+//=====================================================
+
+
+//----------------------------------------------------
+//   
+//    r_vei_cut_video
+//
+//----------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_vei_cut_video_view
+    {
+    hotkeys=r_vei_hotkeys;
+    menubar=r_vei_menubar_cut_video_view;  
+    cba=R_AVKON_SOFTKEYS_SELECTION_LIST;    
+    }
+
+
+//=====================================================
+//
+//		*****		MENU BARS		*****
+//
+//
+//=====================================================
+
+
+//-----------------------------------------------------
+//				
+//    r_vei_menubar_cut_video_view
+//    ?description
+//
+//----------------------------------------------------
+//
+
+RESOURCE MENU_BAR r_vei_menubar_cut_video_view
+    {
+    titles=
+        {
+        MENU_TITLE { menu_pane=r_vei_cut_video_view_menu; }
+        };
+    }
+
+
+//-----------------------------------------------------
+//				
+//    r_vei_menubar_cut_video_view_context
+//    ?description
+//
+//----------------------------------------------------
+//
+
+RESOURCE MENU_BAR r_vei_menubar_cut_video_view_context
+    {
+    titles=
+        {
+        MENU_TITLE { menu_pane=r_vei_cut_video_view_context_menu; }
+        };
+    }
+// <msk> end
+
+
+//=====================================================
+//
+//		*****		MENU PANES		*****
+//
+//
+//=====================================================
+
+//----------------------------------------------------
+//   
+//    r_vei_cut_video_menu
+//
+//----------------------------------------------------
+//
+
+RESOURCE MENU_PANE r_vei_cut_video_view_menu
+    {
+    items=
+        {
+		MENU_ITEM { command=EVeiCmdCutVideoViewPlay;		txt=qtn_vie_options_play; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewContinue;	txt=qtn_vie_options_resume; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewPlayMarked;	txt=qtn_vie_options_play_marked; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewStop;		txt=qtn_vie_options_stop; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewMarkIn;		txt=qtn_vie_options_start_mark; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewMarkOut;		txt=qtn_vie_options_end_mark; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewClearMarks;	txt=qtn_vie_options_remove_mark; cascade = r_vei_cut_video_view_menu_clear_marks; },
+		MENU_ITEM { command=EVeiCmdCutVideoTakeSnapshot;	txt=qtn_vie_options_snapshot; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewSave;		txt=qtn_vie_options_save; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewHelp;		txt=qtn_options_help; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewExit;			txt=qtn_options_exit; } 
+        };
+    }
+//----------------------------------------------------
+//   
+//    r_vei_videos_view_menu_mark
+//    Videos view mark submenu.
+//
+//----------------------------------------------------
+//
+RESOURCE MENU_PANE r_vei_cut_video_view_menu_clear_marks
+    {
+    items=
+        {
+        MENU_ITEM { command=EVeiCmdCutVideoViewClearMarksIn;	txt=qtn_vie_options_remove_mark_start; },
+        MENU_ITEM { command=EVeiCmdCutVideoViewClearMarksOut;	txt=qtn_vie_options_remove_mark_end; },
+        MENU_ITEM { command=EVeiCmdCutVideoViewClearMarksInOut; txt=qtn_vie_options_remove_mark_both; }
+		};
+	}
+
+//----------------------------------------------------
+//   
+//    r_vei_cut_video_msk_menu
+//    ?description
+//
+//----------------------------------------------------
+//
+
+RESOURCE MENU_PANE r_vei_cut_video_view_context_menu 
+    {
+    items=
+        {
+		MENU_ITEM { command=EVeiCmdCutVideoViewContinue;	txt=qtn_vie_options_resume; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewPlayMarked;	txt=qtn_vie_options_play_marked; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewStop;		txt=qtn_vie_options_stop; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewMarkIn;		txt=qtn_vie_options_start_mark; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewMarkOut;		txt=qtn_vie_options_end_mark; },
+		MENU_ITEM { command=EVeiCmdCutVideoViewExit;		txt=qtn_options_exit; } // not in UI spec 
+        };
+    }
+
+
+//----------------------------------------------------
+//
+//  LIST QUERY (contents updated dynamically)
+//
+//----------------------------------------------------
+RESOURCE AVKON_LIST_QUERY r_vie_list_query
+{
+	items =
+	{
+		AVKON_LIST_QUERY_DLG_LINE
+		{
+			control = AVKON_LIST_QUERY_CONTROL
+			{
+				listtype = EAknCtSinglePopupMenuListBox;
+				heading = " ";
+				listbox = AVKON_LIST_QUERY_LIST
+				{
+					// array of items will be defined dynamically
+				};
+			};
+		}
+	};
+}
+
+
+
+//=====================================================
+//
+//		*****		RESOURCE DIALOGS		*****
+//
+//
+//=====================================================
+
+//----------------------------------------------------
+//
+//    r_vei_wait_note_with_cancel
+//    
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vei_wait_note_with_cancel
+    {
+    flags = EAknWaitNoteFlags;
+    buttons = R_AVKON_SOFTKEYS_CANCEL;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtNote;
+            id = EGeneralNote;
+            control= AVKON_NOTE 
+                { 
+                layout = EWaitLayout;
+                imagefile = AVKON_ICON_FILE;
+                imageid = EMbmAvkonQgn_note_progress;
+                imagemask = EMbmAvkonQgn_note_progress_mask;
+                animation = R_QGN_GRAF_WAIT_BAR_ANIM;
+                };
+            }
+        };
+    }
+
+//----------------------------------------------------
+//
+//    r_vei_progress_note_with_cancel
+//    Progress note
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vei_progress_note_with_cancel
+	{
+	flags = EAknProgressNoteFlags;
+	buttons = R_AVKON_SOFTKEYS_CANCEL;
+	items =
+		{
+		DLG_LINE
+			{
+			type = EAknCtNote;
+			id = EGeneralNote;
+			control = AVERELL_NOTE
+				{
+				layout = EProgressLayout;
+				imagefile = AVKON_ICON_FILE;
+				imageid = EMbmAvkonQgn_note_progress;
+				imagemask = EMbmAvkonQgn_note_progress_mask;
+			};
+			}
+		};
+	}
+
+//----------------------------------------------------
+//
+//    r_vei_progress_note
+//    Progress note
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vei_progress_note
+	{
+	flags = EAknProgressNoteFlags;
+	buttons = R_AVKON_SOFTKEYS_EMPTY;
+	items =
+		{
+		DLG_LINE
+			{
+			type = EAknCtNote;
+			id = EGeneralNote;
+			control = AVERELL_NOTE
+				{
+				layout = EProgressLayout;
+				singular_label = qtn_vie_note_processing;
+				imagefile = AVKON_ICON_FILE;
+				imageid = EMbmAvkonQgn_note_progress;
+				imagemask = EMbmAvkonQgn_note_progress_mask;
+			};
+			}
+		};
+	}	
+
+
+//----------------------------------------------------
+//
+//    r_vie_confirmation_query
+//    Confirmation query
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vie_confirmation_query
+{
+    flags = EGeneralQueryFlags;
+    buttons = R_AVKON_SOFTKEYS_YES_NO;
+    items =
+    {
+        DLG_LINE
+        {
+            type = EAknCtQuery;
+            id = EGeneralQuery;
+            control = AVKON_CONFIRMATION_QUERY
+            {
+                layout = EConfirmationQueryLayout;
+                label = " ";
+            };
+        }
+    };
+}
+
+//=====================================================
+//
+//		*****		SOFTKEYS   			*****
+//
+//
+//=====================================================
+
+
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_options_back__play
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_options_back__play
+    {
+    buttons =
+        {
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyOptions; 
+        		txt = text_softkey_option;
+        		},
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyBack; 
+        		txt = text_softkey_back; 
+        		},
+        CBA_BUTTON 
+        		{
+        		id=EVeiCmdCutVideoViewPlay;
+        		txt = qtn_msk_play; 
+        		}		
+        };
+    }
+    
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_options_back__menu
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_options_back__menu
+    {
+    buttons =
+        {
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyOptions; 
+        		txt = text_softkey_option;
+        		},
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyBack; 
+        		txt = text_softkey_back; 
+        		},
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyContextOptions;
+        		txt = text_softkey_option; 
+        		}		
+        };
+    }    
+    
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_options_cut__play
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_options_cut__play
+    {
+    buttons =
+        {
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyOptions; 
+        		txt = text_softkey_option;
+        		},
+        CBA_BUTTON 
+        		{
+        		id=EVeiCmdCutVideoViewCut; 
+        		txt = qtn_vie_softkey_cut_done; 
+        		},
+        CBA_BUTTON 
+        		{
+        		id=EVeiCmdCutVideoViewPlay;
+        		txt = qtn_msk_play; 
+        		}		
+        };
+    }    
+    
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_options_cut__menu
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_options_cut__menu
+    {
+    buttons =
+        {
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyOptions; 
+        		txt = text_softkey_option;
+        		},
+        CBA_BUTTON 
+        		{
+        		id=EVeiCmdCutVideoViewCut; 
+        		txt = qtn_vie_softkey_cut_done; 
+        		},
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyContextOptions;
+        		txt = text_softkey_option; 
+        		}		
+        };
+    }    
+
+    
+//<msk> end
+
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_stop_out__menu
+//    CBA for options/out softkeys
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_stop_out__menu  //6
+    {
+    buttons =
+		{
+		CBA_BUTTON
+				{
+				id=EVeiCmdCutVideoViewStop; 
+				txt = text_softkey_stop;
+				},
+		CBA_BUTTON 
+				{
+				id = EVeiCmdCutVideoViewMarkOut;
+				txt = qtn_vie_softkey_end_mark;
+				},
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyContextOptions; 
+        		txt = text_softkey_option; 
+        		}										
+		};
+    }
+
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_none_out__menu
+//    CBA for options/out softkeys
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_none_out__menu
+    {
+    buttons =
+		{
+		CBA_BUTTON
+				{
+				id=EVeiCmdCutVideoViewNone; 
+				},
+		CBA_BUTTON 
+				{
+				id = EVeiCmdCutVideoViewMarkOut;
+				txt = qtn_vie_softkey_end_mark;
+				},
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyContextOptions; 
+        		txt = text_softkey_option; 
+        		}										
+		};
+    }
+
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_in_out__menu
+//    CBA for in out menu softkeys
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_in_out__menu //5 
+    {
+    buttons =
+		{
+		CBA_BUTTON 
+				{
+				id = EVeiCmdCutVideoViewMarkIn; 
+				txt = qtn_vie_softkey_start_mark;
+				},
+		CBA_BUTTON 
+				{
+				id = EVeiCmdCutVideoViewMarkOut;
+				txt = qtn_vie_softkey_end_mark;
+				},
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyContextOptions; 
+        		txt = text_softkey_option; 
+        		}						
+		};
+    }
+
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_in_stop__menu
+//    CBA for options/out softkeys
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_in_stop__menu  //4
+    {
+    buttons =
+		{
+		CBA_BUTTON 
+				{
+				id = EVeiCmdCutVideoViewMarkIn;
+				txt = qtn_vie_softkey_start_mark;
+				},
+		CBA_BUTTON
+				{
+				id=EVeiCmdCutVideoViewStop; 
+				txt = text_softkey_stop;
+				},
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyContextOptions; 
+        		txt = text_softkey_option; 
+        		}										
+		};
+    }
+
+//----------------------------------------------------
+//   
+//    r_videoeditor_softkeys_in_none__menu
+//    CBA for options/out softkeys
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_in_none__menu
+    {
+    buttons =
+		{
+		CBA_BUTTON 
+				{
+				id = EVeiCmdCutVideoViewMarkIn;
+				txt = qtn_vie_softkey_start_mark;
+				},
+		CBA_BUTTON
+				{
+				id=EVeiCmdCutVideoViewNone; 
+				},
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyContextOptions; 
+        		txt = text_softkey_option; 
+        		}										
+		};
+    }
+
+//----------------------------------------------------
+//   
+//    r_vei_softkeys_options_out__menu
+//    CBA for options/out softkeys
+//
+//----------------------------------------------------
+//
+RESOURCE CBA r_vei_softkeys_options_out__menu 
+    {
+    buttons =
+        {
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyOptions; 
+        		txt = text_softkey_option;
+        		},
+        CBA_BUTTON 
+        		{
+    				id = EVeiCmdCutVideoViewMarkOut;
+    				txt = qtn_vie_softkey_end_mark;
+        		},
+        CBA_BUTTON 
+        		{
+        		id=EAknSoftkeyContextOptions;
+        		txt = text_softkey_option; 
+        		}
+		};
+    }
+
+
+// ============================== NOTE STRINGS ================================
+
+// Time navi pane string (formats the shown time)
+RESOURCE TBUF64  r_vei_navi_time									{ buf = "%0U/%1U";} 
+
+// 
+// PROGRESS NOTE
+//
+RESOURCE TBUF r_vei_progress_note_saving						{ buf = qtn_gen_note_saving; }
+RESOURCE TBUF r_vei_progress_note_cut							{ buf = qtn_vie_note_processing; }
+RESOURCE TBUF r_vei_progress_note_cutting_video					{ buf = qtn_fldr_file_saving_wait; }
+RESOURCE TBUF r_vei_progress_note_saving_image					{ buf = qtn_fldr_file_saving_wait; }
+RESOURCE TBUF r_vei_progress_note_processing					{ buf = qtn_vie_note_processing; }
+
+RESOURCE TBUF r_vei_not_enough_space							{ buf = qtn_memlo_not_enough_memory; }
+RESOURCE TBUF r_vei_memory_running_out							{ buf = qtn_memlo_memory_running_out; } 
+RESOURCE TBUF r_ved_mmc_not_inserted 							{ buf = qtn_vie_note_mmc_not_accessible_mass_storage; }
+RESOURCE TBUF r_vei_video_failed								{ buf = qtn_vie_note_err_edit; }
+
+RESOURCE TBUF r_vei_opening										{ buf = qtn_gen_note_opening; }
+
+// SETTINGS
+RESOURCE TBUF128 r_vei_settings_view_settings_item2_value		{ buf = qtn_vie_default_name_snapshot; }
+
+// QUERY STRINGS
+RESOURCE TBUF r_vie_query_heading_save							{ buf = qtn_vie_query_heading_save;	}
+RESOURCE TBUF r_vie_query_save_new								{ buf = qtn_vie_query_save_new;	}
+RESOURCE TBUF r_vie_query_save_replace							{ buf = qtn_vie_query_save_replace;	}
+RESOURCE TBUF r_vie_query_save_changes							{ buf = qtn_vie_query_conf_save_changes;}
+
+
+//----------------------------------------------------
+//
+//    r_wait_dialog
+//    animated progress note
+//
+//----------------------------------------------------	
+RESOURCE DIALOG r_wait_dialog
+{
+    flags = EAknWaitNoteFlags;
+    buttons = R_AVKON_SOFTKEYS_CANCEL;
+}	
+
+// End of File
+

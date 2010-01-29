@@ -1,0 +1,662 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description: 
+*
+*/
+
+
+NAME	VEUI
+
+// INCLUDES
+#include <Eikon.rh>
+#include <avkon.loc>
+#include <avkon.rsg>
+#include <avkon.rh>
+#include <avkon.mbg>
+#include <AvkonIcons.hrh>
+#include <data_caging_paths_strings.hrh>
+#include <VideoeditorUiComponents.mbg>
+#include <SimpleVideoEditor.loc>
+#include "videoeditorcommon.hrh"
+
+#if defined(__WINS__)
+#define vei_scalable_bitmap_file "\\epoc32\\release\\"$(PLATFORM)"\\"$(CFG)"\\Z\\"APP_BITMAP_DIR"\\VideoEditorUiComponents.mif"
+// Removed because bitmaps are used by manual video editor only
+//#define vei_bitmap_file "\\epoc32\\release\\"$(PLATFORM)"\\"$(CFG)"\\Z\\"APP_BITMAP_DIR"\\VideoEditorBitmaps.mbm"
+#else
+#define vei_scalable_bitmap_file ""APP_BITMAP_DIR"\\VideoEditorUiComponents.mif"
+// Removed because bitmaps are used by manual video editor only
+//#define vei_bitmap_file ""APP_BITMAP_DIR"\\VideoEditorBitmaps.mbm"
+#endif
+
+
+RESOURCE RSS_SIGNATURE { }
+
+// TEXT RESOURCES
+
+RESOURCE TBUF64	 r_vei_cut_video_in									{ buf = qtn_vie_start_mark; } 
+RESOURCE TBUF64	 r_vei_cut_video_out								{ buf = qtn_vie_end_mark; } 
+RESOURCE TBUF64	 r_vei_edit_video_duration							{ buf = qtn_ved_edit_video_duration; }
+RESOURCE TBUF    r_vei_default_error_note							{ buf= qtn_err_eikon_general; }
+
+RESOURCE TBUF64  r_vei_navi_pane_mms								{ buf = qtn_vei_navi_pane_mms; }
+RESOURCE TBUF32	 r_vei_size_kb										{ buf = qtn_size_kb; }
+RESOURCE TBUF32	 r_vei_size_mb										{ buf = " %U MB"; } // change this to a logical string when Manual Video Editor is localised
+RESOURCE TBUF32	 r_vei_size_gb										{ buf = qtn_size_gb; }
+
+
+
+
+// ============================== ANIMATIONS ==================================
+
+RESOURCE BMPANIM_DATA r_vei_slow_motion_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_scalable_bitmap_file;
+	frames = r_vei_slow_motion_animation_array;
+	}
+
+
+RESOURCE ARRAY r_vei_slow_motion_animation_array
+	{	
+	items =
+   		{
+   		// Old own icons that are not compiled anymore. New graphics need to be
+   		// requested from graphics team if needed in the future.
+   		/*
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion1;
+			maskid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion1_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion2;
+			maskid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion2_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion3;
+			maskid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion3_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion4;
+			maskid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion2_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion5;
+			maskid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion5_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion6;
+			maskid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion6_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion7;
+			maskid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion7_mask;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion8;
+			maskid = EMbmVideoeditoruicomponentsQgn_graf_ve_trans_slowmotion8_mask;
+			}
+		*/	
+		};
+	}
+
+RESOURCE BMPANIM_DATA r_ved_adding_text_note_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_ved_adding_text_note_animation_array;
+	}
+	
+
+RESOURCE ARRAY r_ved_adding_text_note_animation_array
+	{	
+	items =
+		{
+		// Old own icons that are not compiled anymore. New graphics need to be
+   		// requested from graphics team if needed in the future.
+        /*  
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00000;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00000;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00001;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00001;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00002;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00002;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00003;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00003;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00004;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00004;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00005;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00005;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00006;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00006;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00007;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00007;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00008;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00008;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00009;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00009;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00010;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00010;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00011;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00011;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00012;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00012;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00013;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00013;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00014;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00014;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00015;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00015;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00016;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00016;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00017;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00017;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00018;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00018;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00019;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00019;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00020;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00020;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00021;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00021;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00022;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00022;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsAdding_text_00023;
+			maskid = EMbmVideoeditorbitmapsAdding_text_mask_soft_00023;
+			}
+		*/	
+		};
+	}
+
+
+RESOURCE BMPANIM_DATA r_ved_cutting_note_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_ved_cutting_note_animation_array;
+	}
+
+RESOURCE ARRAY r_ved_cutting_note_animation_array
+	{	
+	items =
+		{
+   		// Old own icons that are not compiled anymore. New graphics need to be
+   		// requested from graphics team if needed in the future.
+		/*
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsCutting_00000;
+			maskid = EMbmVideoeditorbitmapsCutting_mask_soft_00000;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsCutting_00001;
+			maskid = EMbmVideoeditorbitmapsCutting_mask_soft_00001;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsCutting_00002;
+			maskid = EMbmVideoeditorbitmapsCutting_mask_soft_00002;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsCutting_00003;
+			maskid = EMbmVideoeditorbitmapsCutting_mask_soft_00003;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsCutting_00004;
+			maskid = EMbmVideoeditorbitmapsCutting_mask_soft_00004;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsCutting_00005;
+			maskid = EMbmVideoeditorbitmapsCutting_mask_soft_00005;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsCutting_00006;
+			maskid = EMbmVideoeditorbitmapsCutting_mask_soft_00006;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsCutting_00007;
+			maskid = EMbmVideoeditorbitmapsCutting_mask_soft_00007;
+			}
+			*/
+		};
+	}
+
+RESOURCE BMPANIM_DATA r_ved_merging_note_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_ved_merging_note_animation_array;
+	}
+
+
+RESOURCE ARRAY r_ved_merging_note_animation_array
+	{	
+	items =
+		{
+		// Old own icons that are not compiled anymore. New graphics need to be
+   		// requested from graphics team if needed in the future.
+        /*
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00000;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00000_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00001;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00001_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00002;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00002_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00003;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00003_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00004;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00004_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00005;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00005_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00006;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00006_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00007;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00007_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00008;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00008_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00009;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00009_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00010;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00010_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00011;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00011_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00012;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00012_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00013;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00013_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00014;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00014_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00015;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00015_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00016;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00016_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00017;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00017_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00018;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00018_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00019;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00019_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00020;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00020_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00021;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00021_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00022;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00022_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00023;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00023_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00024;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00024_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00025;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00025_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00026;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00026_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00027;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00027_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00028;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00028_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00029;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00029_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00030;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00030_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00031;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00031_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00032;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00032_1;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_00033;
+			maskid = EMbmVideoeditorbitmapsMerging_mask_soft_00033_1;
+			}
+			*/
+		};
+		
+	}
+
+	
+RESOURCE BMPANIM_DATA r_ved_merging_audio_note_animation
+	{
+	frameinterval = 100;
+	playmode = EAknBitmapAnimationPlayModeCycle;
+	flash = 0;
+	bmpfile = vei_bitmap_file;
+	frames = r_ved_merging_audio_note_animation_array;
+	}
+
+
+RESOURCE ARRAY r_ved_merging_audio_note_animation_array
+	{	
+	items =
+		{
+		// Old own icons that are not compiled anymore. New graphics need to be
+   		// requested from graphics team if needed in the future.
+        /*
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00000;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00000;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00001;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00001;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00002;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00002;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00003;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00003;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00004;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00004;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00005;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00005;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00006;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00006;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00007;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00007;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00008;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00008;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00009;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00009;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00010;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00010;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00011;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00011;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00012;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00012;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00013;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00013;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00014;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00014;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00015;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00015;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00016;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00016;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00017;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00017;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00018;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00018;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00019;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00019;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00020;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00020;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00021;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00021;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00022;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00022;
+			},
+		BMPANIM_FRAME
+			{
+			bmpid = EMbmVideoeditorbitmapsMerging_audio_00023;
+			maskid = EMbmVideoeditorbitmapsMerging_audio_mask_soft_00023;
+			}
+		*/	
+		};
+		
+	}
+
+// End of file

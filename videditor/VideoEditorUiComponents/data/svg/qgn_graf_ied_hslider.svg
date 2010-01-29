@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 12.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="189" height="10"
+	 viewBox="1.999 -20.226 189 10" overflow="visible" enable-background="new 1.999 -20.226 189 10" xml:space="preserve">
+<g>
+	
+		<radialGradient id="XMLID_2_" cx="-333.3989" cy="505.1084" r="179.8347" gradientTransform="matrix(1.331581e-07 -1 1 1.331581e-07 -316.2763 -343.7261)" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.0056" style="stop-color:#FA0404"/>
+		<stop  offset="0.5337" style="stop-color:#FBF814"/>
+		<stop  offset="1" style="stop-color:#01FE01"/>
+	</radialGradient>
+	<rect x="2.998" y="-20.226" fill="url(#XMLID_2_)" width="188" height="10"/>
+	<polygon points="1.999,-20.226 2.999,-20.226 2.999,-11.226 190.999,-11.226 190.999,-10.226 1.999,-10.226 	"/>
+	<polygon fill="#808080" points="2.999,-20.226 2.999,-11.226 189.999,-11.226 189.999,-12.226 3.999,-12.226 3.999,-20.226 	"/>
+	<polygon fill="#C7C7C7" points="190.999,-11.226 190.999,-20.226 3.999,-20.226 3.999,-19.226 189.999,-19.226 189.999,-11.226 	
+		"/>
+	<rect x="22.999" y="-18.226" fill="#E5E5E5" width="2" height="5"/>
+	<rect x="40.999" y="-18.226" fill="#E5E5E5" width="2" height="5"/>
+	<rect x="94.999" y="-18.226" fill="#E5E5E5" width="2" height="5"/>
+	<rect x="76.999" y="-18.226" fill="#E5E5E5" width="2" height="5"/>
+	<rect x="58.999" y="-18.226" fill="#E5E5E5" width="2" height="5"/>
+	<rect x="112.999" y="-18.226" fill="#E5E5E5" width="2" height="5"/>
+	<rect x="166.999" y="-18.226" fill="#E5E5E5" width="2" height="5"/>
+	<rect x="148.999" y="-18.226" fill="#E5E5E5" width="2" height="5"/>
+	<rect x="130.999" y="-18.226" fill="#E5E5E5" width="2" height="5"/>
+</g>
+</svg>

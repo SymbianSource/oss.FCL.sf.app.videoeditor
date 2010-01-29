@@ -1,0 +1,398 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description: 
+*
+*/
+
+
+NAME	SVED
+
+// INCLUDES
+#include <Eikon.rh>
+#include <avkon.loc>
+#include <avkon.rsg>
+#include <avkon.rh>
+#include <avkon.mbg>
+#include <AvkonIcons.hrh>
+#include <SimpleVideoEditor.loc>
+#include "videoeditorcommon.hrh"
+#include <errorres.loc>
+RESOURCE RSS_SIGNATURE { }
+
+//----------------------------------------------------
+//
+//    r_vesm_progress_note_with_cancel
+//    Progress note
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vesm_progress_note_with_cancel
+	{
+	flags = EAknProgressNoteFlags;
+	buttons = R_AVKON_SOFTKEYS_CANCEL;
+	items =
+		{
+		DLG_LINE
+			{
+			type = EAknCtNote;
+			id = EGeneralNote;
+			control = AVERELL_NOTE
+				{
+				layout = EProgressLayout;
+//				singular_label = qtn_vei_progress_note_processing;
+				imagefile = AVKON_ICON_FILE;
+				imageid = EMbmAvkonQgn_note_progress;
+				imagemask = EMbmAvkonQgn_note_progress_mask;
+				};
+			}
+		};
+	}
+
+//----------------------------------------------------
+//
+//    r_vei_wait_note_with_cancel
+//    
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vei_wait_note_with_cancel
+    {
+    flags = EAknWaitNoteFlags;
+    buttons = R_AVKON_SOFTKEYS_CANCEL;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtNote;
+            id = EGeneralNote;
+            control= AVKON_NOTE 
+                { 
+                layout = EWaitLayout;
+                imagefile = AVKON_ICON_FILE;
+                imageid = EMbmAvkonQgn_note_progress;
+                imagemask = EMbmAvkonQgn_note_progress_mask;
+                animation = R_QGN_GRAF_WAIT_BAR_ANIM;
+                };
+            }
+        };
+    }
+
+//----------------------------------------------------
+//
+//    r_vei_wait_note_without_cancel
+//    
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vei_wait_note_without_cancel
+    {
+    flags = EEikDialogFlagNoDrag|EEikDialogFlagNoTitleBar;    
+    //buttons = R_AVKON_SOFTKEYS_CANCEL;
+    buttons = R_AVKON_SOFTKEYS_EMPTY;
+    //buttons = r_vei_wait_note_without_cancel_buttons;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtNote;
+            id = EGeneralNote;
+            control= AVKON_NOTE 
+                { 
+                layout = EWaitLayout;
+                imagefile = AVKON_ICON_FILE;
+                imageid = EMbmAvkonQgn_note_progress;
+                imagemask = EMbmAvkonQgn_note_progress_mask;
+                animation = R_QGN_GRAF_WAIT_BAR_ANIM;
+                };
+            }
+        };
+    }
+    
+//----------------------------------------------------
+//
+//    r_vie_confirmation_query
+//    Confirmation query
+//
+//----------------------------------------------------
+RESOURCE DIALOG r_vie_confirmation_query
+{
+    flags = EGeneralQueryFlags;
+    buttons = R_AVKON_SOFTKEYS_YES_NO;
+    items =
+    {
+        DLG_LINE
+        {
+            type = EAknCtQuery;
+            id = EGeneralQuery;
+            control = AVKON_CONFIRMATION_QUERY
+            {
+                layout = EConfirmationQueryLayout;
+                label = " ";
+            };
+        }
+    };
+}    
+    
+RESOURCE CBA r_vei_wait_note_without_cancel_buttons
+    {
+    buttons =
+		{
+		CBA_BUTTON 
+				{
+				id = 20; 
+				txt = " ";
+				},
+		CBA_BUTTON 
+				{
+				id = 21;	
+				txt = " ";
+				}
+		};
+    }
+    
+
+//----------------------------------------------------
+//
+//  LIST QUERY (contents updated dynamically)
+//
+//----------------------------------------------------
+RESOURCE AVKON_LIST_QUERY r_vie_list_query
+{
+	items =
+	{
+		AVKON_LIST_QUERY_DLG_LINE
+		{
+			control = AVKON_LIST_QUERY_CONTROL
+			{
+				listtype = EAknCtSinglePopupMenuListBox;
+				heading = " ";
+				listbox = AVKON_LIST_QUERY_LIST
+				{
+					// array of items will be defined dynamically
+				};
+			};
+		}
+	};
+}
+
+RESOURCE TBUF256 r_vesm_edit_view_title_name						{ buf = qtn_vei_edit_video_main_text_t; }
+
+//----------------------------------------------------
+//   
+//    r_vesm_editvideo_titlescreen_text_query
+//    data query for the title screen text
+//
+//----------------------------------------------------
+//
+RESOURCE DIALOG r_vesm_editvideo_titlescreen_text_query
+	{
+	flags=EGeneralQueryFlags; 
+	buttons = R_AVKON_SOFTKEYS_OK_CANCEL;
+	items =
+		{
+		DLG_LINE
+			{
+			type = EAknCtQuery;
+			id = EGeneralQuery;
+			control = AVKON_DATA_QUERY
+				{
+				layout = EDataLayout;
+				label = qtn_vie_query_heading_enter_text; 
+				control = 
+					EDWIN
+						{
+						width = AKNTEXT_QUERY_WIDTH;
+						lines = AKNTEXT_QUERY_LINES;
+						maxlength = AKNTEXT_QUERY_WIDTH * AKNTEXT_QUERY_LINES;
+						};
+				};
+			}
+		};
+	}
+
+//-----------------------------------------------------------------------------
+//
+//    r_ved_insert_position_query
+//    List Query dialog
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE DIALOG r_ved_insert_position_query
+    {
+    flags = EGeneralQueryFlags;
+    buttons = R_AVKON_SOFTKEYS_SELECT_CANCEL;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtListQueryControl;
+            id = EListQueryControl;
+            control = AVKON_LIST_QUERY_CONTROL
+                {
+                listtype = EAknCtSinglePopupMenuListBox;
+                listbox = AVKON_LIST_QUERY_LIST
+                    {
+                    flags = EAknListBoxMenuList;
+                    array_id = r_ved_insert_position_query_items;
+                    };
+                heading = "#heading";
+                };
+            }
+        };
+    }	
+    
+    
+//-----------------------------------------------------------------------------
+//
+//    r_ved_insert_position_query_items
+//    Items array for List Query
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE ARRAY r_ved_insert_position_query_items
+    {
+    items =
+        {
+        LBUF
+            {           
+            txt = qtn_vie_query_add_text_to_beginning; 
+            },
+        LBUF
+            {           
+            txt = qtn_vie_query_add_text_to_end; 
+            }
+        };
+    }
+
+//-----------------------------------------------------------------------------
+//
+//    r_ved_video_or_image_query
+//    List Query dialog
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE DIALOG r_ved_video_or_image_query
+    {
+    flags = EGeneralQueryFlags;
+    buttons = R_AVKON_SOFTKEYS_SELECT_CANCEL;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtListQueryControl;
+            id = EListQueryControl;
+            control = AVKON_LIST_QUERY_CONTROL
+                {
+                listtype = EAknCtSinglePopupMenuListBox;
+                listbox = AVKON_LIST_QUERY_LIST
+                    {
+                    flags = EAknListBoxMenuList;
+                    array_id = r_ved_video_or_image_query_items;
+                    };
+                heading = "#heading";
+                };
+            }
+        };
+    }	
+    
+    
+//-----------------------------------------------------------------------------
+//
+//    r_ved_video_or_image_query_items
+//    Items array for List Query
+//
+//-----------------------------------------------------------------------------
+//
+RESOURCE ARRAY r_ved_video_or_image_query_items
+    {
+    items =
+        {
+        LBUF
+            { 
+            txt = qtn_vie_query_merge_with_video; 
+            },
+        LBUF
+            { 
+            txt = qtn_vie_query_merge_with_image; 
+            }
+        };
+    }    
+
+// List query headings
+RESOURCE TBUF r_vei_query_heading_add_text_to   { buf = qtn_vie_query_heading_add_text_to; }
+RESOURCE TBUF r_vei_query_heading_merge_with    { buf = qtn_vie_query_heading_merge_with; } 
+
+// Progress note texts
+RESOURCE TBUF r_vei_note_merging		{ buf = qtn_fldr_file_saving_wait;} 
+RESOURCE TBUF r_vei_note_adding_audio	{ buf = qtn_vie_note_processing;} 
+RESOURCE TBUF r_vei_note_adding_text	{ buf = qtn_vie_note_processing;} 
+RESOURCE TBUF r_vei_note_cutting		{ buf = qtn_vie_note_cutting;} 
+RESOURCE TBUF r_vei_note_processing		{ buf = qtn_vie_note_processing; } 
+
+// Other note texts
+RESOURCE TBUF r_vei_memory_running_out	{ buf = qtn_memlo_memory_running_out; } 
+RESOURCE TBUF r_vei_not_enough_memory	{ buf = qtn_memlo_ram_out_of_mem; }
+
+RESOURCE TBUF256 r_vei_error_note		                { buf= qtn_err_eikon_general; }
+RESOURCE TBUF    r_vei_errornote_image_inserting_failed	{ buf = qtn_vie_note_err_unable_to_insert_image; }
+RESOURCE TBUF    r_vei_errornote_audio_inserting_failed	{ buf = qtn_vie_note_err_audio_format; }
+
+RESOURCE TBUF r_vie_query_insert_short_audio    { buf = qtn_vie_query_insert_short_audio; }
+RESOURCE TBUF r_vie_query_insert_long_audio     { buf = qtn_vie_query_insert_long_audio; }
+
+//----------------------------------------------------
+//
+//    r_wait_dialog
+//    animated progress note
+//
+//----------------------------------------------------	
+RESOURCE DIALOG r_wait_dialog
+{
+    flags = EAknWaitNoteFlags;
+    buttons = R_AVKON_SOFTKEYS_CANCEL;
+}	
+
+RESOURCE TBUF r_vei_in_use                  { buf = qtn_err_in_use;}
+
+RESOURCE TBUF r_vei_unable_to_edit                  { buf = qtn_vie_note_err_edit;}
+RESOURCE TBUF r_vei_unable_to_insert_video			{ buf = qtn_vie_note_err_unable_to_insert_video;}
+RESOURCE TBUF r_vei_unable_to_insert_sound			{ buf = qtn_vie_note_err_audio_format;} 
+RESOURCE TBUF r_vei_unable_to_insert_image			{ buf = qtn_vie_note_err_unable_to_insert_image;}
+
+RESOURCE TBUF r_vei_unable_to_insert_text			{ buf = qtn_vie_note_err_unable_to_add_text;}
+RESOURCE TBUF r_vei_unable_to_merge_videos			{ buf = qtn_vie_note_err_unable_to_merge_video_video;}
+RESOURCE TBUF r_vei_unable_to_merge_video_image		{ buf = qtn_vie_note_err_unable_to_merge_video_image;}
+RESOURCE TBUF r_vei_unable_to_change_sound			{ buf = qtn_vie_note_err_unable_to_change_sound;}
+RESOURCE TBUF r_vei_audio_format_not_supported		{ buf = qtn_vie_note_err_audio_format;} 
+RESOURCE TBUF r_vei_image_format_not_supported		{ buf = qtn_vie_note_err_image_format_not_supported;}
+
+RESOURCE TBUF r_vie_query_heading_save				{ buf = qtn_vie_query_heading_save;	}
+RESOURCE TBUF r_vie_query_save_new					{ buf = qtn_vie_query_save_new;	}
+RESOURCE TBUF r_vie_query_save_replace				{ buf = qtn_vie_query_save_replace;	}
+
+
+RESOURCE TBUF r_vie_query_heading_add_image_to 		{ buf = qtn_vie_query_heading_add_image_to; }
+RESOURCE TBUF r_vie_query_heading_add_video_to 		{ buf = qtn_vie_query_heading_add_video_to; }
+
+
+// The following strings should be added:
+// qtn_vie_note_unable_convert
+
+// Dummy dialog to consume key presses during operations
+RESOURCE DIALOG r_dummy_dialog
+   {
+   flags = EEikDialogFlagNoDrag | EEikDialogFlagCbaButtons; 
+   buttons = R_AVKON_SOFTKEYS_EMPTY ;    
+   }
+
+
+// End of file

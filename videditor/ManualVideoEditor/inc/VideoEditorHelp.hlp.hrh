@@ -1,0 +1,37 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc 
+*
+* Description:  
+* This file contains all the Video Editor contextual help 
+* identifiers for the CSHelp system (implemented in 
+* HlpLauncher).
+*
+*/
+
+
+
+#ifndef __VIDEOEDITORHELP_HLP_HRH__
+#define __VIDEOEDITORHELP_HLP_HRH__
+
+// CONSTANTS
+_LIT(KVED_HLP_EDIT_VIDEO_VIEW,"VED_HLP_EDIT_VIDEO_VIEW"); //Video editing view
+_LIT(KVED_HLP_SETTINGS_VIEW,"VED_HLP_SETTINGS_VIEW"); //Settings view
+_LIT(KVED_HLP_PREVIEW_VIEW,"VED_HLP_PREVIEW_VIEW"); //Play view
+_LIT(KVED_HLP_CUT_VIDEO_VIEW,"VIE_HLP_CUT"); //Cut video view
+_LIT(KVED_HLP_CUT_AUDIO_VIEW,"VED_HLP_CUT_AUDIO_VIEW"); //Cut audio view
+_LIT(KVED_HLP_TRIM_FOR_MMS_VIEW,"VED_HLP_TRIM_FOR_MMS_VIEW"); //Trim video clip for MMS view
+
+#endif  // __VIDEOEDITORHELP_HLP_HRH__
+
+// End of File

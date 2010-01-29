@@ -1,0 +1,38 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description: 
+*
+*/
+
+
+
+#include <platform_paths.hrh>
+
+#include "../../Group/buildconfig.hrh"
+
+PRJ_PLATFORMS
+DEFAULT
+
+PRJ_EXPORTS
+../rom/VideoProvider.iby  CORE_APP_LAYER_IBY_EXPORT_PATH(VideoProvider.iby)
+../rom/VideoProvider_resource.iby  LANGUAGE_APP_LAYER_IBY_EXPORT_PATH(VideoProvider_resource.iby)
+
+PRJ_MMPFILES
+VideoProvider.mmp
+
+PRJ_TESTEXPORTS
+
+PRJ_TESTMMPFILES
+//../internal/tsrc/group/VideoEditorTest.mmp

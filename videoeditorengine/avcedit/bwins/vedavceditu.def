@@ -1,0 +1,3 @@
+EXPORTS
+	?NewL@CVedAVCEdit@@SAPAV1@XZ @ 1 NONAME ; class CVedAVCEdit * CVedAVCEdit::NewL(void)
+

@@ -1,0 +1,52 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description:  
+* Build information file for Simple Cut Video.
+*
+*/
+
+
+#include <platform_paths.hrh>
+
+#include "../../Group/buildconfig.hrh"
+
+PRJ_PLATFORMS
+DEFAULT
+
+// Help export
+#include "../help/group/bld.inf"
+
+// Exported headers
+PRJ_EXPORTS
+../rom/SimpleCutVideo.iby  CORE_APP_LAYER_IBY_EXPORT_PATH(SimpleCutVideo.iby)
+../rom/SimpleCutVideo_resource.iby  LANGUAGE_APP_LAYER_IBY_EXPORT_PATH(SimpleCutVideo_resource.iby)
+
+// ROM build files
+PRJ_MMPFILES
+VedSimpleCutVideo.mmp
+
+PRJ_EXTENSIONS
+
+START EXTENSION s60/mifconv
+OPTION TARGETFILE VedSimpleCutVideo_aif.MIF
+OPTION HEADERFILE VedSimpleCutVideo_aif.MBG
+OPTION SOURCEDIR ../data
+OPTION SOURCES -c8,8 qgn_menu_ve_cxt
+END
+
+PRJ_TESTMMPFILES
+
+
+// End of File

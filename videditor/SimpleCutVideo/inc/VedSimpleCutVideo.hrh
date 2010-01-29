@@ -1,0 +1,71 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description:  
+*
+*/
+
+
+#ifndef VEDSIMPLECUTVIDEO_HRH
+#define VEDSIMPLECUTVIDEO_HRH
+
+enum TVeijoCommandIds
+    {
+	EVeiCmdHelp = 1,
+/* Cut video */
+	EVeiCmdCutVideoViewPlay,
+	EVeiCmdCutVideoViewPlayMarked,
+	EVeiCmdCutVideoViewClearMarks,
+	EVeiCmdCutVideoViewClearMarksIn,
+	EVeiCmdCutVideoViewClearMarksOut,
+	EVeiCmdCutVideoViewClearMarksInOut,
+	EVeiCmdCutVideoViewHelp,
+	EVeiCmdCutVideoViewBack,
+	EVeiCmdCutVideoViewDone,
+	EVeiCmdCutVideoViewMarkIn,
+	EVeiCmdCutVideoViewMarkOut,
+	EVeiCmdCutVideoViewContinue,
+	EVeiCmdCutVideoViewStop,
+	EVeiCmdCutVideoVolumeDown,
+	EVeiCmdCutVideoVolumeUp,
+	EVeiCmdCutVideoTakeSnapshot,
+	EVeiCmdPlayPreview,
+	EVeiCmdSettingsViewBack,
+	EVeiCmdPlayViewPause,
+	EVeiCmdPlayViewStop,
+	EVeiCmdEditVideoViewPreview,
+	EVeiCmdEditVideoViewTrimForMms,
+	EVeiCmdEditVideoViewPreviewLarge,
+	EVeiCmdEditVideoViewPreviewSmall,
+	EVeiCmdEditVideoViewMovie,
+	EVeiCmdEditVideoViewInsert,
+	EVeiCmdEditVideoViewSettings,
+	EVeiCmdEditVideoViewInsertVideo,
+	EVeiCmdEditVideoViewInsertAudio,
+	EVeiCmdEditVideoViewInsertImage,
+	EVeiCmdEditVideoViewInsertText,	//32
+	EVeiCmdCutVideoViewCut, 
+	EVeiCmdCutVideoViewSave,
+	EVeiCmdCutVideoViewNone,
+	EVeiCmdCutVideoViewExit 
+    };
+
+
+ // Video Editor view IDs.
+enum TVeiViewIds
+ 	{
+	EVeiSimpleCutVideoView 	
+ 	};
+
+#endif      

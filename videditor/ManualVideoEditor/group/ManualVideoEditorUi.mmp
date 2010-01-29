@@ -1,0 +1,140 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description:  
+*
+*/
+
+// To get the APP_LAYER_SYSTEMINCLUDE-definition
+#include <platform_paths.hrh>
+
+#include <data_caging_paths.hrh>
+#include "../../Group/buildconfig.hrh"
+
+#if defined( __DEBUG_ON__ )
+MACRO           DEBUG_ON
+#endif
+#if defined( __DEBUG_ON_ALWAYS__ )
+MACRO           DEBUG_ON_ALWAYS
+#endif
+#if defined(__DEBUG_ON__) || defined(__DEBUG_ON_ALWAYS__)
+LIBRARY         flogger.lib
+#endif
+
+#if defined (__GET_PAUSE_THUMBNAIL__)
+MACRO           GET_PAUSE_THUMBNAIL
+#endif
+
+TARGET  ManualVideoEditor.exe
+TARGETTYPE  exe
+UID    0x100039CE 0x10208A29
+CAPABILITY CAP_APPLICATION MultiMediaDD
+SECUREID         0x10208A29
+VENDORID        VID_DEFAULT
+
+EPOCSTACKSIZE 0x8000
+EPOCHEAPSIZE 0x100000 0x1600000
+
+SOURCEPATH ../src
+SOURCE  VeiApp.cpp 
+SOURCE  VeiAppUi.cpp
+SOURCE  VeiDocument.cpp
+SOURCE  VeiEditVideoContainer.cpp
+SOURCE  VeiEditVideoView.cpp
+SOURCE  VeiSettingsView.cpp
+SOURCE  VeiSettingsContainer.cpp
+SOURCE  VeiCutVideoView.cpp
+SOURCE  VeiCutVideoContainer.cpp
+SOURCE  VeiCutAudioView.cpp
+SOURCE  VeiCutAudioContainer.cpp
+SOURCE  VeiSettingItemList.cpp
+SOURCE  FileNameSettingItem.cpp
+SOURCE	VeiTrimForMmsView.cpp
+SOURCE	VeiTrimForMmsContainer.cpp
+SOURCE  VeiIconBox.cpp
+SOURCE  VeiPopup.cpp
+SOURCE  SampleArrayHandler.cpp
+SOURCE  StoryboardItems.cpp
+SOURCE  TransitionInfo.cpp
+
+START RESOURCE ../data/ManualVideoEditor.rss
+HEADER 
+TARGETPATH APP_RESOURCE_DIR 
+LANG	sc
+END
+
+START RESOURCE ../data/Manualvideoeditor_reg.rss
+DEPENDS manualvideoeditor.rsg
+TARGETPATH /private/10003a3f/apps
+END
+
+
+USERINCLUDE .
+USERINCLUDE ../inc
+USERINCLUDE ../../VideoEditorCommon/inc
+USERINCLUDE ../../VideoEditorUiComponents/inc
+
+// Default system include paths for application layer modules.
+APP_LAYER_SYSTEMINCLUDE
+
+SYSTEMINCLUDE   . 
+SYSTEMINCLUDE	/epoc32/include/ECom
+SYSTEMINCLUDE   /epoc32/include/mda/client
+SYSTEMINCLUDE   /epoc32/include/mmf/server
+SYSTEMINCLUDE   /epoc32/include/mmf/common
+
+LIBRARY aknicon.lib
+LIBRARY AknLayout2.lib
+LIBRARY aknlayout2adaptation.lib
+LIBRARY aknlayout2scalable.lib
+LIBRARY aknskins.lib
+LIBRARY apgrfx.lib
+LIBRARY apparc.lib 
+LIBRARY avkon.lib 
+LIBRARY bafl.lib
+LIBRARY bitgdi.lib
+LIBRARY BitmapTransforms.lib
+LIBRARY bmpanim.lib
+LIBRARY cdlengine.lib
+LIBRARY charconv.lib
+LIBRARY CommonDialogs.lib
+LIBRARY commonengine.lib		//StringLoader
+LIBRARY commonui.lib		//Globalerror
+LIBRARY cone.lib 
+LIBRARY efsrv.lib 
+LIBRARY egul.lib 
+LIBRARY eikcoctl.lib 
+LIBRARY eikcore.lib 
+LIBRARY eikctl.lib
+LIBRARY estor.lib			//FOR settings view rreadstream
+LIBRARY euser.lib 
+LIBRARY fbscli.lib 
+LIBRARY gdi.lib
+LIBRARY hlplch.lib
+LIBRARY ImageConversion.lib	 //image conversion
+LIBRARY MediaClientAudio.lib
+LIBRARY MGFetch.lib
+LIBRARY mmfserverbaseclasses.lib		// Wav to AMR conversion
+LIBRARY PlatformEnv.lib		//volume settings, pathinfos
+LIBRARY SendUi.lib
+LIBRARY servicehandler.lib
+LIBRARY sysutil.lib
+LIBRARY VedEngine.lib
+LIBRARY VideoEditorCommon.lib
+LIBRARY VideoEditorUiComponents.lib
+LIBRARY ws32.lib
+
+
+// End of File
+

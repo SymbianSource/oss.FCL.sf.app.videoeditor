@@ -1,0 +1,116 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description: 
+*
+*/
+
+
+// To get the APP_LAYER_SYSTEMINCLUDE-definition
+#include <platform_paths.hrh>
+
+#include <data_caging_paths.hrh>
+#include "../../Group/buildconfig.hrh"
+
+#if defined( __DEBUG_ON__ )
+MACRO           DEBUG_ON
+#endif
+#if defined( __DEBUG_ON_ALWAYS__ )
+MACRO           DEBUG_ON_ALWAYS
+#endif
+#if defined(__DEBUG_ON__) || defined(__DEBUG_ON_ALWAYS__)
+LIBRARY         flogger.lib
+#endif
+
+
+TARGET		VideoEditorUiComponents.dll
+TARGETTYPE	DLL
+CAPABILITY	CAP_GENERAL_DLL
+UID		0x1000008d 0xA0000305 
+VENDORID        VID_DEFAULT
+
+
+USERINCLUDE	../inc
+USERINCLUDE	../../VideoEditorCommon/inc
+
+// Default system include paths for application layer modules.
+APP_LAYER_SYSTEMINCLUDE
+
+SOURCEPATH	../src
+SOURCE		VeiCutterbar.cpp
+// Removed to disable Manual Video Editor
+//SOURCE		VeiEditVideoLabelNavi.cpp
+SOURCE		VeiTimeLabelNavi.cpp
+SOURCE		VeiTextDisplay.cpp
+SOURCE		VeiVideoDisplay.cpp
+// Removed to disable Manual Video Editor
+//SOURCE		VeiSlider.cpp
+SOURCE		VeiErrorUi.cpp
+SOURCE		ExtProgressDialog.cpp
+SOURCE		ExtProgressContainer.cpp
+SOURCE		ExtProgressAnimationControl.cpp
+
+
+SOURCEPATH	../data
+START RESOURCE  VideoEditorUiComponents.rss
+HEADER
+TARGET VideoEditorUiComponents.rsc
+TARGETPATH      RESOURCE_FILES_DIR
+LANGUAGE_IDS
+END
+
+LIBRARY apparc.lib
+LIBRARY aknicon.lib
+LIBRARY AknLayout2.lib
+LIBRARY aknlayout2adaptation.lib
+LIBRARY aknlayout2scalable.lib
+LIBRARY aknskins.lib
+LIBRARY avkon.lib
+LIBRARY bafl.lib
+LIBRARY bitgdi.lib
+LIBRARY BitmapTransforms.lib
+LIBRARY bmpanim.lib
+LIBRARY cdlengine.lib
+LIBRARY commonengine.lib
+LIBRARY commonui.lib
+LIBRARY cone.lib 
+LIBRARY efsrv.lib
+LIBRARY eikcdlg.lib
+LIBRARY eikcore.lib
+LIBRARY eikcoctl.lib 
+LIBRARY eikctl.lib
+LIBRARY eikdlg.lib
+LIBRARY estor.lib
+LIBRARY	euser.lib
+LIBRARY fbscli.lib
+LIBRARY fontutils.lib
+LIBRARY gdi.lib
+LIBRARY ImageConversion.lib
+LIBRARY MGFetch.lib
+LIBRARY mediaclientvideo.lib
+LIBRARY platformenv.lib
+LIBRARY ServiceHandler.lib
+LIBRARY VideoEditorCommon.lib
+LIBRARY ws32.lib
+LIBRARY mmfcontrollerframework.lib 
+
+#ifdef RD_TACTILE_FEEDBACK
+LIBRARY     	touchfeedback.lib
+#endif /* RD_TACTILE_FEEDBACK  */
+
+NOSTRICTDEF
+
+
+// End of File
+

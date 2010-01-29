@@ -1,0 +1,1214 @@
+/*
+* Copyright (c) 2010 Ixonos Plc.
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - Initial contribution
+*
+* Contributors:
+* Ixonos Plc
+*
+* Description:  
+*
+*/
+
+
+
+//d: Caption of the application
+//l: list_single_large_graphic_pane_1
+#define qtn_app_caption_string					 		"Video Editor"
+
+//d: Short format of the caption
+//l: cell_app_pane_1
+#define qtn_app_short_caption_string			 		"Vid. editor"
+
+//d: Text in the navi pane.
+//d: Shows elapsed time and total length of the video.
+//l: navi_pane_4
+#define qtn_time_prog_total_min_sec						"%0U/%1U"
+
+//d: Text in the Edit view navi pane when
+//d: text title or image selected on the video timeline
+//d: and Edit text-Change duration in options menu pressed. 
+//l: navi_pane_3
+#define qtn_vei_navi_change_text_duration				"Change duration"
+
+//d: Command in the Small Preview popup menu
+//d: Plays the selected video clip
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_cmd_play								"Play"
+
+//d: Command in the Preview popup menu and Cut Video view menu.
+//d: Takes snapshot from current frame
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_cmd_take_snapshot 						"Take snapshot"
+
+//d: Shows confirmation note of saving the movie.
+//l: popup_note_window_1
+#define qtn_vei_confirmation_note_quit_save				"Save changes made to video clip?"
+
+//d: Command in the Cut Video view menu
+//d: Opens the Remove submenu.
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_cut_video_cmd_clear_marks			  	"Remove"
+
+//d: Command in the Remove submenu
+//d: Removes the In mark
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_cut_video_cmd_clear_marks_in			"Start mark"
+
+//d: Command in the Remove submenu
+//d: Removes both marks (In & Out)
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_cut_video_cmd_clear_marks_in_out		"All marks"
+
+//d: Command in the Remove submenu
+//d: Removes the Out mark
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_cut_video_cmd_clear_marks_out			"End mark"
+
+//d: Command in the Cut Video view menu
+//d: Continues playing the clip
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_cut_video_cmd_continue					"Play and mark"
+
+//d: Text for the right softkey in Cut Video View
+//d: Sets the mark in position.
+//l: control_pane_1
+#define qtn_vei_mark_in									"Start mk."
+
+//d:Command in the Cut Video view menu
+//d:and option in popup menu when selection key is pressed.
+//l:list_single_popup_menu_pane_1
+#define qtn_vei_cut_video_cmd_mark_in					"Start mark"
+
+//d: Text for the left softkey in Cut Video View
+//d: Sets the mark out position.
+//l: control_pane_1
+#define qtn_vei_mark_out								"End mark"
+
+//d:Command in the Cut Video view menu
+//d:and option in popup menu when selection key is pressed.
+//l:list_single_popup_menu_pane_1
+#define qtn_vei_cut_video_cmd_mark_out					"End mark"
+
+//d: Command in the Cut Video view menu
+//d: Plays the clip
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_cut_video_cmd_play						"Play and mark"
+
+//d: Command in the Cut Video view menu
+//d: Plays the clip
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_cut_video_cmd_play_marked				"Play marked section"
+
+//d: Command in the Cut Video view menu
+//d: Stops playing the clip
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_cut_video_cmd_stop						"Stop"			
+
+//d: The title of the Cut Video view.
+//l: title_pane_1
+#define qtn_vei_cut_video_title_cut_video				"Cut video"
+
+
+//d: File name prompt dialog is used to file naming 
+//d: in various situations.
+//l: popup_list_heading_pane_1
+#define qtn_vei_data_query_set_file_name				"File name:"
+
+//d: The title of the Large Preview and Small Preview views
+//l: title_pane_1
+#define qtn_vei_edit_preview_title_preview				"Preview"
+
+//d: The title of the Transition edit view.
+//l: title_pane_1
+#define qtn_vei_edit_transition_title_transition		"Edit transition"
+
+//d: Command in the Edit Video/EditAudio sub menu.
+//d: Copy-paste selected video/audio.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_duplicate			"Duplicate"	 
+
+//d: Command in the Edit menu when the Edit Audio option
+//d: is selected.
+//d: Opens the audio editing sub menu.
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_edit_video_cmd_edit_audio				"Edit sound clip"
+
+//d: Command in the Edit menu.
+//d: Opens the Edit Transition sub menu.
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_edit_video_cmd_edit_tran				"Edit Transition"
+
+//d: Command in the Edit menu when the Edit Transition option
+//d: is selected.
+//d: Adds the fade to black middle transition.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_tran_dip_to_black	"Dip to black"
+
+//d: Command in the Edit menu when the Edit Transition option
+//d: is selected.
+//d: Adds the fade to white middle transition.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_tran_dip_to_white	"Dip to white"
+
+//d: Command in the transition menu when the Edit Transition option
+//d: is selected.
+//d: Adds the fade from black start transition.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_tran_fade_from_black "Fade from black"
+
+//d: Command in the Edit menu when the Edit Transition option
+//d: is selected.
+//d: Adds the fade from white start transition.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_tran_fade_from_white "Fade from white"
+
+//d: Command in the Edit menu when the Edit Transition option
+//d: is selected.
+//d: Adds the fade to black end transition.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_tran_fade_to_black	"Fade to black"
+
+//d: Command in the Edit menu when the Edit Transition option
+//d: is selected.
+//d: Adds the fade to white end transition.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_tran_fade_to_white	"Fade to white"
+
+//d: Command in the Edit Transition sub. 
+//d: Removes the current transition.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_tran_no_tran		"No transition"
+
+//d: Command in the Edit menu.
+//d: Opens sub menu for editing the video
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_edit_video_cmd_edit_video				"Edit video clip"
+
+//d: Command in the Edit submenu when the Edit Video option
+//d: is selected.
+//d: Adds color effect to the video.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_video_color_effect 	"Add colour effect"
+
+//d: Command in the Edit submenu when the Edit Video/Audio option
+//d: is selected.
+//d: Starts the cutting of the video/audio
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_video_cutting		"Cut"
+
+//d: Command in the Edit submenu when the Edit Video option
+//d: is selected.
+//d: Moves the clip.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_video_move			"Move"
+
+//d: Command in the popup menu when in the navikey is 
+//d: is pressed in the Edit mode.
+//d: Mutes the audio
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_video_mute			"Mute sound"
+
+//d: Command in the Edit submenu when the Edit Video Option  
+//d: is selected.
+//d: Removes the clip.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_video_remove		"Remove"
+
+//d: Command in the Edit submenu when the Edit Video Option 
+//d: is selected.
+//d: Adds slow motion effect
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_video_slow_motion	"Use slow motion"
+
+//d: Command in the popup menu when in the navikey 
+//d: is pressed in the Edit mode.
+//d: Unmutes the audio
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_video_unmute		"Unmute sound"
+
+//d: Command in the Edit menu.
+//d: Opens the Insert submenu
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_edit_video_cmd_insert					"Insert"
+
+//d: Command in the Edit menu when the Insert option
+//d: is selected.
+//d: Inserts an audio track.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_insert_audio				"Sound clip"
+
+//d: Command in the Edit menu when the Insert option
+//d: is selected.
+//d: Records a new audio track.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_insert_new_audio			"New sound clip"
+
+//d: Command in the Edit menu when the Insert option
+//d: is selected.
+//d: Inserts a clip.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_insert_video				"Video clip"
+
+//d: Command in the Edit view Movie submenu.
+//d: Opens the Preview submenu.
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_edit_video_cmd_preview					"Preview"
+
+//d: Command in the Edit view Movie submenu.
+//d: Saving the video.
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_edit_video_cmd_save_to					"Save"
+
+//d: Text in the main pane, which is shown when the fade to black
+//d: middle transition set.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_tran_dip_to_black		"Dip to black"
+
+//d: Text in the main pane, which is shown when the fade to white 
+//d: middle transition set.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_tran_dip_to_white		"Dip to white"
+
+//d: Text in the main pane, which is shown when the fade from black 
+//d: start transition set.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_tran_fade_from_black	"Fade from black"
+
+//d: Text in the main pane, which is shown when the fade from white 
+//d: start transition set.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_tran_fade_from_white	"Fade from white"
+
+//d: Text which is shown when the fade from black 
+//d: end transition set.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_tran_fade_to_black		"Fade to black"
+
+//d: Text in the main pane, which is shown when the fade from white 
+//d: end transition set.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_tran_fade_to_white		"Fade to white"
+
+//d: Text in the main pane, which is shown when "no transition" set.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_tran_no					"No transition"
+
+//
+// Main pane - Text clip descriptive name
+//
+
+//d: Text in the main pane when video clip selected on
+//d: the timeline.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_text_t						"Title" 
+
+//d: Text in the main pane when video clip selected on
+//d: the timeline.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_text_tf						"Title (fading)"
+
+//d: Text in the main pane when video clip selected on
+//d: the timeline.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_text_subt					"Subtitle" 
+
+//d: Text in the main pane when video clip selected on
+//d: the timeline.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_text_subtf					"Subtitle (fading)" 
+
+//d: Text in the main pane when video clip selected on
+//d: the timeline.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_text_credit					"Credits" 
+
+
+//d: The title of the Edit View
+//l: title_pane_1
+#define qtn_vei_edit_video_title_edit_video				"Edit video"
+
+//d: Query heading text
+//l: popup_list_heading_pane_1
+#define qtn_vei_list_query_select_effect				"Select effect:"
+
+//d: Option in effect dialog. Black & white effect.
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_effect_black_white	"Black and white"
+
+//d: Option in effect dialog. Removes effect if any
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_effect_no_effect		"No effect"
+
+//d: Query heading text
+//l: popup_list_heading_pane_1
+#define qtn_vei_list_query_select_tran_title 			"Select transition:"	
+
+//d: Option in list query when selection key is pressed
+//d: and video/audio clip is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_video_cut				"Cut"
+
+//d: Option in list query when selection key is pressed
+//d: and video clip is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_video_color_effect	"Add colour effect"
+
+//d: Option in list query when selection key is pressed
+//d: and video clip or audio clip is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_video_move			"Move"
+
+//d: Option in list query when selection key is pressed
+//d: and video clip is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_video_mute			"Mute sound"
+
+//d: Option in list query when selection key is pressed
+//d: and video clip or audio clip is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_video_remove			"Remove"
+
+//d: Option in list query when selection key is pressed
+//d: and video clip is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_video_slow_motion		"Use slow motion"
+
+//d: Option in list query when selection key is pressed
+//d: and video clip is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_video_unmute			"Unmute sound"
+
+//d: Text in the navi pane when moving audio clip
+//l: navi_pane_2
+#define qtn_vei_navilabel_move_audio					"Moving sound clip"
+
+//d: Text in the navi pane when moving video clip
+//l: navi_pane_2
+#define qtn_vei_navilabel_move_video					"Moving video clip"
+
+//d: Shows progress note of applying color effect
+//l: popup_note_wait_window_1
+#define qtn_vei_progress_note_applying_color_effect		"Applying color effect"
+
+//d: Shows progress note of cutting video clip.
+//l: popup_note_wait_window_1
+#define qtn_vei_progress_note_cutting_video				"Cutting video clip"
+
+//d: Shows progress note of preparing to cut.
+//l: popup_note_wait_window_1
+#define qtn_vei_progress_note_preparing_to_cut			"Processing clip"
+
+//d: Shows progress note when sending video 
+//l: popup_note_wait_window_1
+#define qtn_vei_progress_note_preparing_to_send			"Processing movie for Send"
+
+//d: Softkey record in the Edit Video view.
+//d: Starts recording the audio
+//l: control_pane_1
+#define qtn_vei_record									"Record"
+
+//d: Error note when recording audio failed
+//l: popup_note_window_1
+#define qtn_vei_recording_failed						"Unable to record"
+
+//d: List title in the Settings view
+//l: list_setting_pane_1
+#define qtn_vei_settings_label1_default_movie_name		"Default video name"
+
+//d: List title in the Settings view
+//l: list_setting_pane_1
+#define qtn_vei_settings_label2_default_snapshot_name 	"Default snapshot name"
+
+//d: List title in the Settings view
+//l: list_setting_pane_1
+#define qtn_vei_settings_label3_memory_in_use 			"Memory in use"
+
+//d: The title of the Settings view
+//l: title_pane_1
+#define qtn_vei_settings_title_settings					"Settings"
+
+//d: Default name for the movie
+//l: list_setting_pane_2
+#define qtn_vei_settings_value1_movie					"Video"
+
+//d: Default name for the snapshot
+//l: list_setting_pane_2
+#define qtn_vei_settings_value2_snapshot 				"Snapshot"
+
+//d: Error note when inserting video failed
+//d: video format is not supported
+//l: popup_note_window_1
+#define qtn_vei_video_failed							"Unable to insert video clip"
+
+
+//d: Title pane text in Cut Audio View.
+//l: title_pane_1
+#define qtn_vei_cut_audio_title 						"Cut sound"	
+
+//d: Option in popup menu when selection key is pressed
+//d: and some of the transitions is already selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_tran_no_tran			"No transition"
+
+//d: Option in popup menu when selection key is pressed
+//d: and between transition is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_tran_dip_to_black		"Dip to black"
+
+//d: Option in popup menu when selection key is pressed
+//d: and between transition is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_tran_dip_to_white		"Dip to white"
+
+//d: Option in popup menu when selection key is pressed
+//d: and start transition is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_tran_fade_from_black	"Fade from black"
+
+//d: Option in popup menu when selection key is pressed
+//d: and start transition is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_tran_fade_from_white	"Fade from white"
+
+//d: Option in popup menu when selection key is pressed
+//d: and end transition is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_tran_fade_to_black	"Fade to black"
+
+//d: Option in popup menu when selection key is pressed
+//d: and end transition is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_tran_fade_to_white	"Fade to white"
+
+//d: Option in popup menu when selection key is pressed
+//d: and video/audio clip is selected.
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_video_duplicate  		"Duplicate"  	
+
+//d: Title of the popup menu when selection key is pressed
+//l: popup_list_heading_pane_1
+#define qtn_vei_list_query_insert_sound_type			"Insert:"
+
+//d: Option in popup menu when selection key is pressed
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_insert_sound_type_sound		"Sound clip"
+
+//d: Option in popup menu when selection key is pressed
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_insert_sound_type_new_audio	"Record sound clip"
+
+//d: Command in the Edit Audio sub menu.
+//d: Moves the audio track.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_audio_move			"Move"
+
+//d: Command in the Edit Audio sub menu.
+//d: Removes audio track.
+//l: list_single_popup_submenu_pane_1
+#define qtn_vei_edit_video_cmd_edit_audio_remove		"Remove"
+
+//d:Information note to show when memory card is not accessible,
+//d:but it's selected as current storage.
+//l:popup_note_window_1
+#define qtn_ved_mmc_not_inserted						"Memory card not accessible. Phone memory will be used instead."
+
+//d:Wait note.
+//l:popup_note_wait_window_1
+#define qtn_ved_inserting_video							"Inserting video clip"
+
+//d:Wait note.
+//l:popup_note_wait_window_1
+#define qtn_ved_inserting_mult_media					"Inserting media %0N/%1N"
+
+//d:Wait note / progress note.
+//l:popup_note_wait_window_1
+#define qtn_ved_inserting_audio							"Inserting sound clip"
+
+//d:Wait note.
+//l:popup_note_wait_window_1
+#define qtn_ved_inserting_image							"Inserting image"
+
+//d:Wait note.
+//l:popup_note_wait_window_1
+#define qtn_ved_saving_snapshot							"Saving snapshot to Gallery"
+
+//d:Progress note.
+//l:popup_note_wait_window_1
+#define qtn_ved_processing_for_mms						"Processing movie for MMS"
+
+//d:Progress note.
+//l:popup_note_wait_window_1
+#define qtn_ved_processing_movie						"Processing movie"
+
+//d:Error note.
+//l:popup_note_window_1
+#define qtn_ved_audio_format_not_supported				"Sound format not supported"
+
+//d:Error note.
+//l:popup_note_window_1
+#define qtn_ved_image_insert_failed						"Unable to insert image"
+
+//d:Error note.
+//l:popup_note_window_1
+#define qtn_ved_audio_insert_failed						"Unable to insert sound clip"
+
+//d:Warning note.
+//l:popup_note_window_1
+#define qtn_ved_inserting_failed_continue				"Inserting %U failed. Continue?"
+
+//d:Main pane (Trim for MMS)
+//l:main_pane_1_empty
+#define qtn_ved_trim_start								"Start:"
+
+//d:Main pane (Trim for MMS)
+//l:main_pane_1_empty
+#define qtn_ved_trim_end								"End:"
+
+//d: Text on navi pane when select video.
+//l: navi_pane_3
+#define qtn_vei_navi_pane_mms							"MMS" 
+
+//d: Text on navi pane when select video.
+//l: navi_pane_3
+#define qtn_vei_size_mb									" %U MB"
+
+//d: Command in the Edit view Insert-submenu 
+//d: when video clip selected on  the timeline.
+//d: Adds image to the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_insert_image						"Image"
+
+//d: Command in the Edit view Insert-submenu 
+//d: when video clip selected on the timeline.
+//d: Opens text popup menu.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_insert_text						"Text"
+
+//
+//Options Edit text submenu
+//
+
+//d: Command in the Edit view menu 
+//d: when text title selected on the timline. 
+//d: Opens the "Edit text" submenu.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_editt								"Edit text"
+
+//d: Command in the Edit view Edit text-submenu
+//d: when text title selected on the timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_move						"Move"
+
+//d: Command in the Edit view Edit text-submenu
+//d: when text title selected on the timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_remove						"Remove"
+
+//d: Command in the Edit view Edit text-submenu
+//d: when text title selected on the timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_duplicate					"Duplicate"
+
+//d: Command in the Edit view Edit audio / Edit text-submenu
+//d: when text title selected on the timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_dur							"Change duration"
+
+//d: Command in the Edit view Edit text-submenu
+//d: when text title selected on the timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_text						"Change text" 
+
+//d: Command in the Edit view Edit text-submenu
+//d: when text title selected on the timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_color						"Set text color"
+
+//d: Command in the Edit view Edit text-submenu
+//d: when text title selected on the timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_bg							"Set backgroud"
+
+//d: Command in the Edit view Edit text-submenu
+//d: when text title selected on the timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_style						"Style"
+
+//d: Command in the Edit view Edit text-submenu
+//d: when text title selected on the timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_color_effect				"Add color effect"
+
+
+//Edit text-Style popup menu and Insert-Text popup menu
+
+
+//d: Command in the Edit view Insert-Text and Edit text-Style popup menu 
+//d: when video clip selected on  the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_insert_text_t						"Title" 
+
+//d: Command in the Edit view Insert-Text and Edit text-Style popup menu 
+//d: when video clip selected on  the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_insert_text_tf						"Title (fading)"  
+
+//d: Command in the Edit view Insert-Text and Edit text-Style popup menu
+//d: when video clip selected on  the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_insert_text_subt					"Subtitle"  
+
+//d: Command in the Edit view Insert-Text and Edit text-Style popup menu
+//d: when video clip selected on  the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_insert_text_subtf					"Subtitle (fading)"   
+
+//d: Command in the Edit view Insert-Text and Edit text-Style popup menu
+//d: when video clip selected on  the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_insert_text_credit					"Credits"   
+
+
+//Options Edit image submenu
+
+
+//d: Command in the Edit view menu 
+//d: when image selected on the video timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_editi								"Edit image"
+
+//d: Command in the Edit view Edit image submenu
+//d: when image selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editi_move						"Move"
+
+//d: Command in the Edit view Edit image submenu
+//d: when image selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editi_remove						"Remove"
+
+//d: Command in the Edit view Edit image submenu
+//d: when image selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editi_duplicate					"Duplicate"
+
+//d: Command in the Edit view Edit image submenu
+//d: when image selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editi_dur							"Change duration"
+
+//d: Command in the Edit view Edit image submenu
+//d: when image selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editi_bg							"Set background"
+
+//d: Command in the Edit view Edit image submenu
+//d: when image selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editi_color_effect				"Add color effect"
+
+//Edit text and Edit image popup menus
+
+//d: Option in popup menu when Edit text
+//d: when text title selected on the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_editt_text							"Change text" 
+
+//d: Option in popup menu when Edit text
+//d: when text title selected on the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_editt_color						"Set text color" 
+
+//d: Option in popup menu when Edit text / Edit image
+//d: when text title selected on the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_editt_bg							"Set background" 
+
+//d: Option in popup menu when Edit text
+//d: when text title selected on the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_editt_style						"Style"				
+
+//d: Pop-up menu title when Edit text - Set background 
+//d: in option menu in Edit view selected.
+//d: when text title selected on the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_smenu_editt_select_heading_background	"Select background:"
+
+//d: Option in popup menu when Edit text - Set background 
+//d: in option menu in Edit view selected.
+//d: when text title selected on the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_editt_select_bg_image				"Image"  
+
+//d: Option in popup menu when Edit text - Set background 
+//d: in option menu in Edit view selected.
+//d: when text title selected on the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_editt_select_bg_color				"Color"   
+
+//d: Command in the Edit view Edit transition submenu
+//d: when transition selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_cf							"Crossfade"
+
+//d: Command in the Edit view Edit transition submenu
+//d: when transition selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_wipet						"Wipe from top"
+
+//d: Command in the Edit view Edit transition submenu
+//d: when transition selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_wipeb						"Wipe from bottom"
+
+//d: Command in the Edit view Edit transition submenu
+//d: when transition selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_wipel						"Wipe from left"
+
+//d: Command in the Edit view Edit transition submenu
+//d: when transition selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_editt_wiper						"Wipe from right"
+
+//d: Command in the Edit view Movie submenu
+//d: when video clip selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_movie_mms							"Trim for Mms"
+
+//d: Command in the Edit view Movie - Preview submenu
+//d: when video clip selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_movie_lpreview					"Large"
+
+//d: Command in the Edit view Movie - Preview submenu
+//d: when transition selected on the video timeline.
+//l: list_single_popup_submenu_pane_1
+#define qtn_ved_smenu_movie_spreview					"Small"
+
+//d: Command in the Edit view menu 
+//d: Opens the Settings view.
+//l: list_single_popup_menu_pane_1
+#define qtn_options_settings							"Settings"
+
+//d: Command in the Edit view menu 
+//d: Opens the Movie submenu.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_movie								"Movie"
+
+//d: Title of the popup menu when selection key is pressed
+//d: when video timeline empty.
+//l: popup_list_heading_pane_1
+#define qtn_ved_menu_title_insert_video					"Insert:"
+
+//d: Title of the popup menu when selection key is pressed
+//d: and focus is on text clip.
+//l: popup_list_heading_pane_1
+#define qtn_ved_menu_title_edit_text					"Edit text:"
+
+//d: Title of the popup menu when selection key is pressed
+//d: and focus is on image clip.
+//l: popup_list_heading_pane_1
+#define qtn_ved_menu_title_edit_image					"Edit image:"
+
+//d: Title of the popup menu when selection key is pressed
+//d: and focus is on video clip.
+//l: popup_list_heading_pane_1
+#define qtn_ved_menu_title_edit_video					"Edit video:"
+
+//d: Title of the popup menu when selection key is pressed
+//d: and focus is on audio clip.
+//l: popup_list_heading_pane_1
+#define qtn_ved_menu_title_edit_audio					"Edit sound:"
+
+//d: Option in popup menu when selection key is pressed
+//d: when video timeline empty.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_insert_video						"Video clip"
+
+//d: Option in popup menu when selection key is pressed
+//d: when video timeline empty.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_insert_image						"Image"
+
+//d: Title of the popup menu when selection key is pressed
+//d: when text title selected on the timeline.
+//l: popup_list_heading_pane_1
+#define qtn_ved_smenu_heading_editt						"Select style:"
+
+//d: Option in popup menu when selection key is pressed
+//d: when video timeline empty.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_insert_text						"Text"
+
+//d: Option in popup menu when selection key is pressed
+//d: when text title selected on the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_insert_text_t						"Title"
+
+//d: Option in popup menu when selection key is pressed
+//d: when text title selected on the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_insert_text_tf						"Title (fading)"
+
+//d: Option in popup menu when selection key is pressed
+//d: when text title selected on the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_insert_text_subt					"Subtitle"
+
+//d: Option in popup menu when selection key is pressed
+//d: when text title selected on the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_insert_text_subtf					"Subtitle (fading)"
+
+//d: Option in popup menu when selection key is pressed
+//d: when text title selected on the timeline.
+//l: list_single_popup_menu_pane_1
+#define qtn_ved_menu_insert_text_credit					"Credits"
+
+// Main pane
+
+//d: Text in in the Edit view main pane
+//d: in landscape orientation,
+//d: when video clip inserted
+//l: main_pane_1_empty
+#define qtn_ved_edit_video_duration						"Dur.:"
+
+//d: Text in the Cut view main pane.
+//l: main_pane_1_empty
+#define qtn_ved_cut_video_in							"In:"
+
+//d: Text in the Cut view main pane.
+//l: main_pane_1_empty
+#define qtn_ved_cut_video_out							"Out:"
+
+//d: Text in the Edit view main pane
+//d: when empty video timeline.
+//l: main_pane_1_empty
+#define qtn_ved_edit_video_no_video						"No video"
+
+//d: Text in the Edit view main pane
+//d: when empty audio timeline.
+//l: main_pane_1_empty
+#define qtn_ved_edit_video_no_audio						"No sound"
+
+//d: Text on the main pane, which is shown 
+//d: when the crossfade transition set.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_tran_crossfade			"Crossfade"
+
+//d: Text on the main pane, which is shown 
+//d: when the Wipe left to right transition set.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_tran_wipe_left			"Wipe left to right"
+
+//d: Text on the main pane, which is shown 
+//d: when the Wipe right to left transition set.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_tran_wipe_right			"Wipe right to left"
+
+//d: Text on the main pane, which is shown 
+//d: when the Wipe top to bottom transition set.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_tran_wipe_top			"Wipe top to bottom"
+
+//d: Text on the main pane, which is shown 
+//d: when the Wipe bottom to top transition set.
+//l: main_pane_1_empty
+#define qtn_vei_edit_video_main_tran_wipe_bottom		"Wipe bottom to top"
+
+//d: Option in popup menu when selection key is pressed
+//d: and transition is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_tran_crossfade		"Crossfade"
+
+//d: Option in popup menu when selection key is pressed
+//d: and transition is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_tran_wipe_left		"Wipe left to right"
+
+//d: Option in popup menu when selection key is pressed
+//d: and transition is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_tran_wipe_right		"Wipe right to left"
+
+//d: Option in popup menu when selection key is pressed
+//d: and transition is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_tran_wipe_top			"Wipe top to bottom"
+
+//d: Option in popup menu when selection key is pressed
+//d: and transition is selected
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_list_query_select_tran_wipe_bottom		"Wipe bottom to top"
+
+//d: Enter text prompt dialog when
+//d: Insert-Text selected. 
+//l: popup_list_heading_pane_1
+#define qtn_vei_textinserting_for_title_screen			"Enter text"
+
+//d: List title in the Settings view
+//l: list_setting_pane_1
+#define qtn_vei_setting_item_save_quality				"Save quality"
+
+//d: Save quality option in enumerated text list;
+//d: output resolution is resolved automatically.
+//l: list_setting_pane_2
+#define qtn_vei_save_quality_auto						"Auto"
+
+//d: Save quality option in enumerated text list;
+//d: output resolution is MMS compatible.
+//l: list_setting_pane_2
+#define qtn_vei_save_quality_mms						"MMS compatible"
+
+//d: Save quality option in enumerated text list;
+//d: output resolution is best possible (CIF).
+//l: list_setting_pane_2
+#define qtn_vei_save_quality_best						"Best"
+
+//d: Command in the "Trim for MMS" view options menu
+//d: Sends the trimmed video via multimedia
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_menu_send_via_mms						"Send via MMS"
+
+//d: Command in the "Trim for MMS" view options menu
+//d: Previews the trimmed video in full screen
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_menu_preview							"Preview"
+
+//d: Command in the "Trim for MMS" view options menu
+//d: Adjusts the size of the fork in video timeline
+//l: list_single_popup_menu_pane_1
+#define qtn_vei_menu_video_length						"Adjust video length"
+
+//d: The title of the "Trim for MMS" view
+//l: title_pane_1
+#define qtn_vei_trim_mms_title							"Trim for MMS"
+
+//d: Idlestate softkey text
+//l: control_pane_1
+#define qtn_vei_idle_mode								"Video Editor"
+
+//d: Text on the main pane,
+//d: 
+//l:
+#define qtn_vei_edit_video_main_new_audio			"New sound clip"
+
+//d: Information note when movie saved
+//l:popup_note_window_1
+#define qtn_vei_edit_video_note_saved				"Video Saved"
+
+//d: Text in the Edit view navi pane when
+//d: audio selected
+//d: and Edit sound clip-Set duration in options menu pressed. 
+//l: navi_pane_3
+#define qtn_vei_navi_change_audio_duration		 "Clip duration"
+
+//d: Confirmation note. The user has launched the Video editor in the portrait mode and 
+//d: is inserting text to the editing window.  Before saving the text s/he turns the phone 
+//d: to landscape mode, which interrupts the input -the keypad only works in the landscape 
+//d: mode. The user is asked whether s/he wants to continue editing the text. To do that s/he 
+//d: should turn the phone back to portrait mode. Twisting the phone back to portrait mode 
+//d: allows the user to continue inserting text. Accepting the query discards the note and 
+//d: the user stays in the landscape mode. \n
+//l: popup_note_window_t5
+#define qtn_vei_confirm_note_cancel_textinsert "To continue entering text, phone must be in portrait mode. Delete text?"
+
+//d: Options list item, command. This allows the user to change the duration of the text 
+//d: that is seen on the display.  This is one of the options in the list the heading text 
+//d: of which is (qtn_ved_menu_title_edit_text/manualvideoeditor). 
+//l: list_single_pane_t1_cp2
+#define qtn_ved_menu_editt_dur "Set duration"
+
+//d: Confirmation note. Seen after the user has taken a snapshot and it has been saved.
+//l: popup_note_window
+#define qtn_vei_note_snapshot_saved "Snapshot saved"
+
+//d: Confirmation note. This is seen in case the snapshot has been taken with Edit key and 
+//d: it will be saved to Images folder.
+//l: popup_note_window
+#define qtn_vei_note_snapshot_taken_to_images "Snapshot saved to Images"
+
+
+//d:Command in the AIW provider's Edit submenu
+//Starts the simple "2Click" Merge video applcation
+//l:list_single_popup_submenu_pane_t1
+#define qtn_vei_menu_merge     "Merge"
+
+//d:Command in the AIW provider's Edit submenu
+//Starts the simple "2Click" Add audio application
+//l:list_single_popup_submenu_pane_t1
+//#define qtn_vei_menu_add_audio "Add sound"
+
+//d:Command in the AIW provider's Edit submenu
+//Starts the simple "2Click" Add text application
+//l:list_single_popup_submenu_pane_t1
+#define qtn_vei_menu_add_text  "Add text"
+
+//d:Command in the AIW provider's Edit submenu
+//Starts the simple "2Click" Cut video application
+//l:list_single_popup_submenu_pane_t1
+#define qtn_vei_menu_cut       "Cut"
+
+//d:Command in the AIW provider's Edit submenu
+//d:Starts the full video editor application
+//l:list_single_popup_submenu_pane_t1
+#define qtn_vei_menu_advanced  "Video editor"
+
+//d:Query heading text
+//d:for the location to insert an image in a movie (begining/end?)
+//l:heading_pane_t1
+#define qtn_vei_menu_insert_image "Add image to:"
+
+//d:Query heading text
+//d:for the location to insert text in a movie (begining/end?)
+//l:heading_pane_t1
+#define qtn_vei_menu_insert_text "Add text to:"
+
+//d:Select to insert text, image etc. 
+//d:into the begining of the movie
+//l:list_single_pane_t1_cp2
+#define qtn_vei_menu_insert_point_begin "Beginning"
+
+//d:Select to insert text, image etc. into the
+//d:end of the movie
+//l:list_single_pane_t1_cp2
+#define qtn_vei_menu_insert_point_end   "End"
+
+//d:Progress note for merging videos
+//l:popup_note_wait_window
+#define qtn_vei_note_merging "Merging"
+
+//d:Progress note for porocessing "add sound"
+//l:popup_note_wait_window
+//#define qtn_vei_note_adding_audio "Adding sound"
+
+//d:Progress note for porocessing "add text"
+//l:popup_note_wait_window
+#define qtn_vei_note_adding_text "Adding text"
+
+//d:Progress note for processing "Cut video", i.e.
+//d:the 2Click cut video
+//l:popup_note_wait_window
+#define qtn_vei_note_cutting "Cutting"
+
+//d:Command to launch "Adjust audio volume" -functionality
+//l:list_single_pane_t1_cp2
+#define qtn_vei_edit_video_cmd_edit_adj_vol "Adjust volume"
+
+//d:Command to launch audio mixing
+//l:list_single_pane_t1_cp2
+#define qtn_vei_edit_video_cmd_audio_mix "Sound mixing"
+
+//d:List query heading text.
+//d:This list query is used to select whether image files
+//d:or video clips are listed. It is used at least with the
+//d:"Merge" functionality (qtn_vei_menu_merge), where
+//d:the user can merge a video clip with another video clip,
+//d:or alternatively with an image file.
+//l:heading_pane_t1
+#define qtn_vei_menu_select "Select:"
+
+//d:Select to list the image files from the Media gallery.
+//d:(list query item)
+//l:list_single_pane_t1_cp2
+#define qtn_vei_menu_select_image "Image"
+
+//d:Select to list the video clips from the Media gallery.
+//d:(list query item)
+//l:list_single_pane_t1_cp2
+#define qtn_vei_menu_select_video "Video clip"
+
+//d:New text
+//d:Used but not localized
+//d:One option in selecting video resolution in settings (check list item)
+//l: list_set_graphic_pane_t1
+#define qtn_vei_save_quality_medium "Medium"
+
+//d:New text
+//d:Command in the AIW provider's Edit submenu
+//Starts the simple "2Click" Change sound application
+//l:list_single_popup_submenu_pane_t1
+#define qtn_vei_menu_change_sound "Change sound"
+	    
+//d:New text
+//d:Progress note for porocessing "Change sound"
+//l:popup_note_wait_window
+#define qtn_vei_note_changing_sound "Changing sound"
+	    
+//d:New text 
+//d:User note, used in simple function "Add text"
+//d:when processing video A and text together fails
+//d:	process has three phases where some of can fail:
+//d:		a) generating video B from text
+//d:		or :
+//d:		b) inserting video B to movie
+//d:		or :
+//d:		c) processing videos A and B together 
+//l:popup_note_window
+#define qtn_vei_unable_to_insert_text "Unable to add text" 
+
+//d:New text 
+//d:Error message showed in simple function "Merge videos" 
+//d:when processing two videos together fails
+//l:popup_note_window
+#define qtn_vei_unable_to_merge_videos "Unable to merge video clips"
+
+//d:New text 
+//d:Error message showed in simple function "Merge video and image" 
+//d:when processing video and image together fails
+//l:popup_note_window
+#define qtn_vei_unable_to_merge_video_image "Unable to merge video clip and image"
+
+//d:New text 
+//d:Error message showed in simple function "Change sound" 
+//d:when processing video and audio together fails
+//l:popup_note_window
+#define qtn_vei_unable_to_change_sound "Unable to change sound"
+
+//d:New text 
+//d:Error message showed in simple functions "Merge", "Add text" and "Change sound" 
+//d:when video clip is not supported by ved engine
+//l:popup_note_window
+#define qtn_vei_video_format_not_supported "Video clip format not supported" // in merge there can be two videos
+
+//d:New text 
+//d:Error message showed in simple function "Change sound" 
+//d:when audio clip is not supported by ved engine
+//l:popup_note_window
+#define qtn_vei_audio_format_not_supported "Sound clip format not supported"
+
+//d:New text 
+//d:Error message showed in simple function "Merge" 
+//d:when image is not supported by ved engine
+//l:popup_note_window
+#define qtn_vei_image_format_not_supported "Image format not supported"
+
+//d:New text
+//d:List query heading text.
+//d:This list query is used to select one video file
+//d:from the list of videos. It is used at least with the
+//d:"Merge" functionality (qtn_vei_menu_merge), where
+//d:the user can merge a video clip with another video clip.
+//l:heading_pane_t1
+#define qtn_vei_menu_merge_with_video "Merge with:"
+
+//d:New text
+//d:List query heading text.
+//d:This list query is used to select one image file
+//d:from the list of images. It is used at least with the
+//d:"Merge" functionality (qtn_vei_menu_merge), where
+//d:the user can merge a video clip with an image file.
+//l:heading_pane_t1
+#define qtn_vei_menu_merge_with_image "Merge with:"
+
+
+// End of File
