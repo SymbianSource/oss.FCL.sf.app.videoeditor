@@ -1,5 +1,0 @@
-EXPORTS
-	_ZN13CTRTranscoder4NewLER21MTRTranscoderObserver @ 1 NONAME
-	_ZTI13CTRTranscoder @ 2 NONAME ; #<TI>#
-	_ZTV13CTRTranscoder @ 3 NONAME ; #<VT>#
-
