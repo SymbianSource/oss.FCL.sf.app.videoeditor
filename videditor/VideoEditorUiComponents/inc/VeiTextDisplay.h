@@ -175,7 +175,7 @@ class CVeiTextDisplay : public CCoeControl
          * C++ default constructor.
 		 *
          */
-		CVeiTextDisplay::CVeiTextDisplay();
+		CVeiTextDisplay();
 
        /**
         * From CCoeControl,Draw.

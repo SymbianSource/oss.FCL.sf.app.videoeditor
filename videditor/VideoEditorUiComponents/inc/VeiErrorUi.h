@@ -44,7 +44,7 @@ public:
 	/**
 	* Destructor
 	*/
-	CVeiErrorUI::~CVeiErrorUI();
+	~CVeiErrorUI();
 
 	/**
 	* Static factory constructor.

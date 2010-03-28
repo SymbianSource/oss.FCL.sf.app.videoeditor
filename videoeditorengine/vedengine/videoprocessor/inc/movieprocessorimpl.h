@@ -809,7 +809,7 @@ public:  // New functions
 	  *
 	  * @param aValue The color to adjustTVedColorEffect type (B&W or ColorTone)			
 	  */													 
-    void CMovieProcessorImpl::AdjustH263UV(TInt& aValue);
+    void AdjustH263UV(TInt& aValue);
         
     /**
      * Process audio frames

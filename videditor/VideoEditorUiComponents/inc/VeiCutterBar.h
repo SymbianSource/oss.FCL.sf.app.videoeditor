@@ -268,7 +268,7 @@ class CVeiCutterBar : public CCoeControl, public MCoeControlObserver
 		 *
 		 * @return rect of the area to be cut
 		 */
-        TRect CVeiCutterBar::CalculateCutAreaRect() const;
+        TRect CalculateCutAreaRect() const;
 
     private:
 
