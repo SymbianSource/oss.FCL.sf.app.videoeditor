@@ -43,4 +43,4 @@ public:
 
 	};
 
-#endif _DUMMYCONTROL_H_
+#endif // _DUMMYCONTROL_H_
