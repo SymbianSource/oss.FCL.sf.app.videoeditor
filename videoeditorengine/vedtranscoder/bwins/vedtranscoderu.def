@@ -1,3 +1,0 @@
-EXPORTS
-	?NewL@CTRTranscoder@@SAPAV1@AAVMTRTranscoderObserver@@@Z @ 1 NONAME ; class CTRTranscoder * CTRTranscoder::NewL(class MTRTranscoderObserver &)
-
